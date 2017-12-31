@@ -1,0 +1,45 @@
+wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+
+Agregar el servidor desde donde se dscargarà Jenkins
+	sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+
+sudo apt-get update
+sudo apt-get install jenkins
+service jenkins status
+
+http://192.168.1.4:8080/
+
+cat /var/lib/jenkins/secrets/initialAdminPassword
+
+jenkins
+jenkins
+ 
+Archivo de configuracion
+	cat /var/lib/jenkins/config.xml
+
+Deshabilitar usuario de jenkins (investigar)
+	<useSecurity>true</useSecurity>
+
+Prueba de Pipeline
+	configureTools
+		Configurar maven
+			M2
+			/usr/share/maven
+    
+	Intalar plugin
+		Pipeline Maven Integration Plugin
+
+Crear una tarea Pipeline
+	Configurar Pipeline 
+
+Ruta de workspace
+	/var/lib/jenkins/workspace/
+
+
+Test github spring demo
+java -jar {jar}.jar 
+http://localhost:8080/home
+
+
+GitLab Community Edition 8.14.2
+Jenkins ver. 2.60.1

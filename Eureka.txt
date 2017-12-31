@@ -1,0 +1,37 @@
+*Eureka es un servidor para el registro y localización de microservicios, balanceo de carga y tolerancia a fallos. La función de *Eureka es registrar las diferentes instancias de microservicios existentes, su localización, estado, metadatos…
+*Eureka nos permite así mismo proporcionarle información adicional como metadatos
+
+*En EurekaCliente se ha implementado la interfaz com.netflix.appinfo.HealthCheckHandler		
+		Su funcionamiento consiste en ir retornando un estado diferente cada vez que sea consultada (cada 30 segundos).
+		Esta funcionalidad nos abre la puerta a controlar dinámicamente el estado de nuestro microservicio. Podríamos definir un método REST securizado para cambiarlo, o recuperarlo de una base de datos, o de una caché, incluso podríamos definirlo como una propiedad de configuración y cambiarla en caliente gracias a cloud-config.
+
+*Iniciar EurekaServer
+		./gradlew bootRun
+
+*dashboard de Eureka
+		http://${hostname}:8761/	
+
+*Iniciar EurekaCliente
+		./gradlew bootRepackage
+		./client.sh 1
+
+		Nota: se coloca una propiedad en application.yml, donde se identifica el nombre del servicio
+				spring.application.name: data
+
+*Con un cliente de http o con un browser
+		http://localhost:8080/serviceDummy
+
+
+*Feign
+		Feign es un cliente java http inspirada por Retrofit, JAXRS-2.0 y WebSocket. El primer objetivo de Feign fue reducir la complejidad.
+
+*Iniciar Feign
+		./gradlew bootRun
+
+*Invocar con feign a un metodo de EurekaCliente
+		http://localhost:9090/client
+
+		Nota: Feig invoca al servicio por el nombre "data", el cual se registro en Eureka y de esa forma lo encuentra.
+
+*Generar un error no controlado
+		http://localhost:9090/client?fail=true

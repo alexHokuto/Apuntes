@@ -1,0 +1,34 @@
+*Sincronizar contenedores
+		Puede controlar el orden de inicio del servicio con la opción depends_on. Compose siempre inicia los contenedores en orden de dependencias, donde las dependencias están determinadas por depend_on, links, volumes_from y network_mode: "service: ...". Sin embargo, Compose no esperará hasta que el contenedor esté "listo" (lo que sea para su aplicación), solo hasta que se ejecute. Hay una buena razón para esto. El problema de esperar a que una base de datos (por ejemplo) esté listo es realmente sólo un subconjunto de un problema mucho mayor de sistemas distribuidos. En la producción, su base de datos podría quedar indisponible o mover hosts en cualquier momento. Su aplicación necesita ser resistente a estos tipos de fallos. Para manejar esto, su aplicación debería intentar restablecer una conexión a la base de datos después de un error. Si la aplicación vuelve a intentar la conexión, debería eventualmente poder conectarse a la base de datos.
+
+*Wait-for-it.sh
+		Wait-for-it.sh es un script bash puro que esperará la disponibilidad de un host y un puerto TCP. Es útil para sincronizar la activación de servicios interdependientes, como los contenedores acoplados. Puesto que es un script bash puro, no tiene dependencias externas.
+
+		ENTRYPOINT ["/wait-for-it.sh","postgres:5432", "--", "/start.sh"]
+
+
+*DockerCompose compone/orquesta contenedores, crea una red privada entre contenedores, pudiendo platicar entre ellos.
+		Para que 2 maquinas se comuniquen se debe de conocer la ip. Sin embargo dockerCompose no requiere que le indiques los ip's, sólo debe tener el mismo nombre de la configuracion y el servicio. ejemplo
+
+		- SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/cacti_data
+
+		postgres
+
+		Si se da cuenta, la bd se llama postgres y el servio de la bd tambien se llama postgres.
+
+*Sobre escribir variables de entorno
+		en el archivo application.yml
+			spring.datasource:
+  				driverClassName: org.postgresql.Driver
+				url: jdbc:postgresql://localhost:5432/cacti_data
+				username: cacti
+				password: cacti
+		
+		Para sobreEscribir se debe hacer en el archivo docker-compose.yml (en mayuscula y cambiar el punto por _)
+			SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/cacti_data
+
+*Ruta de volumenes
+		../../postgres:/var/lib/postgresql/data
+
+		Se va crear un directorio postgres que va almacenar la data que persiste.
+		La ruta significa 2 directorios atras del directorio donde se encuentra el archivo docker-compose.yml y se creará el directorio postgres.

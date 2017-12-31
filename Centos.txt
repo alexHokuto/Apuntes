@@ -1,0 +1,18 @@
+yum provides ifconfig
+yum install net-tools   --> Para ifconfig
+
+Rastrear la red
+    sudo yum install nmap   --> Para rastrear las ip de mi red
+    nmap  -sn  172.17.11.0/24
+    nmap  -sn  172.17.11.0/24 | grep '(*72.17.11.'*
+
+Crear un shell
+cd $HOME && touch script.sh && chmod +x script.sh
+
+#!/bin/bash
+for ip in 172.17.11.{1..254}; do
+  ping -c 1 -W 1 $ip | grep "64 bytes" &
+done
+
+./script.sh
+

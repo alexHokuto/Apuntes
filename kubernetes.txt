@@ -1,0 +1,121 @@
+yum install -y ntp
+systemctl enable ntpd && systemctl start ntpd
+systemctl status ntpd
+172.17.11.101
+
+yum install nano
+yum -y install etcd
+
+nano /etc/hosts
+172.17.11.101	centos-01
+172.17.11.102	centos-02
+172.17.11.103	centos-03
+
+nano /etc/yum.repos.d/virt7-docker-common-release.repo
+[virt7-docker-common-release]
+name=virt7-docker-common-release
+baseurl=http://cbs.centos.org/repos/virt7-docker-common-release/x86_64/os/
+gpgcheck=0
+
+yum update
+systemctl status firewalld  --> debe de estar inactivo
+
+yum install -y --enablerepo=virt7-docker-common-release kubernetes docker
+
+***** master *****
+cd /etc/kubernetes
+nano config
+		KUBE_ETCD_SERVERS="--etcd-servers=http://centos-01:2379"
+		
+ cd /etc/etcd/
+nano etcd.conf 
+
+cd /etc/kubernetes/
+nano apiserver
+
+systemctl enable etcd kube-apiserver kube-controller-manager kube-scheduler
+systemctl start etcd kube-apiserver kube-controller-manager kube-scheduler
+systemctl status etcd kube-apiserver kube-controller-manager kube-scheduler | grep "(running)" | wc -l
+
+***** nodos *****
+
+nano /etc/kubernetes/config
+
+cd /etc/kubernetes/
+nano kubelet
+
+systemctl enable kube-proxy kubelet docker
+systemctl start kube-proxy kubelet docker
+systemctl status kube-proxy kubelet docker | grep "(running)" | wc -l
+
+docker images
+docker --version
+docker pull hello-world
+docker images
+docker run hello-world
+
+*** master ***
+man kubectl
+kubectl get nodes
+kubectl describe nodes
+
+------- Fin de la instalacion -----------
+**** nodo
+entrar como root
+cd /var/lib/docker
+cd containers/  -- aparece todas las imagenes con su id
+docker ps -a 	-- indica los id de las imagenes
+
+/var/lib/docker/image/devicemapper/imagedb/content/sha256  -- aparece todas las imagenes id
+docker images 	-- indica los id de las imagenes
+
+ERROR - Cannot connect to the Docker daemon. Is the docker daemon running on this host?
+sudo service docker start
+
+-- para poder comunicarne con otro container en el mismo pod o cluster
+ kubectl run busybox --image=busybox --restart=Never --tty -i --generator=run-p od/v1
+ 
+-- comprobando
+  wget -qO- http://172.18.0.2
+
+  
+-- otra forma (probar)
+  kubectl run busybox --image=busybox --restart=Never --tty -i --generator=run-pod/v1 --env "POD_IP=$(kubectl get pod myapache -o gotemplate='{{.status.podIP}}')"
+  
+  wget -qO- http://$POD_IP
+  
+-- eliminar pod
+kubectl delete pod busybox
+
+kubectl delete pods nginx
+
+ kubectl port-forward nginx :80 &
+
+wget -qO- http://localhost:38944
+
+
+kubectl get pods -l app=nginx 
+
+
+kubectl run busybox --generator=run-pod/v1 --image=busybox --restart=Never --tty -i
+
+kubectl run myreplicas --image=latest123/apache --replicas=2 --labels=app=muapache,vers ion=1.0
+
+kubectl describe deployment myreplicas
+ 
+kubectl exec myapache -i -t -- /bin/bash
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

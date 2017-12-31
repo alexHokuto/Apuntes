@@ -1,0 +1,53 @@
+* Se crea una carpeta 
+		mkdir volumenCont1 && cd $_
+
+*Se agrega un volumen al contenedor
+		docker run -ti -v "$PWD":/pepe ubuntu:14.04 /bin/bash
+
+		-v para montar uno entre el host y el contenedor.
+		"$PWD" indica el path que nos encontramos y que esta va ser unca carpeta compartida entre host y el contenedor
+		/pepe  indica la carpeta que se va a crear en el contenedor y / hace referencia al root del filesystem
+		-ti levantamos un tty y de modo interativo ejecutamos una instancia de bash.	
+
+		Nota: Los archivos y/o carpetas que se añadan en la carpeta de host pueden ser vistos y editados desde el contenedor, por otro lado, los archivos y/o carpetas que se creen en la carpeta /pepe del contenedor podràn ser vistos en la carpeta del Host pero no editarlos.	
+
+		docker inspect -f {{.Mounts}} <container-id>
+		Resultado
+		[{ /path/to/pwd /pepe true}]			/path/to/pwd  es el path del host
+
+*Compartir información entre contenedores		
+		docker run -ti --name=cont1 -v /pepe ubuntu:14.04 /bin/bash
+
+		*Crear un archivo en la carpeta del contenedor
+			root@cont1:/# touch /pepe/foobar
+			root@cont1:/# ls pepe/
+			foobar
+			root@cont1:/# exit
+			exit
+		*Inspeccionar el volumen 
+			docker inspect -f {{.Mounts}} cont1
+
+			[{dbba7caf8d07b862b61b39... /var/lib/docker/volumes/dbba7caf8d07b862b61b39... \
+			/_data /pepe local true}]     //El path de la izquierda es del host
+		*Revisar el archivo creado en el contenedor
+			sudo ls /var/lib/docker/volumes/dbba7caf8d07b862b61b39...
+
+		*Ejecutamos otro contenedor con el volumen anteriormente creado.
+			docker run --volumes-from=cont1 --name=cont2 ubuntu:14.04
+
+			[{4ee1d9e3d453e843819c6ff... /var/lib/docker/volumes/4ee1d9e3d453e843819c6ff... \
+			/_data /pepe local true]	//El path de la izquierda es del host y debe ser igual al del cont1
+
+			*Arrancar el contenedor cont
+				docker start nombreDelContenedor //cont1
+				docker exec -it cont1 /bin/bash
+
+			Nota: Los archivos y/o carpetas que se añadan en la carpeta de host, cont1, cont2 pueden ser vistos y editados por todos los involucrados.
+
+*Copiando datos entre el host desde y para los contenedores
+			*Crear un contenedor y entrar a consola
+				docker run -it --name=ubuntu ubuntu:14.04 /bin/bash
+			*Copiar archivos
+				docker cp Docker.txt ubuntu:/root/DockerCopiado.txt
+
+			Nota: No es necesario que el contenedor este iniciado, basta que este creado.

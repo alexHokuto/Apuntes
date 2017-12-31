@@ -1,0 +1,7 @@
+
+usuario: alex
+pass:    serafan
+
+usuarioFTP: alexftp
+pass:       serafan
+port:       21

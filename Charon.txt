@@ -1,0 +1,10 @@
+*Charon es una implementación de proxy inverso. Reenvía automáticamente las solicitudes HTTP de una aplicación web a otra y envía la respuesta HTTP recibida al cliente. 
+
+*Iniciar Charon
+		./gradlew bootRun
+
+*Url son los que estan mapeados en el archivo application.yaml
+
+		charon.mappings
+				http:localhost:8080/google
+				http:localhost:8080/facebook		

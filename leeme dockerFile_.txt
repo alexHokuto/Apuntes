@@ -1,0 +1,118 @@
+
+*Construir un docker en base a un Dockerfile
+		docker build -t facturarest .
+		--tag, -t	 	Name and optionally a tag in the ‘name:tag’ format
+
+*Correr un docker
+		docker run -p 8090:9090 facturarest
+		-p "puerto"
+
+
+*Correr un docker con un Dockerfile determinado
+		docker build -f Dockerfile.debug .
+		--file, -f	 	Name of the Dockerfile (Default is ‘PATH/Dockerfile’)
+
+*Crear primer contenedor basado en imagen de ubuntu
+		docker run -i -t ubuntu /bin/bash
+
+		-i -> --interactive
+ 		-t -> (--tty) acceso consola
+ 		ubuntu -> Nombre de la imagen de la distribución a utilizar
+ 		/bin/bash -> consola de comando disponible
+ 
+
+ *Crear contenedor basado en ubuntu versión 14.04, con el nombre “trucupei” y arrancarlo automáticamente:
+ 		docker run --name trucupei -i -t ubuntu:14.04 /bin/bash
+
+ 		run -> comando para crear e iniciar contenedor
+  		--name -> nombre del contenedor, en el ejemplo es "trucupei"
+  		-i -> Interactive
+  		-t -> (--tty) acceso consola 
+  		ubuntu:14.04 -> Nombre y versión de la imagen de la distribución a utilizar
+  		/bin/bash -> consola de comandos a utilizar
+
+
+* Crear contenedor con el nombre “nuevo”, basado en la distribución Ubuntu version 14.04:
+		docker create --name nuevo ubuntu:14.04 
+
+		create -> comando para crear nuevo contendor
+  		--name -> nombre del contenedor, en el ejemplo es "nuevo"
+  		ubuntu:14.04 -> Nombre y versión de la imágen de distribución a utilizar
+ 
+
+		Nota: En este caso al crear el contenedor, el mismo no es iniciado automáticamente, por lo que debemos arrancarlo y acceder al mismo con otro comando
+
+*Listar Contenedor
+		 docker ps -a
+
+*Listar todos los contenedores que están “corriendo” o ejecutandose en el sistema
+		docker ps
+
+*Buscar imagen
+		docker search debian | more				 
+
+*Verificar el mapeo de los puertos, desde el Server anfitrion
+		docker port nombre_contenedor
+		
+*Arrancar Contenedores
+	*Levantar contenedor
+		docker start nombre_contenedor
+	*Entrar o “Enganchar” la consola de bash del contendor
+		docker attach nombre_contenedor (dos veces enter)
+
+*Ejecutar consola de bash para entrar al contenedor creado
+		docker exec -it nombre_contenedor bash
+
+*Salir del contenedor pero sin detener su ejecución (detach)
+		mantener presionada la tecla Ctrl, luego pulsar la tecla P y por último la tecla Q		
+
+*Comandos de Administración
+	*Inspeccionar container
+		docker inspect nombre_contenedor
+	*Inspeccionar los procesos del contenedor
+		docker top nombre_contenedor
+	*Ejecutar comandos dentro de un contenedor
+		docker exec -i nombre_contenedor cat /var/log/apache2/access.log
+
+*Eliminar contenedor
+		docker rm nombre_contenedor
+
+*Eliminar imagen
+		docker rmi nombre_contenedor
+
+*Commit una nueva imagen
+		 docker run -it --name=ubuntu ubuntu:14.04 /bin/bash
+
+		 *Se actualiza el contenedor
+		 		apt-get update
+		 		apt-get install nano
+
+		 		docker commit ubuntu ubuntu:nano
+
+		 		Nota: Este ubuntu:nanoespecifica <nombre_imagen_nueva>:<tag_del_commit>.
+
+*Ver las diferencias de las actualizaciones del contenedor 
+		docker diff contenedorPrueba
+
+*Escribiendo nuestro primer DockerFile
+	* Con ENTRYPOINT
+		FROM ubuntu:14.04
+
+		ENTRYPOINT ["/bin/echo"]
+
+		docker build -t ubuntuentrypoint  -f DockerfileENTRYPOINT .
+		//La instrucción ENTRYPOINT dice cuál es el comando a ejecutar cuando el contenedor basado en esta imagen, sea ejecutado.
+		*Ejecutar la imagen 
+
+			docker run image_id Hi Docker!
+
+	*Con CMD
+		FROM ubuntu:14.04
+
+		CMD ["/bin/echo" , "Hi Docker !"]
+
+		docker build -t ubuntucmd  -f DockerfileCMD .
+		//Esta tiene la ventaja que se puede sobreescribir cuando este se ejecuta, pasándolo como argumento. Por ejemplo:
+
+		docker run image_id /bin/date
+		docker run image_id /bin/echo Alexander

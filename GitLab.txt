@@ -1,0 +1,30 @@
+git config --list 
+
+
+Validar si existe ssh
+cat ~/.ssh/id_rsa.pub
+
+To generate a new SSH key pair, use the following command:
+ssh-keygen -t rsa -C "alexandermorvar@gmail.com" -b 4096
+pass serafan
+alexandermorvar@gmail.com
+
+
+O solo generar
+ssh-keygen
+
+
+.pub --> llave publica (Todo el contenido del archivo)
+archivo sin extension --> llave privada
+
+
+Iniciar el agente que administra las claves
+eval $(ssh-agent -s)
+
+registrar la llave
+ssh-add path de la llave privada
+
+
+git config --global user.name "aleHokuto"
+git config --global user.email "cmorales.corporacion@gmail.com"
+

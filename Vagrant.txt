@@ -1,0 +1,243 @@
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/xenial64"
+  config.vm.network "public_network", ip: "192.168.1.5"
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 4024
+    v.cpus = 2
+  end
+end
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/xenial64"
+  config.vm.network "public_network", ip: "192.168.1.4"
+  config.vm.define "Devops"
+  config.disksize.size = '50GB'
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 4024
+    v.cpus = 2
+    v.name = "jenkins"
+  end
+end
+
+error
+        vagrant plugin update
+
+Ejecutar la máquina virtual:
+$ vagrant up
+
+Para entrar por SSH a la máquina no hace falta ni saber la dirección IP. Basta con un comando: y salir exit
+$ vagrant ssh
+
+Poner la máquina en estado de suspensión:
+$ vagrant suspend
+
+Si hemos suspendido la máquina pero queremos volver a ejecutarla, ejecutamos el siguiente comando:
+$ vagrant resume
+
+Para apagar la máquina:
+$ vagrant halt
+
+Para saber el estado de la máquina (apagada, ejecutándose o en modo suspensión):
+$ vagrant status
+
+Para destruir la máquina:
+¡Atención! Este comando no apaga la máquina, sino que la elimina y borra todos los datos.
+$ vagrant destroy        
+
+plugin
+	vagrant plugin install vagrant-disksize
+
+
+Instalar JAVA ubuntu
+
+sudo add-apt-repository ppa:webupd8team/java
+sudo apt-get update
+sudo apt-get install oracle-java8-installer
+
+sudo apt-get install oracle-java8-set-default
+
+Instalar NEXUS
+wget https://sonatype-download.global.ssl.fastly.net/nexus/3/nexus-3.6.2-01-unix.tar.gz
+
+como root
+	useradd oss
+	usermod -aG sudo oss
+	passwd oss
+
+cp nexus-3.6.2-01-unix.tar.gz /opt/
+sudo tar -xvzf nexus-3.6.2-01-unix.tar.gz  
+
+Ejecutar Nexus
+	root
+	cd /opt/nexus-3.6.2-01/bin/
+	./nexus run
+
+Configurar a una cuenta 
+	/opt/nexus-3.6.2-01/bin
+	vim nexus.rc
+	run_as_user="oss"
+
+Dar permiso al usuario oss
+	sudo chown -R oss:oss sonatype-work/
+	sudo chown -R oss:oss nexus-3.6.2-01
+
+Configurar un servicio en ubuntu
+Como root
+	vim /etc/systemd/system/nexus.service
+	-----
+	[Unit]
+	Description=nexus service
+	After=network.target
+	  
+	[Service]
+	Type=forking
+	LimitNOFILE=65536
+	ExecStart=/opt/nexus-3.6.2-01/bin/nexus start
+	ExecStop=/opt/nexus-3.6.2-01/bin/nexus stop
+	User=oss
+	Restart=on-abort
+	  
+	[Install]
+	WantedBy=multi-user.target
+	------
+
+como root
+oss@ubuntu-xenial:/opt/nexus-3.6.2-01/bin$ sudo systemctl daemon-reload
+[sudo] password for oss: 
+
+como oss
+oss@ubuntu-xenial:/opt/nexus-3.6.2-01/bin$ systemctl enable nexus.service
+oss@ubuntu-xenial:/opt/nexus-3.6.2-01/bin$ systemctl start nexus.service
+oss@ubuntu-xenial:/opt/nexus-3.6.2-01/bin$ systemctl status nexus.service
+● nexus.service - nexus service
+   Loaded: loaded (/etc/systemd/system/nexus.service; enabled; vendor preset: enabled)
+   Active: active (running) since Fri 2017-12-15 22:21:23 UTC; 7s ago
+  Process: 3839 ExecStart=/opt/nexus-3.6.2-01/bin/nexus start (code=exited, status=0/SUCCESS)
+ Main PID: 3974 (java)
+    Tasks: 39
+   Memory: 465.5M
+      CPU: 11.098s
+   CGroup: /system.slice/nexus.service
+           └─3974 /usr/lib/jvm/java-8-oracle/jre/bin/java -server -Dinstall4j.jvmDir=/usr/lib/jvm/java-8-oracle/jre -Dexe4j.moduleName=/opt/nexus-3.6.2-01/bin/nexus -
+
+
+
+192.168.1.4:8081
+
+Maven
+	sudo apt-get install maven
+	mvn -version
+
+Git	
+	sudo apt-get install git
+	git --version
+
+Gradle
+  sudo add-apt-repository ppa:cwchien/gradle
+  sudo apt-get update
+	sudo apt-cache search gradle
+
+/usr/share/gradle/
+
+ls -lhtr
+
+Tomcat
+	wget http://www-eu.apache.org/dist/tomcat/tomcat-8/v8.5.24/bin/apache-tomcat-8.5.24.tar.gz
+	tar -xvzf apache-tomcat-8.5.24.tar.gz
+	sudo mv apache-tomcat-8.5.24 /usr/share/
+	
+Editar el bashrc, me parece que no debe de haver espacios en blanco xq vota error
+		vim ~/.bashrc
+		export JAVA_HOME=/usr/lib/jvm/java-8-oracle/
+		export CATALINA_HOME=/usr/share/apache-tomcat-8.5.24
+		export CATALINA=$CATALINA_HOME/bin
+    export PATH=$PATH:$CATALINA
+
+Correr Tomcat
+		./catalina.sh start
+		
+Ver las ultimas lineas del log
+tail /usr/share/apache-tomcat-8.5.24/logs/catalina.out
+
+	
+crear enlace
+sudo ln -s nexus-3.6.2-01 nexus
+ls -lhtr
+se visualiza nexus --> nexus-3.6.2-01
+
+
+-- actulizamos
+vim ~/.bashrc
+export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+export M2_HOME=/usr/share/maven
+export M2=$M2_HOME/bin
+
+export NEXUS_HOME=/usr/share/nexus
+export NEXUS=$NEXUS_HOME/bin
+export PATH=$PATH:$NEXUS
+
+
+
+		
+		
+filezilla a vagrant
+sftp://192.168.1.183  --ip de vagrant
+vagrant               -- nombre
+vagrant               -- password
+port                  -- tal vez 22 o sin nada
+
+
+MOVER Vagrant BOX a otra maquina
+
+1.	Vagrant Up the ubuntu box without the 'config.ssh.insert_key = false' line (No colocar esa linea)
+2.	Reset the ubuntu user's password to 'vagrant':
+3.	sudo passwd ubuntu  (IMPORTANTE)
+	(will prompt for password)
+4.	Config your box how you want it
+5. 	Package your box
+6.	Then in your new boxes Vagrantfile include:
+		config.ssh.username = 'ubuntu'
+		config.ssh.password = 'vagrant'  (Es el password que se coloco en el punto 3)
+7. 	vagrant package
+8.	vagrant box add package.box --name jenkins_box
+9.	Actualizar el box en la etiqueta path 
+10.	vagrant init jenkins_box
+11.	vagrant up
+
+
+PUSH docker a nexus
+
+sudo nano /etc/docker/daemon.json
+
+{
+  "insecure-registries": [
+    "192.168.1.222:8082",
+    "192.168.1.222:8083"
+  ],
+  "disable-legacy-registry": true
+}
+
+
+sudo service docker restart
+
+cmorales@sapia:~$ docker login -u admin -p admin123 192.168.1.222:8083
+Login Succeeded
+
+cmorales@sapia:~$ docker login -u admin -p admin123 192.168.1.222:8082
+Login Succeeded
+
+se crea la carpeta ./docker con el config.yaml
+
+Se descarga en el repositorio de docker-hub - falta group 
+	docker pull 192.168.1.222:8082/httpd:2.4-alpine
+
+Se genera TAG
+	docker tag busybox 192.168.1.222:8083/busybox
+
+Se pushea en el repositorio docker-private
+	docker push 192.168.1.222:8083/busybox
+
+Download desde mi repositorio
+docker pull 192.168.1.222:8083/busybox
+
+docker rmi 192.168.1.222:8082/httpd:2.4-alpine

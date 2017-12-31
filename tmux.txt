@@ -1,0 +1,58 @@
+
+los comando se ejecutan con la combinacion de Ctrl + B sueltas y pulsas la tecla correspondiente a la acciòn que se requiere
+
+Ctrl + b --> : Permite ingresar comandos en la terminal
+Temporal
+//Estable otro prefijo Ctrl +z
+set -g prefix2 C-a  
+bind j resize-pane -D 1
+bind k resize-pane -U 1
+bind l resize-pane -L 1
+bind h resize-pane -R 1
+
+Copiar
+	set-window-option -g mode-keys vi
+	Ctrl + b --> [
+	Presiona espacio para iniciar el copiado luego con las flechas --> seleccinas lo que vas a copiar y das entre
+	Ctrl + b --> ]
+
+
+Comandos
+tmux list-sessions   //Listar las sesiones abiertas
+tmux attach			//Se conecta a la ultima session 
+tmux attach -t 0	//Especificar a que session quieres conectarse
+tmux attach -t 6    //Salir de la session 6, pero sin cerrar sessiòn
+
+tmux kill-server  //destruir todas la sessiones
+tmux kill-session -a -t 1 //destruir todas la sessiones con excepcion de la que entramos
+
+ShorCuts
+Ctrl + b --> $ cambiar el nombre de la session
+Ctrl + b --> s muestra la lista de session para navegar
+Ctrl + b --> : se escribe kill-session en la parte izq inferior y destruye la session
+Ctrl + b --> , renombra la ventana
+
+Ctrl + b --> c crea una ventana adicional a la session
+Ctrl + b --> p avanza entre ventanas de la misma session
+Ctrl + b --> n retrocede entre ventanas de la misma session
+Ctrl + b --> 1 especifica la ventana que quieras, en la barra de abajo hay un indicador * que indica en que ventana estas situado
+Ctrl + b --> & kill ventana
+
+Paneles
+Ctrl + b --> " crea un panel horizontal
+Ctrl + b --> % crear un panel vertical
+Ctrl + b --> flechas  para navegar entre paneles
+Ctrl + b --> x kill panel
+Ctrl + b --> barra espaciadora  establece layaout por defecto
+Ctrl + b --> [  indica un contador de lineas en el panel
+		     q para salir
+Ctrl + b --> z oculta todos los paneles con exception del que se encuentra 
+Ctrl + b --> flechas manteniento para resize de panel
+
+Crear un archivo de config
+tmux show -g > ~/.tmux.conf
+tmux source ~/.tmux.conf
+
+Plugin manager
+https://github.com/tmux-plugins/tpm
+

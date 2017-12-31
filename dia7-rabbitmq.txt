@@ -1,0 +1,20 @@
+https://start.spring.io/
+
+*Insertar BD postgres
+	http://172.18.0.4:8080/person
+	POST
+	{
+	"version": 1,
+	"name": "Christian",
+	"email":"alexandermorvar@gmail.com"
+	}
+
+	Nota: para saber la ip que ha generado dockerCompose se puede utilizar socker inspect contener_id
+
+*Dejar en cola rabbit
+	POST
+	http://172.18.0.4:8080/queue	
+
+
+*En la carpeta se postgres existe un shell init-user-db.sh
+	Es un script propio del contenedor de postgres para ejecutar al inicio del contenedor

@@ -1,0 +1,52 @@
+gradle bootRun
+http://localhost:9090/v1/facturas
+{
+	"ruc": "12345678901",
+	"montoTotal": 100,
+	"subTotal" : 80,
+	"igv" : 20,
+	"concepto": "Pago de servicio",
+	"razonSocial" : "Cosapi",
+	"fecha" : "2000-10-31"
+}
+
+
+*Manejo de Errores de entrada
+	{
+	    "mensaje": "Revisa la factura, tiene errores",
+	    "errores": [
+	        {
+	            "message": "no puede ser null",
+	            "property": "fecha",
+	            "entity": "com.example.demo20170520.model.FacturaCommand",
+	            "invalidValue": "null"
+	        }
+	    ]
+	}
+
+*Manejo de Errores de Validación de logica de negocios
+	{
+	    "factura": {
+	        "id": null,
+	        "fecha": 972950400000,
+	        "ruc": "12345678901",
+	        "razonSocial": "Cosapi",
+	        "montoTotal": 100,
+	        "subTotal": 802,
+	        "igv": 20,
+	        "concepto": "Pago de servicio"
+	    },
+	    "mensaje": "El monto total difiere del subtotal + IGV."
+	}
+
+* Persiste en bd H2
+* Maneja test con groovy
+	gradle test -Dtest.single
+	- Si deseas especificas la clase de Test
+		gradle test -Dtest.single=FacturaServiceImplSpec
+	- Si deseas agregas el parametro -t para que este escuchando permanente el cambio 
+		gradle test -Dtest.single=FacturaServiceImplSpec -t
+
+	gradle test jacocoTestReport -Dtestsingle=FacturaServiceImplSpec
+	- No se requiere que este en build la libreria, al correr el test lo descaragara
+	-buscar el reporte en \build\reports\jacoco\test\html

@@ -1,0 +1,342 @@
+l--all , -a		Show all images (default hides intermediate images)
+--digests		Show digests
+--filter , -f	Filter output based on conditions provided
+--format		Pretty-print images using a Go template
+--no-trunc		Don’t truncate output
+--quiet , -q	Only show numeric IDs
+
+*Tabla de rutas IP del núcleo
+	route -n
+
+*Ver log
+	docker logs -f {contenedor}
+
+*restart
+	sudo service docker restart
+	sudo systemctl restart docker
+
+* Procesos de Docker
+	ps aux | grep docker
+	ps aux | grep dpcker-proxy
+
+*Puertos que estasn escuchando
+	netstat -nltp
+
+*Bajar la imagen y correrlo
+	docker run -d -P tomcat:8.0
+
+*Ir a la web y listo
+	http://127.0.0.1:32768/	
+
+*docker images
+		listar las imagenes que se ha descargado
+
+*Verificar imagen
+	docker images | grep postgres
+
+*Ver Contenedores
+ docker ps
+			Ver los contenedores que se encuentran en ejecuciòn
+		ps -a  ->Para ver todos los contenedores
+
+*Eliminar todos los contenedores
+		docker ps -q -a | xargs docker rm		
+
+*Eliminar all untagged images
+	docker rmi $(docker images | grep "^<none>" | awk '{print $3}')
+	docker rmi -f $(docker images -q)
+
+*Eliminar imagenes con excepcion de una una o mas imagenes
+	docker rmi $(docker images | grep -v 'ubuntu\|{repository}' | awk {'print $3'})
+
+*bajar alpine
+	docker pull alpine
+
+*Correr alpine
+	docker run -it alpine /bin/sh
+
+	apk update
+	apk upgrade
+	apk add nano
+	exit
+
+*Commit images
+	docker commit -a "alexander" -m "version 2.1" b2f alexVirtual/alpine:nano
+
+	-a "autor"
+	-m "version"
+	los 2 primeros caracteres del conteiner
+	repositorio "alexvirtual/alpine"
+	tag ":nano"
+
+*Crear Dockerfile
+	FROM ubuntu
+	RUN apt-get update
+	RUN apt-get install -y vim
+	RUN apt-get install -y curl
+
+	Nota: Usar múltiples comandos RUN es una mala práctica, ya que genera una nueva capa por cada uno
+
+ 	RUN apt-get update && apt-get install -y \
+    	apt-get install -y vim \
+    	apt-get install -y curl
+    	
+*Correr un Dockerfile
+	docker build -t alexvirtual/ubuntu:2.0 .
+
+*postgres
+	docker pull postgres:9.6
+
+
+*Correr imagen postgres
+	docker run -p 5432:5432 --name postgres96 -v /home/alexander/Proyectos/postgres/postgres96:/var/lib/postgresql/data -e POSTGRES_PASSWORD=secret -d postgres:9.6
+
+	-p "puerto"
+	--name "nombre de contenedor"
+	-v "guarde en bd en el disco duro de host"
+
+	-e "crear variable de entorno"	
+	-d "se va ejecutar en modo demonio"
+	nombre de la imagen
+
+*Ingresar al contenedor 
+	docker exec -i postgres96 psql -U postgres
+
+	CREATE DATABASE youtube;
+	*conectar a la bd
+		\c youtube
+	*crear tabla
+		CREATE TABLE videos (id smallint not null, title character varying(200) not null, description character varying(1000) not null);
+	*ver la relacion
+		\d
+	*Insert into
+		INSERT INTO videos(id) VALUES (1);
+	*Salir
+		\q	
+	*Docker stop postgres96	
+	
+*Arrancar Contenedor
+	docker start postgres96
+
+*Detener Contenedor
+	docker stop {name}
+
+Mysql
+
+*descargar mysql
+	docker pull mysql:5.7
+
+*correr
+	docker run -p 3306:3306 --name mysql57 -v /home/alexander/Proyectos/mysql/mysql57:/var/lib/mysql -e MYSQL_ROOT_PSSSWORD=secret -d mysql:5.7 --character-set-server=utf8 --collation-server=utf8_unicode_ci
+	*--character-set-server		"tipo de caracter"
+	*--collation-server			"ordenamineto la letra ñ"
+
+*Ingresar al contenedor
+	docker exec -it mysql57  mysql -urrot -p
+
+	show databases;
+	exit;
+
+*Correr ubuntu
+docker run -ti ubuntu:16.04 /bin/bash
+
+*Ingresar como root en Ubuntu
+	user@host:~$ sudo bash
+	root@host:~# su
+	root@host:/home/user# 
+	Voila! You are now root!
+
+
+NGINX
+docker pull nginx:1.13
+docker run -p 80:80 -d nginx:1.13
+curl localhost
+docker stop {ID}
+docker run -p 80:80 -d -v {carpeta-volumen}:/usr/share/nginx/html nginx:1.13  // en la carpeta debes de colocar un html
+docker run -p 80:80 -v /home/alexander/Proyectos/nginx/html:/usr/share/nginx/html -v /home/alexander/Proyectos/nginx/config:/etc/nginx/conf.d -d nginx:1.13
+
+docker run -p 80:80 -v /home/alexander/Proyectos/nginx/html:/usr/share/nginx/html -v /home/alexander/Proyectos/nginx/config:/etc/nginx/conf.d -v /home/alexander/Proyectos/nginx/log:/var/log/nginx -d nginx:1.13
+
+inicio - default.conf
+server {
+    listen       80;
+    server_name  localhost;
+
+    #charset koi8-r;
+    #access_log  /var/log/nginx/host.access.log  main;
+
+    location / {
+        root   /usr/share/nginx/html;
+        index  index.html index.htm;
+    }
+
+    #error_page  404              /404.html;
+
+    # redirect server error pages to the static page /50x.html
+    #
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+
+    # proxy the PHP scripts to Apache listening on 127.0.0.1:80
+    #
+    #location ~ \.php$ {
+    #    proxy_pass   http://127.0.0.1;
+    #}
+
+    # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+    #
+    #location ~ \.php$ {
+    #    root           html;
+    #    fastcgi_pass   127.0.0.1:9000;
+    #    fastcgi_index  index.php;
+    #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;
+    #    include        fastcgi_params;
+    #}
+
+    # deny access to .htaccess files, if Apache's document root
+    # concurs with nginx's one
+    #
+    #location ~ /\.ht {
+    #    deny  all;
+    #}
+}
+
+
+fin
+
+curl localhost  // Se mostrara el html que pusiste en el volumen
+docker exec -it <mycontainer> bash
+
+Reinicia el servicio
+nginx -s reload
+
+REDIS
+docker run -d -p 6379:6379 redis:3.2
+docker exec -it a4497f57855b bash
+redis-cli
+set saludo "Hola Morales" EX 1000
+
+En el host 
+	apt install redis-tools
+	redis-cli  get saludo	//recupera el valor - 
+	redis-cli -h  127.0.0.1 -p 6379  get bandeja
+
+mset a "1" b "2"
+mget a b 
+exists  key
+key *
+ttl key  //saber el tiempo de vida que le queda al key
+expire key 10 //En segundos
+
+
+
+
+ERROR
+Docker
+cannot connect to the docker daemon. is the docker daemon running on this host ubuntu
+
+sudo systemctl stop docker
+sudo docker daemon &
+
+Registry
+docker pull ubuntu:16.04
+mkdir private-registry
+cd private-registry
+
+
+
+
+
+Docker-machine
+*Install
+curl -L https://github.com/docker/machine/releases/download/v0.13.0/docker-machine-`uname -s`-`uname -m` >/tmp/docker-machine &&
+chmod +x /tmp/docker-machine &&
+sudo cp /tmp/docker-machine /usr/local/bin/docker-machine
+
+*Verificar
+	docker-machine version
+
+*Listar los docker-machines
+	docker-machine ls
+
+*Eliminar un docker machine
+	docker-machine rm {name}	
+
+*Crear docker-machine
+	*Instalar virtualBox con su expansion
+
+	docker-machine create -d digitalocean --digitalocean-access-token=<ACCESS_TOKEN> my-private-registry
+
+	docker-machine create -d virtualbox my-private-registry
+	docker-machine ip my-private-registry //192.168.99.100
+	docker-machine ssh my-private-registry // Se ingresa a la maquina
+	Copiar index.html nginx.conf docker-compose.yml
+	docker-machine ssh my-private-registry mkdir -p /root/nginx-root
+	docker-machine scp index.html my-private-registry:/root/nginx-root/
+	docker-machine scp nginx.conf my-private-registry:/root/nginx-root/
+
+	eval $(docker-machine env my-private-registry)
+	env | grep DOCKER  //muestra informacion 
+			DOCKER_MACHINE_NAME=my-private-registry
+			DOCKER_CERT_PATH=/root/.docker/machine/machines/my-private-registry
+			DOCKER_TLS_VERIFY=1
+			DOCKER_HOST=tcp://192.168.99.100:2376
+	
+	
+
+*Registry
+
+c$ mkdir -p $HOME/my-registry/certs        # store your certificates
+$ mkdir -p $HOME/my-registry/registry     # store your registry data
+$ cd $HOME/my-registry
+
+Create self signed certificate
+Now you should create a self-signed certificate for new docker-registry. These files are stored in previously created certs/ folder so it can be mounted into docker-registry container later.
+
+openssl req -newkey rsa:4096 -nodes -sha256 -x509 -days 365 \
+    -keyout certs/docker-registry.key \
+    -out certs/docker-registry.crt
+
+
+touch docker-compose.yml
+registry:
+  container_name: docker-registry
+  restart: always
+  image: registry:2
+  ports:
+    - 5000:5000
+  environment:
+    REGISTRY_HTTP_SECRET: {any password}
+    REGISTRY_HTTP_TLS_CERTIFICATE: /certs/docker-registry.crt
+    REGISTRY_HTTP_TLS_KEY: /certs/docker-registry.key
+    REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY: /var/lib/registry
+  volumes:
+    - ./registry:/var/lib/registry
+    - ./certs:/certs
+
+ .
+├── certs
+│   ├── docker-registry.crt
+│   └── docker-registry.key
+├── docker-compose.yml
+└── registry
+
+$ docker-compose up -d
+
+$ docker pull busybox
+$ docker tag busybox localhost:5000/busybox
+$ docker push localhost:5000/busybox
+
+docker rmi busybox
+docker pull localhost:5000/busybox
+
+*Generar token
+htpasswd -nbB jgsqware jgsqware
+
+
+docker login -u admin -p admin123 your-repo:8082
+
+docker login -u admin -p admin123 http://192.168.1.222:8081/repository/docker/:8082
+http://192.168.1.222:8081/repository/docker/

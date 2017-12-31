@@ -1,0 +1,116 @@
+Administrador de paquestes beneficios
+    - Jenkins queda al path  del sistema operativo
+	- queda instaldo como servicio en el sistema opeartivo e inicializado el servidor
+
+Instalar aplicaciones
+	sudo dpkg -i dbeaver-<version>.deb
+	sudo apt-get install -f
+	sudo apt-get remove VirtualBox-5.1
+
+Ruta de instalacion
+	Aproximado equivalentes de instalación de Windows directorios en Linux
+	\Windows = /bin
+	\Windows\System32 = /lib y /sbin
+	\Program Files = /usr/bin y /usr/lib
+
+	Los programas que instala a través de apt-get casi siempre terminan adecuadamente en /usr. PERO los programas de compilar desde el código fuente y 'make installwill more often end up in/usr/local/bin, '/usr/local/lib, etc, y usted puede tener problemas con que, desde la que el usuario puede instalar la ruta en Debian/ubuntu es /usr e no /usr/local.
+	dpkg -L name-of-package
+	dpkg --get-selections
+	dpkg --get-selections | grep name-of-package
+
+Remover aplicacion
+	sudo service jenkins stop
+	After stopping it you can follow the normal flow of removing it using commands respective to your linux flavour
+
+	For centos it will be
+    sudo yum remove jenkins
+
+	For ubuntu it will
+    sudo apt-get remove --purge jenkins
+	
+matar procesos
+	sudo lsof -i -P -n | grep LISTEN
+	ps ax | grep aqua
+
+	procesos red hat
+	semanage port -l | grep -w http_port_t
+
+	kill -9 {id}
+
+root explorer
+	sudo apt install gksu
+	gksudo nautilus
+
+buscar archivos
+	locate *.vmoptions*
+	
+Comandos de terminator
+	nueva consola windows + i
+	split horizontal mayus + ctrl + o
+	split vertical mayus + ctrl + e
+	full screnn f11
+	maximar terminal mayus + ctrl + x
+	edit titulo de terminal ctrl + alt + x
+	navegar entre ventanas alt + <--, --> ...
+	cerrar ventana mayus + ctrl + w
+	difundir las teclas a todas las ventanas alt + a
+	no difundir	alt + o
+	tab --> ctrl + tab
+	tab <-- mayus + ctrl + tab
+
+To generate a new SSH key pair, use the following command:
+	ssh-keygen -t rsa -C "alexandermorvar@gmail.com" -b 4096
+	pass serafan
+	alexandermorvar@gmail.com
+	
+	O solo generar
+		ssh-keygen
+
+Validar si existe ssh
+	cat ~/.ssh/id_rsa.pub	
+	ssh-add ~/.ssh/id_rsa
+
+version de linux
+	uname -a
+	cat /proc/version
+	cat /etc/issue
+	cat /etc/*release
+
+Archivo hosts
+	sudo vim /etc/hosts
+
+md5sum
+	md5sum file
+
+listar los usuarios
+	sudo cat  /etc/shadow 
+
+Error de .bashrc
+  /bin/cp /etc/skel/.bashrc ~/
+  source ~/.bashrc||
+  o salir y volver a entrar para que se cargue las variables.
+
+
+
+VPN
+https://148.102.17.108
+usuario
+password
+
+download client.ovpn de la misma pagina (https://148.102.17.108)
+sudo apt-get install openvpn
+sudo openvpn --config client.ovpn
+
+
+Crear un shell
+cd $HOME && touch script.sh && chmod +x script.sh
+
+#!/bin/bash
+for ip in 172.17.11.{1..254}; do
+  ping -c 1 -W 1 $ip | grep "64 bytes" &
+done
+
+./script.sh
+
+AsciidocFX
+	./AsciidocFX

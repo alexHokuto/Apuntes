@@ -1,0 +1,50 @@
+nginx -s reload 
+service nginx restart
+
+* Directiva
+	Es un atributoque esta en en 1er nivel, algunos pueden contener otros atributos y se les agrupa con {
+	}
+	daemon off;
+	log_not_found on | off //se coloca dentro de la directiva de http
+	user //usuario a ejecutar el proceso de nginx
+* Variables
+	env VARIABLE = valor;
+
+* validar el archivo de configuracion
+	nginx -t
+
+* Directivas de eventos
+	events{
+	 *worker_connections integer; // el numero maximo de peticiones al mismo tiempo
+	 *
+	}
+
+*Configuracion de rutas y archivos
+root [http, server, location, if]  //define directorio de trabajo
+
+// si ingresas por http://localhost/admin/ te redirecciona a otra pagina
+location /admin/			
+    {
+		alias /home/nginx/;
+    }	
+
+//Pagina no encontrada http://localhost/login
+error_page 404 404.html    
+
+*Bloque de codigo
+//http://localhost/b
+error_page 404 @error;
+
+location @error	{
+		rewrite ^ error.html permanent;
+    }	
+
+*try, files [server, location] //Investigar
+
+location /inicio/ {
+	try_files pagina.html @redireccion;
+}
+
+location @redireccion {
+	rewrite ^ /inicio/paginaOk.html permanent;
+}
