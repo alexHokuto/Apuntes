@@ -16,3 +16,4 @@ done
 
 ./script.sh
 
+sudo yum install wget

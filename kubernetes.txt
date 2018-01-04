@@ -1,70 +1,178 @@
-yum install -y ntp
-systemctl enable ntpd && systemctl start ntpd
-systemctl status ntpd
+sudo su
+
+1.Que es NTP?
+    El protocolo de tiempo (Network Time Protocol o NTP) es un protocolo de red para sincronizar relojes entre computadoras.  Este servicio esta desde el año 1985 y es uno de los protocolos mas antiguos.
+
+    NTP esta hecho para sincronizar con una diferencia de unos mili segundos con respecto a sus servidores de tiempo.  Los servidores consultan la hora por este protocolo y sincronizan sus relojes con estos servidores de tiempo. De esta manera la hora es muy cercana a la exacta.
+
+    yum install -y ntp
+    systemctl enable ntpd && systemctl start ntpd
+    systemctl status ntpd
 172.17.11.101
 
-yum install nano
-yum -y install etcd
+2. Agregar en el host de las pc
+    yum install nano
+    nano /etc/hosts
+    172.17.11.101	centos-01
+    172.17.11.102	centos-02
+    172.17.11.103	centos-03
 
-nano /etc/hosts
-172.17.11.101	centos-01
-172.17.11.102	centos-02
-172.17.11.103	centos-03
+3. Crear un repositorio
+    nano /etc/yum.repos.d/virt7-docker-common-release.repo
 
-nano /etc/yum.repos.d/virt7-docker-common-release.repo
 [virt7-docker-common-release]
 name=virt7-docker-common-release
 baseurl=http://cbs.centos.org/repos/virt7-docker-common-release/x86_64/os/
-gpgcheck=0
+gpgcheck=0    
 
-yum update
-systemctl status firewalld  --> debe de estar inactivo
+    yum update
 
-yum install -y --enablerepo=virt7-docker-common-release kubernetes docker
+4. Deshabilitar firewalld
+    systemctl status iptables   --> debe de estar inactivo
+    systemctl status firewalld  --> debe de estar inactivo
 
-***** master *****
-cd /etc/kubernetes
-nano config
-		KUBE_ETCD_SERVERS="--etcd-servers=http://centos-01:2379"
-		
- cd /etc/etcd/
-nano etcd.conf 
+5. Instalar kubernetes y docker
+    yum install -y --enablerepo=virt7-docker-common-release kubernetes docker
 
-cd /etc/kubernetes/
-nano apiserver
+6. Configurar Kubernetes/config En el master
+    cd /etc/kubernetes
+    nano config
+    KUBE_MASTER="--master=http://centos-01:8080"
+		KUBE_ETCD_SERVERS="--etcd-servers=http://centos-02:2379"
 
-systemctl enable etcd kube-apiserver kube-controller-manager kube-scheduler
-systemctl start etcd kube-apiserver kube-controller-manager kube-scheduler
-systemctl status etcd kube-apiserver kube-controller-manager kube-scheduler | grep "(running)" | wc -l
+7. Instalar etcd en todas las pc
+    etcd es un servicio que permite almacenar valores que serán utilizados por el clúster. Al tener un repositorio centralizado de valores, CoreOS puede hacer uso del mismo para almacenar configuraciones y valores de los aplicativos que deben correr en el clúster. etcd permite que se almacene información en forma de "nombre":"valor" que luego puede ser consumida de forma externa por el clúster.
 
-***** nodos *****
+    etcd es replicado en cada uno de los servidores del clúster, por lo cual, cualquier modificación hecha en cualquiera de los servidores es automáticamente replicada a todos los miembros del clúster para que consuman esa información.
 
-nano /etc/kubernetes/config
+    yum -y install etcd
 
-cd /etc/kubernetes/
-nano kubelet
+8. Configurar etcd.conf En el master
+    cd /etc/etcd/
+    nano etcd.conf 
 
-systemctl enable kube-proxy kubelet docker
-systemctl start kube-proxy kubelet docker
-systemctl status kube-proxy kubelet docker | grep "(running)" | wc -l
+    ETCD_LISTEN_CLIENT_URLS="http://0.0.0.0:2379"
+    ETCD_ADVERTISE_CLIENT_URLS="http://0.0.0.0:2379"
 
-docker images
-docker --version
-docker pull hello-world
-docker images
-docker run hello-world
+9. Configurar apiserver En el master
+    cd /etc/kubernetes/
+    nano apiserver
 
-*** master ***
-man kubectl
-kubectl get nodes
-kubectl describe nodes
+    KUBE_API_ADDRESS=”--address=0.0.0.0”
+    KUBE_API_PORT=”--port=8080”
+    KUBELET_PORT=”--kubelet-port=10250”
+    #KUBE_ADMISSION_CONTROL   --> comentar
 
+10. Create symlink
+    En informática, un enlace simbólico, en sistemas Unix o GNU/linux, indica un acceso a un directorio o fichero que se encuentra en un lugar distinto dentro de la estructura de directorios. Una modificación realizada utilizando este enlace se reflejará en el original; pero, por el contrario, si se elimina el enlace, no se eliminará el auténtico.
+
+    systemctl enable etcd kube-apiserver kube-controller-manager kube-scheduler
+
+11. Iniciar los symlink
+    systemctl start etcd kube-apiserver kube-controller-manager kube-scheduler
+    systemctl status etcd kube-apiserver kube-controller-manager kube-scheduler | grep "(running)" | wc -l
+
+
+12. Configurar kubernetes/config En Nodo
+    nano /etc/kubernetes/config
+    KUBE_MASTER="--master=http://centos-01:8080"
+    KUBE_ETCD_SERVERS="--etcd-servers=http://centos-01:2379"
+
+13. Configurar kulet En Nodo
+		cd /etc/kubernetes
+    nano kubectl
+
+    KUBELET_ADDRESS="--address=0.0.0.0"
+    KUBELET_PORT="--port=10250"  --> descomentar
+    KUBELET_HOSTNAME="--hostname-override=centos-02"
+    KUBELET_API_SERVER="--api-servers=http://centos-01:8080"
+    #KUBELET_POD_INFRA_CONTAINER --> Deshabilitar
+
+14. Create symlink En Nodo
+    sudo systemctl enable kube-proxy kubelet docker
+
+
+15. Iniciar los symlink
+    systemctl start kube-proxy kubelet docker
+    systemctl status kube-proxy kubelet docker | grep "(running)" | wc -l
+
+
+16. Ver Images Docker
+    sudo docker images
+
+    docker pull hello-world
+    docker run hello-world
+    docker ps -a
+
+17. Ayuda kubectl
+    man kubectl
+
+18. Comandos kubectl En master
+    kubectl get nodes
+    kubectl describe nodes    
+
+19. Creacion de pods
+    Un pod es la unidad mínima que es manejada por kubernetes. Este pod es un grupo de uno o más contenedores (normalmente de Docker), con almacenamiento compartido entre ellos y las opciones específicas de cada uno para ejecutarlos. Un modelo de pods específico de una aplicación contiene uno o más contenedores que normalmente irían en la misma máquina.
+
+    Varios contenedores que pertenezcan al mismo pod son visibles unos de otros vía localhost. Los contenedores que se encuentran en distintos pods no pueden comunicarse de esta manera.
+
+    En términos de Docker, un pod es un conjunto de contenedores de Docker con namespace y volúmenes compartidos.
+
+    Hay que tener en cuenta que los pods son entidades efímeras. En el ciclo de vida de un pod estos se crean y se les asigna un UID hasta que terminen o se borren. Si un nodo que contiene un pod es eliminado, todos los pods que contenía ese nodo se pierden. Este pod puede ser reemplazado en otro nodo, aunque el UID será diferente. Esto es importante porque un pod no debería de tener información almacenada que pueda ser utilizada después por otro pod en caso de que a este le pasara algo. Para compartir información entre pods están los volúmenes (no hablamos de ellos en este tutorial, pero si tienes curiosidad puedes mirarlo en este enlace).
+
+    como root
+    mkdir builds
+    cd builds
+    nano nginx-pod.yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.7.9
+    ports:
+    - containerPort: 80
+
+*Se valida que no exista la imagen en los nodos
+*Se valida que no exista el pod
+
+kubectl create -f ./nginx-pod.yaml
+kubectl get pods --> se debe de crear
+
+*Se valida en los nodos y se ha creado la imagen y el contenedor de nginx
+*Se valida que no se ha creado en el master la imagen
+
+kubectl describe pods nginx
+*Se valida que se ha creado una ip
+*Se valida que no puedes hacerle ping a la ip generada por kubernetes
+
+20. Comunicar con otro container en el mismo pod o cluster
+  kubectl run busybox --image=busybox --restart=Never --tty -i --generator=run-pod/v1
+  wget -qO- http://172.18.0.2  --> valida la ip del container al cual le quieres apuntar
+
+21. Borrando pods
+    kubectl delete pods busybox
+*No se elimina la imagen del docker
+
+22. kubectl Port-forward
+    *Carga tu pod nginx
+    kubectl port-forward nginx :80 &
+    wget -qO- http://localhost:X --> el puerto que te mostro en la linea superior
+
+    *Otro ejemplo redis-master
+    kubectl get pods redis-master --template='{{(index (index .spec.containers 0).ports 0).containerPort}}{{"\n"}}'  --> se obtiene el puerto
+    kubectl port-forward redis-master :6379
+    sudo yum install epel-release
+    sudo yum update
+    sudo yum install redis
+
+23 Comandos
+    kubectl get pods -o wide
 ------- Fin de la instalacion -----------
-**** nodo
-entrar como root
-cd /var/lib/docker
-cd containers/  -- aparece todas las imagenes con su id
-docker ps -a 	-- indica los id de las imagenes
+
 
 /var/lib/docker/image/devicemapper/imagedb/content/sha256  -- aparece todas las imagenes id
 docker images 	-- indica los id de las imagenes
@@ -72,8 +180,7 @@ docker images 	-- indica los id de las imagenes
 ERROR - Cannot connect to the Docker daemon. Is the docker daemon running on this host?
 sudo service docker start
 
--- para poder comunicarne con otro container en el mismo pod o cluster
- kubectl run busybox --image=busybox --restart=Never --tty -i --generator=run-p od/v1
+
  
 -- comprobando
   wget -qO- http://172.18.0.2
