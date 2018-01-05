@@ -162,14 +162,17 @@ kubectl describe pods nginx
     kubectl port-forward nginx :80 &
     wget -qO- http://localhost:X --> el puerto que te mostro en la linea superior
 
-    *Otro ejemplo redis-master
+    *Otro ejemplo redis-master (no funciona )
     kubectl get pods redis-master --template='{{(index (index .spec.containers 0).ports 0).containerPort}}{{"\n"}}'  --> se obtiene el puerto
     kubectl port-forward redis-master :6379
     sudo yum install epel-release
     sudo yum update
     sudo yum install redis
+    sudo systemctl start redis
 
-23 Comandos
+23. 
+
+xxx Comandos
     kubectl get pods -o wide
 ------- Fin de la instalacion -----------
 

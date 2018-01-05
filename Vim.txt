@@ -1,0 +1,53 @@
+Desplazarse    
+    l --> derecha
+    h --> izquierda
+    k --> arriba
+    j --> abajo
+    {num} + l,h,k,j--> moverse por la cantidad de posiciones definida
+
+    0 --> inicia de linea
+    $ --> fin de la linea
+    w --> recorrido por palabra a la derecha a la 1era letra
+    e --> recorrido por palabra a la derecha a la ultima letra
+    b --> recorrido por palabra a la izquierda
+    E --> al final de de una secuencias de palabras
+    B --> al principio de una secuencia de palabras
+    {num} + w --> moverse por la cantidad de palabras definida
+    G --> al final del archivo
+    gg --> al principio del archivo
+    {num} + gg --> se posiciona en la linea indicada
+    : + {num} --> se posiciona en la linea indicada
+
+Marcar linea
+    m + {letra} --> marca linea
+    ' + {letra} --> va a la linea marcada    
+
+Buscar
+    f + {letra} --> seguido de la letra que quieres buscar por linea
+
+Eliminar
+    d + w --> elimina por palabra
+    d + {num} + w --> eliminar la cantidad de palabras definida
+    d + $ --> eliminar hasta el fin de la linea
+    d + f + {letra} --> eliminar hasta la letra que se ha encontrado.
+    d + {num} + l,h,k,j --> eliminar la cantidad de posiciones
+
+Revierte
+    u --> deshace el cambio (ctrl +z)        
+    ctrl + r --> regresar al cambio
+    . --> replica el ultimo cambio que has echo
+
+Insertar
+    i --> en modo de inserción
+    a --> en modo de insercion
+    I --> insertar al inicio de la linea
+    A --> insertar al final de la linea
+    o --> insertar en una fila nueva abajo
+    O --> insertar en una fila nueva arriba
+    {num} + i + {palabra} --> inserta tantas veces como has indicado
+    r + {letra} --> reemplaza la letra
+    c + {num} + w --> elimina las palabras y entra en modo edición
+    c + i + { --> elimina todas las lineas que están dentro de {}
+
+
+
