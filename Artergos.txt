@@ -1,0 +1,6 @@
+sudo pacman -S virtualbox
+sudo pacman -S vagrant
+yaourt jdk
+
+desintalar
+	sudo pacman -Rns virtualbox
