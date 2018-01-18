@@ -13,7 +13,7 @@ bind h resize-pane -R 1
 Copiar
 	set-window-option -g mode-keys vi
 	Ctrl + b --> [
-	Presiona espacio para iniciar el copiado luego con las flechas --> seleccinas lo que vas a copiar y das entre
+	Presionando espacio para iniciar el copiado luego con las flechas --> seleccinas lo que vas a copiar y das enter
 	Ctrl + b --> ]
 
 
@@ -49,6 +49,8 @@ Ctrl + b --> [  indica un contador de lineas en el panel
 Ctrl + b --> z oculta todos los paneles con exception del que se encuentra 
 Ctrl + b --> flechas manteniento para resize de panel
 
+Ctrl + b --> } mover el panel a otra posicion de la ventana
+
 Crear un archivo de config
 tmux show -g > ~/.tmux.conf
 tmux source ~/.tmux.conf
@@ -76,7 +78,10 @@ Error
 		# Horizontally split the window in step 3 into 2 panes.
 		# The second pane is watching the /tmp folder for changes.
 		tmux split-window -d -t stuff:monitor -c /tmp -h 'watch -n3 ls -la'
-		Now let’s check again for an active session:
+		#Now let’s check again for an active session:
 
 		tmux ls
-		stuff: 2 windows (created Mon May 23 22:07:33 2016) [140x40]
+		#stuff: 2 windows (created Mon May 23 22:07:33 2016) [140x40])
+
+
+

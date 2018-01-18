@@ -24,7 +24,24 @@ Marcar linea
 
 Buscar
     f + {letra} --> seguido de la letra que quieres buscar por linea
+    / + {palabra} --> busca la palabra en el documento
+        + n --> va al siguiente linea abajo
+        + N --> va al siguiente lineas arriba
+    * --> posicionar sobre la palabra que se requiere buscar
+    /\/\/ --> buscar comentarios
+    :noh --> quitar el resaltador
+    :set hlsearch --> colocar resaltador
 
+Copiar y pegar
+    Posicionarse al principio del texto que queremos seleccionar.
+    v --> para iniciar la selección
+        Movernos con las teclas de cursor para seleccionar el texto deseado.
+    V --> seleccionar la línea completa
+    d --> cortar
+    y --> copiar.
+    p --> pegar después del cursor 
+    P --> pegar antes del cursor
+    
 Eliminar
     d + w --> elimina por palabra
     d + {num} + w --> eliminar la cantidad de palabras definida
