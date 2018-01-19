@@ -67,4 +67,72 @@ Insertar
     c + i + { --> elimina todas las lineas que están dentro de {}
 
 
+Mostrar lineas
+    :set number
 
+Mostrar lineas especificas
+    :2,10p muestra las líneas desde la número 2 hasta la 10.
+    :.,+3p muestra la línea donde está nuestro cursor y 3 más hacia abajo (con - sería hacia arriba).
+
+AutoCompletar la palabra
+    ctrl + n
+
+Mostrar caracteres ocultos
+    :set invlist
+
+Mostrar en un panel dentro de la misma ventana
+    *       :cexpr system('ls -alh') | copen
+            copiar y pegar de vim
+
+Ocultar el Vim y mostrar el resultado del comando
+    *       :! dmesg | tail -10
+            copiar y pegar de la consola
+            salir con enter
+
+Mostrar la respuesta del comando en el mismo panel 
+    *       :r! pwd
+
+    por probar
+        add .vimrc
+            command -nargs=+ Run :cexpr system('<args>') | copen
+        ejecutar en modo ex:
+            :Run ls -alh
+
+   
+Syntax
+    /usr/share/vim/vim80/syntax
+    :set syntax on
+    :set syntax off
+    :set syntax=html
+
+cp -v /usr/share/vim/vim80/vimrc_example.vim ~/.vimrc
+
+Plugin con Vundle
+    Crear las carpetas que se requiere
+
+creas el archivo ~/.vimrc
+//BEGIN
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'andreshazard/vim-logreview'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+
+//END
+
+Install Plugins:
+Launch vim and run :PluginInstall
