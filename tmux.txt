@@ -83,7 +83,27 @@ Error
 		tmux ls
 		#stuff: 2 windows (created Mon May 23 22:07:33 2016) [140x40])
 
-Copiar
+
+tmux: invalid LC_ALL, LC_CTYPE or LANG
+	Regional setting en_AU
+	sudo vim /etc/locale.gen
+	descomentar
+		en_AU.UTF-8 UTF-8
+		en_US.UTF-8 UTF-8
+	export LC_ALL=C
+	locale
+		debe salir todo ok
+	reinicia por si acaso
+	validar por si caso sudo vi /etc/profile.d/locale.sh
+	
+
+My configuracion
+
+set -g prefix2 C-a  
+bind j resize-pane -D 1
+bind k resize-pane -U 1
+bind l resize-pane -L 1
+bind h resize-pane -R 1
 
 #-------- Copy Mode (Vim Style) {{{
 #------------------------------------------------------

@@ -7,3 +7,17 @@ yaourt -S wps-office
 
 desintalar
 	sudo pacman -Rns virtualbox
+
+
+ZSH
+	sudo pacman -S zsh
+	Una vez instalada vamos a transformarla en nuestra terminal por default de ésta manera:
+	chsh -s /bin/zsh
+	cp /usr/share/oh-my-zsh/zshrc ~/.zshrc
+
+powerlevel9k
+	sudo pacman -S zsh-theme-powerlevel9k
+
+git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+You then need to select this theme in your ~/.zshrc:
+ZSH_THEME="powerlevel9k/powerlevel9k"

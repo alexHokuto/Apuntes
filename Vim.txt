@@ -136,3 +136,26 @@ filetype plugin indent on    " required
 
 Install Plugins:
 Launch vim and run :PluginInstall
+
+set number
+
+The NERDTree
+    vim .vimrc al final
+        map <C-n> :NERDTree
+    vim    
+        :NERDTree
+     Desplazar entre paneles
+     ctrl + w + --> o ctrl + w <--   
+
+abrir tabs
+    en el menuTree abrir con t
+    navegar entre tabs s con gt
+
+    probar
+        gt = next tab
+        gT = previous tab
+
+        i: open split
+        gi: preview split
+        s: open vsplit
+        gs: preview vsplit
