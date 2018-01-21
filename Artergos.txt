@@ -1,6 +1,9 @@
 sudo pacman -S virtualbox
+	for other kernels choose virtualbox-host-dkms
+	reiniciar
 sudo pacman -S vagrant
 yaourt jdk
+yaourt -S wps-office
 
 desintalar
 	sudo pacman -Rns virtualbox
