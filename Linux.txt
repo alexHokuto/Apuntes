@@ -49,6 +49,9 @@ Ruta de instalacion
 	dpkg --get-selections
 	dpkg --get-selections | grep name-of-package
 
+	Otra forma
+		which java 
+		
 Remover aplicacion
 	sudo service jenkins stop
 	After stopping it you can follow the normal flow of removing it using commands respective to your linux flavour
