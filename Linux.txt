@@ -79,18 +79,18 @@ buscar archivos
 	locate *.vmoptions*
 	
 Comandos de terminator
-	nueva consola windows + i
-	split horizontal mayus + ctrl + o
-	split vertical mayus + ctrl + e
-	full screnn f11
-	maximar terminal mayus + ctrl + x
-	edit titulo de terminal ctrl + alt + x
-	navegar entre ventanas alt + <--, --> ...
-	cerrar ventana mayus + ctrl + w
-	difundir las teclas a todas las ventanas alt + a
-	no difundir	alt + o
-	tab --> ctrl + tab
-	tab <-- mayus + ctrl + tab
+	windows + i --> nueva consola 
+	shift + ctrl + o --> split horizontal 
+	split vertical 
+	shift + ctrl + e --> full screnn f11
+	shift + ctrl + x --> maximar terminal 
+	ctrl + alt + x --> edit titulo de terminal 
+	alt + <--, --> ... --> navegar entre ventanas 
+	shift + ctrl + w --> cerrar ventana 
+	alt + a --> difundir las teclas a todas las ventanas 
+	alt + o --> no difundir	
+	ctrl + tab --> navegar entre paneles 
+	mayus + ctrl + tab --> navegar entre paneles 
 
 To generate a new SSH key pair, use the following command:
 	ssh-keygen -t rsa -C "alexandermorvar@gmail.com" -b 4096
