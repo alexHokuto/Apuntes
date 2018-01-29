@@ -51,6 +51,8 @@ Ctrl + b --> flechas manteniento para resize de panel
 
 Ctrl + b --> } mover el panel a otra posicion de la ventana
 
+ctrl + b --> q muestra numero (indice) de cada panel.
+
 Crear un archivo de config
 tmux show -g > ~/.tmux.conf
 tmux source ~/.tmux.conf
