@@ -91,6 +91,7 @@ Comandos de terminator
 	alt + o --> no difundir	
 	ctrl + tab --> navegar entre paneles 
 	mayus + ctrl + tab --> navegar entre paneles 
+	ctrl + shift + g --> limpiar el terminal
 
 To generate a new SSH key pair, use the following command:
 	ssh-keygen -t rsa -C "alexandermorvar@gmail.com" -b 4096
