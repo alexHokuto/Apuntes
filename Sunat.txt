@@ -1,0 +1,445 @@
+https://192.168.1.99/svn/comun
+https://192.168.1.99/svn/comun
+Te envío tus accesos al repositorio SVN: - Dashboard
+usuario: cmorales
+clave: Cos123$$
+
+correo
+martes.12345
+
+192.168.1.192
+sunat
+#1234ps
+
+MUSR_MQADMIN     usuario colas
+$cosapi123
+
+git sunat
+etaboada@sunat.gob.pe
+Cosapi123$$
+
+192.168.1.159
+mqm
+mqmadmin
+
+bamboo
+http://bamboo.pu.sunat.gob.pe/allPlans.action
+root
+Cosapi123$$
+
+http://artifactory.pu.sunat.gob.pe
+admin
+password
+
+http://gitlab.pu.sunat.gob.pe/
+root
+muysecreto
+
+\\192.168.1.192\Sunat\1-Gstion\1.4-Sgmnto_Cntrol\Ctrl_Hras\Timesheet
+\\192.168.1.99\qa\Ejecución\Iteracion 2 Calidad\Consolidado de Incidencias
+\\192.168.1.192\Sunat\2-Ingnria\2.2 Dsrllo Sftwre\3  Dsño_Sstema\2_DSI\P7_Psrla_Pgos
+\\192.168.1.192\Sunat\2-Ingnria\2.2 Dsrllo Sftwre\4  Cnstrccion\12 Entreg_Construc\CD-EntregaSUNAT\3 Pase a Producción\Scripts_BD
+
+
+******* Microservicio
+gradlew.bat jettyRunWar
+gradlew.bat prepareApp
+java  -Duser.timezone="America/Lima" -jar service.jar server config.yaml
+./gradlew clean build -x check && java -jar build/libs/service.jar server src/main/resources/config_ddst.yaml
+
+
+	gradlew
+	gradlew clean build -x check
+	gradlew tasks --all
+	gradlew publishMavenJavaPublicationToMavenLocal
+	gradlew dependencies
+
+	Publicar Local
+	-- Bajar el proyecto
+	-- modicar
+	-- gradle.properties colocar un alias version=3.0.26-SNAPSHOT
+	-- gradlew clean build -x check
+	-- ./gradlew publishMavenJavaPublicationToMavenLocal
+	-- ir al proyecto que requiere la nueva version
+	-- build.gradle  colocar mavenLocal() en el bloque repositories {}
+	-- build.gradle actualizar la version con el alias
+
+
+	Generar version de persistencias manual
+	-- crear tu branch
+	-- checkout merge
+	-- merge tu branch
+	-- push release
+	-- gradle clean release --stacktrace
+	-- checkout master
+	-- merge  release
+	-- push master
+
+
+
+
+
+******* GIT
+cmorales
+cmorales21
+D:\AMV\WS-SUNAT\GIT>git clone http://glv.cosapidata.com.pe/sunat/MS022-OrquestacionProxyPago.git
+
+git checkout master
+git checkout -b cmorales
+git status
+git add src
+git commit -m "actualizacion de query"
+git remote -v
+git push origin cmorales
+
+git branch
+
+revertir commit
+git revert "commit-id"
+To get the commit ID, just use git log
+
+use branch release
+git merge master (Estas trayendo todos los cambios de master a release)
+
+
+****** Java 
+Map<String, Object> mapSunatBanco = new HashMap<>();
+
+List<Object[]> rows = query.getResultList();
+List<MyObject> result = new ArrayList<>(rows.size());
+for (Object[] row : rows) {
+    result.add(new MyObject((String) row[0],
+                            (Long) row[1],
+                            ...));
+}
+
+log.info( "idTransaccion: [{}], CodigoRespuesta: [{}], mensajeRespuesta: [{}] ", new Object[]{ idTransaccion, codRespuesta, mensajeRespuesta } );
+
+
+Generar version manual
+hacer cambios en tu branch
+merge al release
+push
+./gradlew clean release
+merge al master
+push
+
+******** Kubernetes
+ssh percy@192.168.1.159
+
+sftp 22
+kubernetes
+192.168.1.159
+usuario percy
+clave secreto
+
+cd /home/percy/microservicios
+		 
+
+192.168.251.35
+root
+ServerCosapi
+/root/microservices
+kubectl delete -f orquestacion-proxy-pago/
+kubectl apply -f orquestacion-proxy-pago/
+kubectl delete -f orquestacion-presentacion/
+kubectl apply -f orquestacion-presentacion/
+watch kubectl get pods
+kubectl log -f orquestacion-proxy-pago-2025000862-9tt85 --tail=500
+
+
+cd microservices
+Kubernetes
+1.- Todo esta en la percy@192.168.1.59 secreto
+	/home/percy/nuevo_pase_sunat/MS022-OrquestacionProxyPago
+	git pull; 
+	gradle clean pushImage -x check
+
+
+2.  Aactualizar config.yaml
+  cd -- 
+    /home/percy/work/git/microservices/microservices-config/config/qa/orquestacion-proxy-pago
+    nano config.yaml
+    cd /home/percy/work/git/microservices/microservices-config/bin
+    ./qa_update.sh
+
+
+3.- Ingresar al k8s QA root@192.168.251.35  S3rv3rCosapi
+	cd microservices
+	kubectl delete -f orquestacion-proxy-pago/; kubectl apply -f orquestacion-proxy-pago/ --record; 
+	kubectl delete -f orquestacion-presentacion/; kubectl apply -f orquestacion-presentacion/ --record;
+	kubectl delete -f parametria-pasarela/; kubectl apply -f parametria-pasarela/ --record;
+
+	kubectl set image deployments/orquestacion-proxy-pago orquestacion-proxy-pago=hubqa.sunat.gob.pe/microservices/recaudacion3-tributaria-administracion-orquestacionproxypago-backend:1.0.2
+
+
+****** Pagos
+Colas
+192.168.251.24
+sftp 192.168.251.44
+put #archivo
+
+ssh root@192.168.251.44
+S3rv3rCosapi
+
+su - MUSR_MQADMIN     usuario colas
+$cosapi123 -- no vale
+
+tail -f 400 sunat.log
+
+cosapi - calidad - qa
+$$123qa
+cp config.yaml /home/MUSR_MQADMIN/test_six/
+cp service.jar /home/MUSR_MQADMIN/test_six/
+
+SIX
+El servidor SIX Calidad es 192.168.40.9 por los puertos 1099, 33339
+
+
+Log QA
+192.168.251.28
+root/microservices
+kubectl get pods
+kubectl logs -f orquestacion-proxy-pago-rc-737xg
+
+VISA
+http://localhost:7121/v1/recaudacion/tributaria/orquestacionprocesaendpointpago/t/transaccionvisa?numTransApliCli=1004085660&numPas=1&numPas=1&numMedPagPas=1&codTipmon=01&codMedpag=41&codEntFin=67&tipoOperacion=1&codTipSer=01&mtoOpe=45&codMedPre=01&codAplCli=01&returnUrl=http://localhost/v1/recaudacion/tributaria/orquestacionprocesaendpointpago/t/respuestavisa%26&_=1489440601861
+
+
+******** Aplicativo
+Ingresar por ruc
+20100049181
+PEHFYMCG
+
+20314548249
+CNAVARRO
+
+https://jslibs1.sunat.gob.pe/bootstrap/3.3.4/css/bootstrap.min.css
+https://img1.sunat.gob.pe/xs/logo.png
+
+return (String) jpaT7777bandprespagoDAO.createNativeQuery("select cast(arc_data::json as lvarchar) from t7777bandprespago where num_bandeja=" + numBandeja + ";").getSingleResult();
+
+#Sapia
+#distributionUrl=https\://services.gradle.org/distributions/gradle-4.0-bin.zip
+#Sunat
+distributionUrl=http\://artifactory.insi.sunat.peru:7003/artifactory/desarrollo-release-local/distributions/gradle-4.0-bin.zip
+
+ps -eaf | grep gestor
+kill -9 8447
+
+TipoPago por banco 2
+TipoPago por tarjeta 1
+
+		 UsuarioBean usuarioBean = new UsuarioBean();
+		 usuarioBean.setCodDepend("0073");
+		 usuarioBean.setNumRUC("20100049181");
+		 usuarioBean.setUsuarioSOL("PEHFYMCG");
+		 usuarioBean.setLogin("10084475951PEHFYMCG");
+	
+
+obtener idCache QA
+https://e-plataformaunica.sunat.gob.pe/servletAcceso?plataforma=desktop&rucUsuario=20100049181PEHFYMCG&password=12345678&tipoOperacion=4&idFormulario=01&recurso=/plataformaUnica
+ 
+Metricas
+http://localhost:17109/metrics?pretty=true
+
+dbeaver
+select CAST(arc_data::json AS LVARCHAR)  arc_data,* from informix.t7777bandprespago where num_bandeja = 1004076085
+
+
+pe.gob.sunat.recauda.pago.decl.PagoDeclServlet
+		procesa
+			realizarPago
+				pagarPorCargoCuenta
+
+pe.gob.sunat.recauda.pago.decl.ejb.delegate.PagoDeclDelegate			
+		realizarPagoCargo
+pe.gob.sunat.recauda.pago.decl.ejb.PagoDeclFacade	
+		realizarPagoCargo
+pe.gob.sunat.servicio.declpago.pago.ejb.PagoFacade
+		pagoTransaccional
+pe.gob.sunat.servicio.declpago.pago.pattern.strategy.PagoTransaccional
+		pagar
+		
+ pe.gob.sunat.recauda.pago.decl.ejb.PagoDeclFacade
+		insertarRegistroPago
+		
+obtenerLogTrana
+
+consola
+gradlew.bat cleanIdea idea
+
+
+
+159
+/etc/nginx
+
+PresentacionUtil.obtenerMensaje("uno", null, "dos")
+
+parametria Pasarela
+
+Listar pasarela
+		factoriaPasarela
+
+Nuevo
+		factoriaAplicativo
+
+
+JPA - ECLIPSE LINK
+
+			<property name="eclipselink.cache.shared.default" value="false"/>
+			<property name="eclipselink.logging.level.sql"   value="FINE" />
+			<property name="eclipselink.logging.parameters"  value="true"/>		
+			
+			
+Sequence Pago Visa			
+//SEDECDET0686    // Final   SEDECDET0000			
+			
+REDIS
+
+ssh root@192.168.251.37
+ redis-cli -h 192.168.251.38 -p 16041 -a Sapia123		
+
+ ssh root@192.168.247.25
+ redis-cli -h 192.168.247.25 -p 16042 -a Sapia123		
+
+
+ keys * 			
+ get {key}
+rladmin status
+
+
+Ruta de Scripts
+smb://192.168.1.192/sunat/2-Ingnria/2.4%20Ambientes/PreProduc/DocumentosPase/BasedeDatos/Scripts_BD_20171201
+
+reiniciar jenkins
+sudo /etc/init.d/jenkins restart
+
+
+	private String obtenerPageVisaPost(String tecnologiaVisa) throws Exception {
+
+
+		utilLog.imprimirLog(ConstantesUtils.LEVEL_DEBUG , "Se inicia el proceso obtenerPageVisa2 de confianza https", Thread.currentThread().getStackTrace());
+
+		TrustManager[] trustAllCerts = trustAllCerts();
+		SSLContext sc = null;
+		try {
+			sc = setupSSLContext(trustAllCerts);
+		} catch (KeyManagementException e) {
+			throw new RuntimeException("Key Management Exception.");
+		} catch (NoSuchAlgorithmException e) {
+			throw new RuntimeException("No Such Algorithm Exception.");
+		}
+
+		HostnameVerifier allHostsValid = enabledAllHostsValid();
+		HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+		HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid);
+
+		String url = "http://qas.multimerchantvisanet.com/formularioweb/formulariopago.asp";
+
+		URL objURL = new URL(url);
+		HttpURLConnection con = (HttpURLConnection) objURL.openConnection();
+		con.setRequestMethod("POST");
+		con.setRequestProperty("User-Agent", "");
+		String urlParameters = "ETICKET=1106041500071712181439495973";
+		con.setDoOutput(true);
+
+		DataOutputStream wr = new DataOutputStream(con.getOutputStream());
+		wr.writeBytes(urlParameters);
+		wr.flush();
+		wr.close();
+
+		int responseCode = con.getResponseCode();
+		utilLog.imprimirLog(ConstantesUtils.LEVEL_DEBUG , ProxyPagoUtil.obtenerMsgLog( "Enviando la peticion a Visa:", String.valueOf(responseCode)), Thread.currentThread().getStackTrace());
+
+		BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+		String inputLine;
+		StringBuilder response = new StringBuilder();
+
+		while ((inputLine = in.readLine()) != null) {
+			response.append(inputLine);
+		}
+
+		in.close();
+
+		return response.toString();
+	}
+
+
+
+	private void pintarRequest(HttpServletRequest request) {
+
+		StringBuilder head = new StringBuilder();
+		Enumeration headerNames = request.getHeaderNames();
+		while (headerNames.hasMoreElements()) {
+			String key = (String) headerNames.nextElement();
+			String value = request.getHeader(key);
+
+			head.append("key:");
+			head.append(key);
+			head.append(" valor:");
+			head.append(value);
+			head.append(" -- ");
+
+		}
+
+		utilLog.imprimirLog(ConstantesUtils.LEVEL_INFO, "HEADERS: " + head.toString(), Thread.currentThread().getStackTrace());
+
+	}
+
+		StringBuilder atributo = new StringBuilder();
+		Enumeration enAttr = request.getAttributeNames();
+		while(enAttr.hasMoreElements()){
+			String attributeName = (String)enAttr.nextElement();
+			String valor = (request.getAttribute(attributeName)).toString();
+
+			atributo.append("Attribute:");
+			atributo.append(attributeName);
+			atributo.append(" valor:");
+			atributo.append(valor);
+			atributo.append(" -- ");
+		}
+
+		utilLog.imprimirLog(ConstantesUtils.LEVEL_INFO, "ATRIBUTOS: " + atributo.toString(), Thread.currentThread().getStackTrace());
+
+		StringBuilder parametro = new StringBuilder();
+		Enumeration enParams = request.getParameterNames();
+		while(enParams.hasMoreElements()){
+			String paramName = (String)enParams.nextElement();
+			String valor = request.getParameter(paramName);
+
+			parametro.append("Parametro:");
+			parametro.append(paramName);
+			parametro.append(" valor:");
+			parametro.append(valor);
+			parametro.append(" -- ");
+		}
+
+		utilLog.imprimirLog(ConstantesUtils.LEVEL_INFO, "PARAMETROS: " + parametro.toString(), Thread.currentThread().getStackTrace());	
+
+https://e-plataformaunica.sunat.gob.pe/v1/recaudacion/tributaria/procesobatchcentralizado/t/registro/replicaformularioscentralizadosintentopago/1011
+https://e-plataformaunica.sunat.gob.pe/v1/recaudacion/tributaria/procesobatchcentralizado/t/registro/replicaformularioscentralizadosintentopago/1076
+https://e-plataformaunica.sunat.gob.pe/v1/recaudacion/tributaria/procesobatchcentralizado/t/registro/replicaformularioscentralizadosintentopago/1111
+https://e-plataformaunica.sunat.gob.pe/v1/recaudacion/tributaria/procesobatchcentralizado/t/registro/replicaformularioscentralizadosintentopago/1181
+https://e-plataformaunica.sunat.gob.pe/v1/recaudacion/tributaria/procesobatchcentralizado/t/registro/replicaformularioscentralizadosintentopago/1246
+https://e-plataformaunica.sunat.gob.pe/v1/recaudacion/tributaria/procesobatchcentralizado/t/registro/replicaformularioscentralizadosintentopago/1251
+https://e-plataformaunica.sunat.gob.pe/v1/recaudacion/tributaria/procesobatchcentralizado/t/registro/replicaformularioscentralizadosintentopago/1256
+https://e-plataformaunica.sunat.gob.pe/v1/recaudacion/tributaria/procesobatchcentralizado/t/registro/replicaformularioscentralizadosintentopago/1261
+https://e-plataformaunica.sunat.gob.pe/v1/recaudacion/tributaria/procesobatchcentralizado/t/registro/replicaformularioscentralizadosintentopago/1266
+https://e-plataformaunica.sunat.gob.pe/v1/recaudacion/tributaria/procesobatchcentralizado/t/registro/replicaformularioscentralizadosintentopago/1301
+https://e-plataformaunica.sunat.gob.pe/v1/recaudacion/tributaria/procesobatchcentralizado/t/registro/replicaformularioscentralizadosintentopago/4456
+https://e-plataformaunica.sunat.gob.pe/v1/recaudacion/tributaria/procesobatchcentralizado/t/registro/replicaformularioscentralizadosintentopago/8836
+https://e-plataformaunica.sunat.gob.pe/v1/recaudacion/tributaria/procesobatchcentralizado/t/registro/replicaformularioscentralizadosintentopago/8861
+https://e-plataformaunica.sunat.gob.pe/v1/recaudacion/tributaria/procesobatchcentralizado/t/registro/replicaformularioscentralizadosintentopago/9056
+
+
+(1011,1076,1111,1181,1246,1251,1256,1261,1266,1301,4456,8836,8861,9056)
+
+SELECT first 50  * FROM informix.t7777bandprespago WHERE ind_pag_rea='1'
+--AND num_ope_pag is null AND num_nps_pag is null AND mto_pagar > 0
+--AND bson_value_int(arc_data, "formulario.0.numOrd") = 0
+AND DATE(fec_regis) =   DATE('2017/12/21')
+GO
+
+
+SELECT * FROM t7777bandprespago WHERE num_ruc=$(ruc) AND fec_ope>=today-8;
