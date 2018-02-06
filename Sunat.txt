@@ -308,6 +308,18 @@ ssh root@192.168.251.37
  get {key}
 rladmin status
 
+redis-server
+
+redis> SET key2 "World"
+"OK"
+redis> DEL key1 key2 key3
+
+redis-cli
+redis-cli ping
+FLUSHALL
+
+TTL "/cache/pasarelaHoraEntidadFinanciera/5"  // de vuelve en segundos
+
 
 Ruta de Scripts
 smb://192.168.1.192/sunat/2-Ingnria/2.4%20Ambientes/PreProduc/DocumentosPase/BasedeDatos/Scripts_BD_20171201
