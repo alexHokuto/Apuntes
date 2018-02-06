@@ -126,6 +126,17 @@ Error de .bashrc
   o salir y volver a entrar para que se cargue las variables.
 
 
+.bashrc
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/raziel/.sdkman"
+[[ -s "/home/raziel/.sdkman/bin/sdkman-init.sh" ]] && source "/home/raziel/.sdkman/bin/sdkman-init.sh"
+
+export JAVA_HOME=/home/raziel/.sdkman/candidates/java/8u161-oracle
+
+export PATH=$PATH:/home/raziel/.sdkman/candidates/java/8u161-oracle/bin
+
+
 
 VPN
 https://148.102.17.108
