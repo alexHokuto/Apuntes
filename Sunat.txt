@@ -172,6 +172,7 @@ Kubernetes
 
 	kubectl set image deployments/orquestacion-proxy-pago orquestacion-proxy-pago=hubqa.sunat.gob.pe/microservices/recaudacion3-tributaria-administracion-orquestacionproxypago-backend:1.0.2
 
+kubectl scale --replicas=3 parametria-pasarela
 
 ****** Pagos
 Colas
@@ -455,3 +456,19 @@ GO
 
 
 SELECT * FROM t7777bandprespago WHERE num_ruc=$(ruc) AND fec_ope>=today-8;
+
+
+	@SuppressWarnings("unchecked")
+	public List<Long> obtenerBandejasConError(String fechaDesde) throws Exception {
+		StringBuilder stringBuilder = new StringBuilder();
+		List<Long> listaBandejas;
+		stringBuilder.append(" select b.num_bandeja from t7777bandprespago b ")
+				.append("  left outer join t7794procesoband p on b.num_bandeja = p.num_bandeja ")
+				.append("  where p.cod_pro_ban = '0002' and p.ind_pro_ban = '0' ")
+//				.append("  and TO_CHAR(b.fec_ope, '%Y%m%d')>='" + fechaDesde + "' ");
+
+		Query query = this.createNativeQuery(stringBuilder.toString());
+		listaBandejas = (List<Long>) query.getResultList();
+
+		return listaBandejas;
+	}
