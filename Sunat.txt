@@ -321,6 +321,11 @@ FLUSHALL
 
 TTL "/cache/pasarelaHoraEntidadFinanciera/5"  // de vuelve en segundos
 
+Plataforma QA
+https://e-plataformaunica.sunat.gob.pe/login1.html
+
+https://e-plataformaunica.sunat.gob.pe/servletAcceso?plataforma=desktop&rucUsuario=20314548249CNAVARRO&password=12345678&tipoOperacion=4&idFormulario=01&recurso=/plataformaUnica?​
+
 
 Ruta de Scripts
 smb://192.168.1.192/sunat/2-Ingnria/2.4%20Ambientes/PreProduc/DocumentosPase/BasedeDatos/Scripts_BD_20171201

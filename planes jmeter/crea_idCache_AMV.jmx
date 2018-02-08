@@ -1,0 +1,672 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="3.1" jmeter="3.1 r1770033">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="crearIdCache" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="creaidCache" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">3</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1504550945000</longProp>
+        <longProp name="ThreadGroup.end_time">1504550945000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Variable definida por el usuario" enabled="true">
+          <collectionProp name="Arguments.arguments">
+            <elementProp name="idCacheLocal" elementType="Argument">
+              <stringProp name="Argument.name">idCacheLocal</stringProp>
+              <stringProp name="Argument.value"></stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="FilePath" elementType="Argument">
+              <stringProp name="Argument.name">FilePath</stringProp>
+              <stringProp name="Argument.value">D:\AMV\PlanJmeter\pruebasPreProduccion\1.csv</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+          </collectionProp>
+        </Arguments>
+        <hashTree/>
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV ruc" enabled="true">
+          <stringProp name="delimiter">;</stringProp>
+          <stringProp name="fileEncoding"></stringProp>
+          <stringProp name="filename">D:\AMV\PlanJmeter\pruebasPreProduccion\rucs_10.csv</stringProp>
+          <boolProp name="ignoreFirstLine">false</boolProp>
+          <boolProp name="quotedData">false</boolProp>
+          <boolProp name="recycle">true</boolProp>
+          <stringProp name="shareMode">shareMode.all</stringProp>
+          <boolProp name="stopThread">false</boolProp>
+          <stringProp name="variableNames">ruc,usuario,clave,formulario,pago0</stringProp>
+        </CSVDataSet>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Request" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">e-plataformaunica.sunat.gob.pe</stringProp>
+          <stringProp name="HTTPSampler.port">443</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/servletAcceso?plataforma=desktop&amp;rucUsuario=${ruc}${usuario}&amp;password=${clave}&amp;tipoOperacion=4&amp;idFormulario=01&amp;recurso=/plataformaUnica</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.monitor">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">idCacheLocal</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.idCache</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="Ver Árbol de Resultados" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+          <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Reporte resumen" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+          <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="true">
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="script">idCacheLocal = vars.get(&quot;idCacheLocal&quot;);
+
+filepath =vars.get(&quot;FilePath&quot;);
+f = new FileOutputStream(filepath, true);
+p = new PrintStream(f);
+this.interpreter.setOut(p);
+ruc = vars.get(&quot;ruc&quot;);
+usuario = vars.get(&quot;usuario&quot;);
+clave = vars.get(&quot;clave&quot;);
+formulario = vars.get(&quot;formulario&quot;);
+pago0 = vars.get(&quot;pago0&quot;);
+separador = &quot;;&quot;;
+if(!idCacheLocal.equals(&quot;&quot;)){
+print(ruc + separador + usuario + separador + clave + separador + formulario + separador + pago0 + separador + idCacheLocal );
+}
+
+f.close();
+
+
+</stringProp>
+          </BeanShellPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller" enabled="false">
+          <stringProp name="IfController.condition">&quot;${pago0}&quot; == &quot;1&quot;</stringProp>
+          <boolProp name="IfController.evaluateAll">false</boolProp>
+        </IfController>
+        <hashTree>
+          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller" enabled="true">
+            <stringProp name="IfController.condition">&quot;${formulario}&quot; == &quot;1&quot;</stringProp>
+            <boolProp name="IfController.evaluateAll">false</boolProp>
+          </IfController>
+          <hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="validarPresentacion_F0621" enabled="true">
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value">{&quot;identificadorPresentacion&quot;:&quot;88b76b50-9c17-4e73-b8eb-47d3a7f58664&quot;,&quot;versionBrowser&quot;:&quot;Chrome 60.0&quot;,&quot;versionSO&quot;:&quot;Windows&quot;,&quot;direccionIP&quot;:&quot;192.168.1.1&quot;,&quot;cantidadFormularios&quot;:&quot;4&quot;,&quot;montoTotalPagar&quot;:760397,&quot;fechaEnvio&quot;:&quot;19/09/2017 10:48:35&quot;,&quot;ruc&quot;:&quot;10000064641&quot;,&quot;razonSocial&quot;:&quot;LOPEZ RENGIFO ERNESTO&quot;,&quot;declaraciones&quot;:&quot;{\&quot;formulario\&quot;:[{\&quot;identificadorFormulario\&quot;:\&quot;88b76b50-9c17-4e73-b8eb-47d3a7f58664=1505836103\&quot;,\&quot;codUsuregis\&quot;:\&quot;INFORMIX\&quot;,\&quot;numOrdOri\&quot;:0,\&quot;numOrd\&quot;:0,\&quot;numRuc\&quot;:\&quot;10000064641\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;codFor\&quot;:\&quot;0621\&quot;,\&quot;desFor\&quot;:\&quot;IGV Renta Mensual\&quot;,\&quot;numVerFor\&quot;:\&quot;1.0\&quot;,\&quot;fecPres\&quot;:\&quot;2017-09-19T10:48:19.000Z\&quot;,\&quot;horPres\&quot;:\&quot;2017-09-19T10:48:19.000Z\&quot;,\&quot;mtoPag\&quot;:0,\&quot;numBandeja\&quot;:0,\&quot;codOrifor\&quot;:\&quot;01\&quot;,\&quot;codTipfor\&quot;:\&quot;10\&quot;,\&quot;indValLib\&quot;:\&quot;0\&quot;,\&quot;codTipdetrac\&quot;:\&quot;0\&quot;,\&quot;codEtapa\&quot;:\&quot;00\&quot;,\&quot;indForAut\&quot;:\&quot;0\&quot;,\&quot;numNabono\&quot;:\&quot;\&quot;,\&quot;codEntFin\&quot;:\&quot;02\&quot;,\&quot;numPedAnu\&quot;:\&quot;\&quot;,\&quot;semFor\&quot;:\&quot;0\&quot;,\&quot;numIdResumen\&quot;:0,\&quot;numRucSec\&quot;:\&quot;\&quot;,\&quot;numValPag\&quot;:0,\&quot;numCargaPdt\&quot;:0,\&quot;numIdConstancia\&quot;:0,\&quot;numOpebco\&quot;:0,\&quot;codIndrec\&quot;:\&quot;2\&quot;,\&quot;codEstado\&quot;:\&quot;90\&quot;,\&quot;numResrec\&quot;:\&quot;\&quot;,\&quot;numIdReporte\&quot;:0,\&quot;numPedPro\&quot;:\&quot;\&quot;,\&quot;codOriPres\&quot;:\&quot;01\&quot;,\&quot;numTrabajador\&quot;:\&quot;0\&quot;,\&quot;numPensionista\&quot;:\&quot;0\&quot;,\&quot;numCuartaCategoria\&quot;:\&quot;0\&quot;,\&quot;numNorEspecial\&quot;:\&quot;0\&quot;,\&quot;numModFormativa\&quot;:\&quot;0\&quot;,\&quot;numTercero\&quot;:\&quot;0\&quot;,\&quot;retePercIGVList\&quot;:[],\&quot;boletas\&quot;:[{\&quot;numOrd\&quot;:0,\&quot;numOrdOri\&quot;:0,\&quot;numRuc\&quot;:\&quot;10000064641\&quot;,\&quot;numRucSec\&quot;:\&quot;\&quot;,\&quot;fecPres\&quot;:\&quot;2017-09-19T10:48:19.000Z\&quot;,\&quot;horPres\&quot;:\&quot;2017-09-19T10:48:19.000Z\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;semFor\&quot;:\&quot;0\&quot;,\&quot;codIndrec\&quot;:\&quot;0\&quot;,\&quot;codOrifor\&quot;:\&quot;01\&quot;,\&quot;codOriPres\&quot;:\&quot;01\&quot;,\&quot;codTipfor\&quot;:\&quot;21\&quot;,\&quot;numValPag\&quot;:0,\&quot;mtoPag\&quot;:\&quot;215315\&quot;,\&quot;codTipdetrac\&quot;:\&quot;0\&quot;,\&quot;codEstado\&quot;:\&quot;90\&quot;,\&quot;codEtapa\&quot;:\&quot;00\&quot;,\&quot;numIdConstancia\&quot;:0,\&quot;numIdResumen\&quot;:0,\&quot;numIdReporte\&quot;:0,\&quot;numNabono\&quot;:\&quot;\&quot;,\&quot;numResrec\&quot;:\&quot;\&quot;,\&quot;indValLib\&quot;:\&quot;0\&quot;,\&quot;numPedPro\&quot;:\&quot;\&quot;,\&quot;numPedAnu\&quot;:\&quot;\&quot;,\&quot;indForAut\&quot;:\&quot;1\&quot;,\&quot;codEntFin\&quot;:\&quot;000\&quot;,\&quot;numOpebco\&quot;:\&quot;\&quot;,\&quot;numBandeja\&quot;:0,\&quot;numCargaPdt\&quot;:0,\&quot;codMedpag\&quot;:\&quot;\&quot;,\&quot;nomEntFin\&quot;:\&quot;\&quot;,\&quot;fecPago\&quot;:\&quot;\&quot;,\&quot;codFor\&quot;:\&quot;1662\&quot;,\&quot;desFor\&quot;:\&quot;\&quot;,\&quot;numVerFor\&quot;:\&quot;1.0\&quot;,\&quot;numTrabajador\&quot;:\&quot;0\&quot;,\&quot;numPensionista\&quot;:\&quot;0\&quot;,\&quot;numCuartaCategoria\&quot;:\&quot;0\&quot;,\&quot;numNorEspecial\&quot;:\&quot;0\&quot;,\&quot;numModFormativa\&quot;:\&quot;0\&quot;,\&quot;numTercero\&quot;:\&quot;0\&quot;,\&quot;casillasFormularioList\&quot;:[],\&quot;tributosDeclaradosPagadosList\&quot;:[{\&quot;tributosDeclaradosPagadosPK\&quot;:{\&quot;codTri\&quot;:\&quot;010101\&quot;},\&quot;mtoBasimp\&quot;:\&quot;1212111\&quot;,\&quot;mtoImpres\&quot;:\&quot;215998\&quot;,\&quot;mtoPagtot\&quot;:\&quot;215315\&quot;,\&quot;mtoTotDeu\&quot;:\&quot;215315\&quot;,\&quot;indVig\&quot;:\&quot;1\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;porTasa\&quot;:0,\&quot;mtoRespag\&quot;:0}]},{\&quot;numOrd\&quot;:0,\&quot;numOrdOri\&quot;:0,\&quot;numRuc\&quot;:\&quot;10000064641\&quot;,\&quot;numRucSec\&quot;:\&quot;\&quot;,\&quot;fecPres\&quot;:\&quot;2017-09-19T10:48:19.000Z\&quot;,\&quot;horPres\&quot;:\&quot;2017-09-19T10:48:19.000Z\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;semFor\&quot;:\&quot;0\&quot;,\&quot;codIndrec\&quot;:\&quot;0\&quot;,\&quot;codOrifor\&quot;:\&quot;01\&quot;,\&quot;codOriPres\&quot;:\&quot;01\&quot;,\&quot;codTipfor\&quot;:\&quot;21\&quot;,\&quot;numValPag\&quot;:0,\&quot;mtoPag\&quot;:\&quot;60420\&quot;,\&quot;codTipdetrac\&quot;:\&quot;0\&quot;,\&quot;codEstado\&quot;:\&quot;90\&quot;,\&quot;codEtapa\&quot;:\&quot;00\&quot;,\&quot;numIdConstancia\&quot;:0,\&quot;numIdResumen\&quot;:0,\&quot;numIdReporte\&quot;:0,\&quot;numNabono\&quot;:\&quot;\&quot;,\&quot;numResrec\&quot;:\&quot;\&quot;,\&quot;indValLib\&quot;:\&quot;0\&quot;,\&quot;numPedPro\&quot;:\&quot;\&quot;,\&quot;numPedAnu\&quot;:\&quot;\&quot;,\&quot;indForAut\&quot;:\&quot;1\&quot;,\&quot;codEntFin\&quot;:\&quot;000\&quot;,\&quot;numOpebco\&quot;:\&quot;\&quot;,\&quot;numBandeja\&quot;:0,\&quot;numCargaPdt\&quot;:0,\&quot;codMedpag\&quot;:\&quot;\&quot;,\&quot;nomEntFin\&quot;:\&quot;\&quot;,\&quot;fecPago\&quot;:\&quot;\&quot;,\&quot;codFor\&quot;:\&quot;1662\&quot;,\&quot;desFor\&quot;:\&quot;\&quot;,\&quot;numVerFor\&quot;:\&quot;1.0\&quot;,\&quot;numTrabajador\&quot;:\&quot;0\&quot;,\&quot;numPensionista\&quot;:\&quot;0\&quot;,\&quot;numCuartaCategoria\&quot;:\&quot;0\&quot;,\&quot;numNorEspecial\&quot;:\&quot;0\&quot;,\&quot;numModFormativa\&quot;:\&quot;0\&quot;,\&quot;numTercero\&quot;:\&quot;0\&quot;,\&quot;casillasFormularioList\&quot;:[],\&quot;tributosDeclaradosPagadosList\&quot;:[{\&quot;tributosDeclaradosPagadosPK\&quot;:{\&quot;codTri\&quot;:\&quot;030301\&quot;},\&quot;mtoBasimp\&quot;:\&quot;121212\&quot;,\&quot;mtoImpres\&quot;:\&quot;60606\&quot;,\&quot;mtoPagtot\&quot;:\&quot;60420\&quot;,\&quot;mtoTotDeu\&quot;:\&quot;60420\&quot;,\&quot;indVig\&quot;:\&quot;1\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;porTasa\&quot;:0,\&quot;mtoRespag\&quot;:0}]},{\&quot;numOrd\&quot;:0,\&quot;numOrdOri\&quot;:0,\&quot;numRuc\&quot;:\&quot;10000064641\&quot;,\&quot;numRucSec\&quot;:\&quot;\&quot;,\&quot;fecPres\&quot;:\&quot;2017-09-19T10:48:19.000Z\&quot;,\&quot;horPres\&quot;:\&quot;2017-09-19T10:48:19.000Z\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;semFor\&quot;:\&quot;0\&quot;,\&quot;codIndrec\&quot;:\&quot;0\&quot;,\&quot;codOrifor\&quot;:\&quot;01\&quot;,\&quot;codOriPres\&quot;:\&quot;01\&quot;,\&quot;codTipfor\&quot;:\&quot;21\&quot;,\&quot;numValPag\&quot;:0,\&quot;mtoPag\&quot;:\&quot;484662\&quot;,\&quot;codTipdetrac\&quot;:\&quot;0\&quot;,\&quot;codEstado\&quot;:\&quot;90\&quot;,\&quot;codEtapa\&quot;:\&quot;00\&quot;,\&quot;numIdConstancia\&quot;:0,\&quot;numIdResumen\&quot;:0,\&quot;numIdReporte\&quot;:0,\&quot;numNabono\&quot;:\&quot;\&quot;,\&quot;numResrec\&quot;:\&quot;\&quot;,\&quot;indValLib\&quot;:\&quot;0\&quot;,\&quot;numPedPro\&quot;:\&quot;\&quot;,\&quot;numPedAnu\&quot;:\&quot;\&quot;,\&quot;indForAut\&quot;:\&quot;1\&quot;,\&quot;codEntFin\&quot;:\&quot;000\&quot;,\&quot;numOpebco\&quot;:\&quot;\&quot;,\&quot;numBandeja\&quot;:0,\&quot;numCargaPdt\&quot;:0,\&quot;codMedpag\&quot;:\&quot;\&quot;,\&quot;nomEntFin\&quot;:\&quot;\&quot;,\&quot;fecPago\&quot;:\&quot;\&quot;,\&quot;codFor\&quot;:\&quot;1662\&quot;,\&quot;desFor\&quot;:\&quot;\&quot;,\&quot;numVerFor\&quot;:\&quot;1.0\&quot;,\&quot;numTrabajador\&quot;:\&quot;0\&quot;,\&quot;numPensionista\&quot;:\&quot;0\&quot;,\&quot;numCuartaCategoria\&quot;:\&quot;0\&quot;,\&quot;numNorEspecial\&quot;:\&quot;0\&quot;,\&quot;numModFormativa\&quot;:\&quot;0\&quot;,\&quot;numTercero\&quot;:\&quot;0\&quot;,\&quot;casillasFormularioList\&quot;:[],\&quot;tributosDeclaradosPagadosList\&quot;:[{\&quot;tributosDeclaradosPagadosPK\&quot;:{\&quot;codTri\&quot;:\&quot;010106\&quot;},\&quot;mtoBasimp\&quot;:\&quot;12121212\&quot;,\&quot;mtoImpres\&quot;:\&quot;484848\&quot;,\&quot;mtoPagtot\&quot;:\&quot;484662\&quot;,\&quot;mtoTotDeu\&quot;:\&quot;484662\&quot;,\&quot;indVig\&quot;:\&quot;1\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;porTasa\&quot;:0,\&quot;mtoRespag\&quot;:0}]}],\&quot;tributosDeclaradosPagadosList\&quot;:[{\&quot;tributosDeclaradosPagadosPK\&quot;:{\&quot;codTri\&quot;:\&quot;010101\&quot;},\&quot;mtoBasimp\&quot;:\&quot;1212111\&quot;,\&quot;mtoImpres\&quot;:\&quot;215998\&quot;,\&quot;mtoPagtot\&quot;:0,\&quot;mtoTotDeu\&quot;:\&quot;215315\&quot;,\&quot;indVig\&quot;:\&quot;1\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;porTasa\&quot;:0,\&quot;mtoRespag\&quot;:0},{\&quot;tributosDeclaradosPagadosPK\&quot;:{\&quot;codTri\&quot;:\&quot;030301\&quot;},\&quot;mtoBasimp\&quot;:\&quot;121212\&quot;,\&quot;mtoImpres\&quot;:\&quot;60606\&quot;,\&quot;mtoPagtot\&quot;:0,\&quot;mtoTotDeu\&quot;:\&quot;60420\&quot;,\&quot;indVig\&quot;:\&quot;1\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;porTasa\&quot;:2,\&quot;mtoRespag\&quot;:0},{\&quot;tributosDeclaradosPagadosPK\&quot;:{\&quot;codTri\&quot;:\&quot;010106\&quot;},\&quot;mtoBasimp\&quot;:\&quot;12121212\&quot;,\&quot;mtoImpres\&quot;:\&quot;484848\&quot;,\&quot;mtoPagtot\&quot;:0,\&quot;mtoTotDeu\&quot;:\&quot;484662\&quot;,\&quot;indVig\&quot;:\&quot;1\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;porTasa\&quot;:4,\&quot;mtoRespag\&quot;:0}],\&quot;rectificatoriasTributoList\&quot;:[],\&quot;coeficienteIGVPeriodoList\&quot;:[{\&quot;numOrd\&quot;:0,\&quot;codFor\&quot;:\&quot;0621\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;indReccoe\&quot;:\&quot;0\&quot;,\&quot;codEstrec\&quot;:\&quot;0\&quot;,\&quot;mtoExpdet\&quot;:1,\&quot;indVig\&quot;:\&quot;1\&quot;,\&quot;codTri\&quot;:\&quot;010101\&quot;,\&quot;mtoVnogdet\&quot;:112,\&quot;mtoVngdet\&quot;:1212110}],\&quot;cargaPdt\&quot;:null,\&quot;autoguardadoFormularioList\&quot;:[],\&quot;casillasFormularioList\&quot;:[{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:686},\&quot;codTipcas\&quot;:\&quot;00\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;497\&quot;,\&quot;codTipCam\&quot;:\&quot;06\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:7},\&quot;codTipcas\&quot;:\&quot;00\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;201611\&quot;,\&quot;codTipCam\&quot;:\&quot;03\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:886},\&quot;codTipcas\&quot;:\&quot;00\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;0\&quot;,\&quot;codTipCam\&quot;:\&quot;01\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:887},\&quot;codTipcas\&quot;:\&quot;00\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;0\&quot;,\&quot;codTipCam\&quot;:\&quot;01\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:867},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;1\&quot;,\&quot;codTipCam\&quot;:\&quot;01\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:861},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;0\&quot;,\&quot;codTipCam\&quot;:\&quot;01\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:866},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;1\&quot;,\&quot;codTipCam\&quot;:\&quot;01\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:100},\&quot;codTipcas\&quot;:\&quot;02\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;1212111\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:101},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;218180\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:102},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;1\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:103},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;0\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:106},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;1\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:127},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;53400\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:105},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;112\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:109},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;1212\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:131},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;218180\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:107},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;12121\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:108},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;2182\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:110},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;1\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:111},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;0\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:115},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;0\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:116},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;1\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:117},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;0\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:119},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;1\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:178},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;2182\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:173},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;0.9996\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:340},\&quot;codTipcas\&quot;:\&quot;02\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;12121212\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:341},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;484848\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:839},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;1\&quot;,\&quot;codTipCam\&quot;:\&quot;01\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:607},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;0\&quot;,\&quot;codTipCam\&quot;:\&quot;01\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:380},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;0.5000\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:315},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;1.50\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:301},\&quot;codTipcas\&quot;:\&quot;02\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;121212\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:312},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;60606\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:140},\&quot;codTipcas\&quot;:\&quot;03\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;215998\&quot;,\&quot;codTipCam\&quot;:\&quot;11\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:302},\&quot;codTipcas\&quot;:\&quot;03\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;60606\&quot;,\&quot;codTipCam\&quot;:\&quot;08\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:353},\&quot;codTipcas\&quot;:\&quot;03\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;484848\&quot;,\&quot;codTipCam\&quot;:\&quot;11\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:145},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;0\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:303},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;0\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:351},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;0\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:184},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;215998\&quot;,\&quot;codTipCam\&quot;:\&quot;11\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:304},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;60606\&quot;,\&quot;codTipCam\&quot;:\&quot;11\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:352},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;484848\&quot;,\&quot;codTipCam\&quot;:\&quot;11\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:164},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;0\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:179},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;497\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:165},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;0\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:681},\&quot;codTipcas\&quot;:\&quot;00\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;215501\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:682},\&quot;codTipcas\&quot;:\&quot;00\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;60606\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:683},\&quot;codTipcas\&quot;:\&quot;00\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;484848\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:185},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;186\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:317},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;186\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:342},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;186\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:187},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;0\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:319},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;0\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:343},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;0\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:188},\&quot;codTipcas\&quot;:\&quot;07\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;215315\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:324},\&quot;codTipcas\&quot;:\&quot;07\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;60420\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:344},\&quot;codTipcas\&quot;:\&quot;07\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;484662\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:189},\&quot;codTipcas\&quot;:\&quot;05\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;215315\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:307},\&quot;codTipcas\&quot;:\&quot;05\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;60420\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:345},\&quot;codTipcas\&quot;:\&quot;05\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;484662\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:2},\&quot;codTipcas\&quot;:\&quot;00\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;10000064641\&quot;,\&quot;codTipCam\&quot;:\&quot;01\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:13},\&quot;codTipcas\&quot;:\&quot;00\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;2017-09-19\&quot;,\&quot;codTipCam\&quot;:\&quot;02\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:58},\&quot;codTipcas\&quot;:\&quot;00\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;10%3A48%3A22\&quot;,\&quot;codTipCam\&quot;:\&quot;04\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:600},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;0621\&quot;,\&quot;codTipCam\&quot;:\&quot;00\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:651},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;760397\&quot;,\&quot;codTipCam\&quot;:\&quot;00\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:896},\&quot;codTipcas\&quot;:\&quot;00\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;1\&quot;,\&quot;codTipCam\&quot;:\&quot;01\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:891},\&quot;codTipcas\&quot;:\&quot;00\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;2\&quot;,\&quot;codTipCam\&quot;:\&quot;06\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:892},\&quot;codTipcas\&quot;:\&quot;00\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;4\&quot;,\&quot;codTipCam\&quot;:\&quot;06\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:509},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;0\&quot;,\&quot;codTipCam\&quot;:\&quot;01\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:510},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;0\&quot;,\&quot;codTipCam\&quot;:\&quot;01\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:511},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;0\&quot;,\&quot;codTipCam\&quot;:\&quot;01\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:895},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;2\&quot;,\&quot;codTipCam\&quot;:\&quot;01\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:5},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;1\&quot;,\&quot;codTipCam\&quot;:\&quot;01\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:871},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;101\&quot;,\&quot;codTipCam\&quot;:\&quot;01\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:56},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;4\&quot;,\&quot;codTipCam\&quot;:\&quot;01\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:889},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;desValcas\&quot;:\&quot;1\&quot;,\&quot;codTipCam\&quot;:\&quot;01\&quot;}],\&quot;casillasSugeridasFinalesList\&quot;:[{\&quot;casillasSugeridasFinalesPK\&quot;:{\&quot;numOrd\&quot;:\&quot;0\&quot;,\&quot;numCas\&quot;:\&quot;892\&quot;},\&quot;indValDif\&quot;:\&quot;0\&quot;,\&quot;desCasfin\&quot;:\&quot;4\&quot;,\&quot;desCassug\&quot;:\&quot;4\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;},{\&quot;casillasSugeridasFinalesPK\&quot;:{\&quot;numOrd\&quot;:\&quot;0\&quot;,\&quot;numCas\&quot;:\&quot;891\&quot;},\&quot;indValDif\&quot;:\&quot;0\&quot;,\&quot;desCasfin\&quot;:\&quot;2\&quot;,\&quot;desCassug\&quot;:\&quot;2\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;},{\&quot;casillasSugeridasFinalesPK\&quot;:{\&quot;numOrd\&quot;:\&quot;0\&quot;,\&quot;numCas\&quot;:\&quot;127\&quot;},\&quot;indValDif\&quot;:\&quot;0\&quot;,\&quot;desCasfin\&quot;:\&quot;53400\&quot;,\&quot;desCassug\&quot;:\&quot;53400\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;},{\&quot;casillasSugeridasFinalesPK\&quot;:{\&quot;numOrd\&quot;:\&quot;0\&quot;,\&quot;numCas\&quot;:\&quot;119\&quot;},\&quot;indValDif\&quot;:\&quot;0\&quot;,\&quot;desCasfin\&quot;:\&quot;1\&quot;,\&quot;desCassug\&quot;:\&quot;0\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;},{\&quot;casillasSugeridasFinalesPK\&quot;:{\&quot;numOrd\&quot;:\&quot;0\&quot;,\&quot;numCas\&quot;:\&quot;117\&quot;},\&quot;indValDif\&quot;:\&quot;0\&quot;,\&quot;desCasfin\&quot;:\&quot;0\&quot;,\&quot;desCassug\&quot;:\&quot;0\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;},{\&quot;casillasSugeridasFinalesPK\&quot;:{\&quot;numOrd\&quot;:\&quot;0\&quot;,\&quot;numCas\&quot;:\&quot;116\&quot;},\&quot;indValDif\&quot;:\&quot;0\&quot;,\&quot;desCasfin\&quot;:\&quot;1\&quot;,\&quot;desCassug\&quot;:\&quot;0\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;},{\&quot;casillasSugeridasFinalesPK\&quot;:{\&quot;numOrd\&quot;:\&quot;0\&quot;,\&quot;numCas\&quot;:\&quot;115\&quot;},\&quot;indValDif\&quot;:\&quot;0\&quot;,\&quot;desCasfin\&quot;:\&quot;0\&quot;,\&quot;desCassug\&quot;:\&quot;2160\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;},{\&quot;casillasSugeridasFinalesPK\&quot;:{\&quot;numOrd\&quot;:\&quot;0\&quot;,\&quot;numCas\&quot;:\&quot;109\&quot;},\&quot;indValDif\&quot;:\&quot;0\&quot;,\&quot;desCasfin\&quot;:\&quot;1212\&quot;,\&quot;desCassug\&quot;:\&quot;2000\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;},{\&quot;casillasSugeridasFinalesPK\&quot;:{\&quot;numOrd\&quot;:\&quot;0\&quot;,\&quot;numCas\&quot;:\&quot;108\&quot;},\&quot;indValDif\&quot;:\&quot;0\&quot;,\&quot;desCasfin\&quot;:\&quot;2182\&quot;,\&quot;desCassug\&quot;:\&quot;27000\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;},{\&quot;casillasSugeridasFinalesPK\&quot;:{\&quot;numOrd\&quot;:\&quot;0\&quot;,\&quot;numCas\&quot;:\&quot;103\&quot;},\&quot;indValDif\&quot;:\&quot;0\&quot;,\&quot;desCasfin\&quot;:\&quot;0\&quot;,\&quot;desCassug\&quot;:\&quot;5400\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;},{\&quot;casillasSugeridasFinalesPK\&quot;:{\&quot;numOrd\&quot;:\&quot;0\&quot;,\&quot;numCas\&quot;:\&quot;102\&quot;},\&quot;indValDif\&quot;:\&quot;0\&quot;,\&quot;desCasfin\&quot;:\&quot;1\&quot;,\&quot;desCassug\&quot;:\&quot;30000\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;},{\&quot;casillasSugeridasFinalesPK\&quot;:{\&quot;numOrd\&quot;:\&quot;0\&quot;,\&quot;numCas\&quot;:\&quot;101\&quot;},\&quot;indValDif\&quot;:\&quot;0\&quot;,\&quot;desCasfin\&quot;:\&quot;218180\&quot;,\&quot;desCassug\&quot;:\&quot;72612\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;},{\&quot;casillasSugeridasFinalesPK\&quot;:{\&quot;numOrd\&quot;:\&quot;0\&quot;,\&quot;numCas\&quot;:\&quot;100\&quot;},\&quot;indValDif\&quot;:\&quot;0\&quot;,\&quot;desCasfin\&quot;:\&quot;1212111\&quot;,\&quot;desCassug\&quot;:\&quot;4034010\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;},{\&quot;casillasSugeridasFinalesPK\&quot;:{\&quot;numOrd\&quot;:\&quot;0\&quot;,\&quot;numCas\&quot;:\&quot;342\&quot;},\&quot;indValDif\&quot;:\&quot;0\&quot;,\&quot;desCasfin\&quot;:\&quot;186\&quot;,\&quot;desCassug\&quot;:\&quot;186\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;},{\&quot;casillasSugeridasFinalesPK\&quot;:{\&quot;numOrd\&quot;:\&quot;0\&quot;,\&quot;numCas\&quot;:\&quot;107\&quot;},\&quot;indValDif\&quot;:\&quot;0\&quot;,\&quot;desCasfin\&quot;:\&quot;12121\&quot;,\&quot;desCassug\&quot;:\&quot;150000\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;},{\&quot;casillasSugeridasFinalesPK\&quot;:{\&quot;numOrd\&quot;:\&quot;0\&quot;,\&quot;numCas\&quot;:\&quot;106\&quot;},\&quot;indValDif\&quot;:\&quot;0\&quot;,\&quot;desCasfin\&quot;:\&quot;1\&quot;,\&quot;desCassug\&quot;:\&quot;45000\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;},{\&quot;casillasSugeridasFinalesPK\&quot;:{\&quot;numOrd\&quot;:\&quot;0\&quot;,\&quot;numCas\&quot;:\&quot;105\&quot;},\&quot;indValDif\&quot;:\&quot;0\&quot;,\&quot;desCasfin\&quot;:\&quot;112\&quot;,\&quot;desCassug\&quot;:\&quot;1800\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;},{\&quot;casillasSugeridasFinalesPK\&quot;:{\&quot;numOrd\&quot;:\&quot;0\&quot;,\&quot;numCas\&quot;:\&quot;341\&quot;},\&quot;indValDif\&quot;:\&quot;0\&quot;,\&quot;desCasfin\&quot;:\&quot;484848\&quot;,\&quot;desCassug\&quot;:\&quot;80964\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;},{\&quot;casillasSugeridasFinalesPK\&quot;:{\&quot;numOrd\&quot;:\&quot;0\&quot;,\&quot;numCas\&quot;:\&quot;340\&quot;},\&quot;indValDif\&quot;:\&quot;0\&quot;,\&quot;desCasfin\&quot;:\&quot;12121212\&quot;,\&quot;desCassug\&quot;:\&quot;348500\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;},{\&quot;casillasSugeridasFinalesPK\&quot;:{\&quot;numOrd\&quot;:\&quot;0\&quot;,\&quot;numCas\&quot;:\&quot;185\&quot;},\&quot;indValDif\&quot;:\&quot;0\&quot;,\&quot;desCasfin\&quot;:\&quot;186\&quot;,\&quot;desCassug\&quot;:\&quot;186\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;},{\&quot;casillasSugeridasFinalesPK\&quot;:{\&quot;numOrd\&quot;:\&quot;0\&quot;,\&quot;numCas\&quot;:\&quot;317\&quot;},\&quot;indValDif\&quot;:\&quot;0\&quot;,\&quot;desCasfin\&quot;:\&quot;186\&quot;,\&quot;desCassug\&quot;:\&quot;186\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;},{\&quot;casillasSugeridasFinalesPK\&quot;:{\&quot;numOrd\&quot;:\&quot;0\&quot;,\&quot;numCas\&quot;:\&quot;315\&quot;},\&quot;indValDif\&quot;:\&quot;0\&quot;,\&quot;desCasfin\&quot;:\&quot;1.50\&quot;,\&quot;desCassug\&quot;:\&quot;1.50\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;},{\&quot;casillasSugeridasFinalesPK\&quot;:{\&quot;numOrd\&quot;:\&quot;0\&quot;,\&quot;numCas\&quot;:\&quot;301\&quot;},\&quot;indValDif\&quot;:\&quot;0\&quot;,\&quot;desCasfin\&quot;:\&quot;121212\&quot;,\&quot;desCassug\&quot;:\&quot;201912\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;},{\&quot;casillasSugeridasFinalesPK\&quot;:{\&quot;numOrd\&quot;:\&quot;0\&quot;,\&quot;numCas\&quot;:\&quot;380\&quot;},\&quot;indValDif\&quot;:\&quot;0\&quot;,\&quot;desCasfin\&quot;:\&quot;0.5000\&quot;,\&quot;desCassug\&quot;:\&quot;0.5000\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;},{\&quot;casillasSugeridasFinalesPK\&quot;:{\&quot;numOrd\&quot;:\&quot;0\&quot;,\&quot;numCas\&quot;:\&quot;179\&quot;},\&quot;indValDif\&quot;:\&quot;0\&quot;,\&quot;desCasfin\&quot;:\&quot;497\&quot;,\&quot;desCassug\&quot;:\&quot;497\&quot;,\&quot;perTri\&quot;:\&quot;201611\&quot;}],\&quot;detallePagosPreviosList\&quot;:[{\&quot;detallePagosPreviosPK\&quot;:{\&quot;numOrdPre\&quot;:238318881,\&quot;codTriPag\&quot;:\&quot;010101\&quot;,\&quot;codForPre\&quot;:621},\&quot;codDepPag\&quot;:317,\&quot;numRucPag\&quot;:\&quot;10000064641\&quot;,\&quot;perTriPag\&quot;:\&quot;201611\&quot;,\&quot;mtoPag\&quot;:186,\&quot;indSel\&quot;:\&quot;1\&quot;,\&quot;fecPag\&quot;:1480568400000},{\&quot;detallePagosPreviosPK\&quot;:{\&quot;numOrdPre\&quot;:238318881,\&quot;codTriPag\&quot;:\&quot;030301\&quot;,\&quot;codForPre\&quot;:621},\&quot;codDepPag\&quot;:317,\&quot;numRucPag\&quot;:\&quot;10000064641\&quot;,\&quot;perTriPag\&quot;:\&quot;201611\&quot;,\&quot;mtoPag\&quot;:186,\&quot;indSel\&quot;:\&quot;1\&quot;,\&quot;fecPag\&quot;:1480568400000},{\&quot;detallePagosPreviosPK\&quot;:{\&quot;numOrdPre\&quot;:238318881,\&quot;codTriPag\&quot;:\&quot;010106\&quot;,\&quot;codForPre\&quot;:621},\&quot;codDepPag\&quot;:317,\&quot;numRucPag\&quot;:\&quot;10000064641\&quot;,\&quot;perTriPag\&quot;:\&quot;201611\&quot;,\&quot;mtoPag\&quot;:186,\&quot;indSel\&quot;:\&quot;1\&quot;,\&quot;fecPag\&quot;:1480568400000}],\&quot;anexasFormularioList\&quot;:[],\&quot;detallesCoeficienteIGVList\&quot;:[{\&quot;detallesCoeficienteIGVPK\&quot;:{\&quot;codPerdet\&quot;:\&quot;201610\&quot;,\&quot;numOrd\&quot;:0},\&quot;perTri\&quot;:\&quot;201611\&quot;,\&quot;mtoExpdet\&quot;:45000,\&quot;codTri\&quot;:\&quot;010101\&quot;,\&quot;mtoVnogdet\&quot;:1800,\&quot;mtoVngdet\&quot;:1800}]}]}&quot;,&quot;codigoMedioPresentacion&quot;:&quot;01&quot;}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain">e-plataformaunica.sunat.gob.pe</stringProp>
+              <stringProp name="HTTPSampler.port">443</stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.protocol">HTTPS</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding">UTF8</stringProp>
+              <stringProp name="HTTPSampler.path">/v1/recaudacion/tributaria/orquestacionpresentacion/t/consulta/validarPresentacion</stringProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">true</boolProp>
+              <boolProp name="HTTPSampler.monitor">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Gestor de Cabecera HTTP" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">content-type</stringProp>
+                    <stringProp name="Header.value">application/json</stringProp>
+                  </elementProp>
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">IdFormulario</stringProp>
+                    <stringProp name="Header.value">*MENU*</stringProp>
+                  </elementProp>
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">IdCache</stringProp>
+                    <stringProp name="Header.value">${idCacheLocal}</stringProp>
+                  </elementProp>
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">Host</stringProp>
+                    <stringProp name="Header.value">e-plataformaunica.sunat.gob.pe</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="true">
+                <stringProp name="JSONPostProcessor.referenceNames">numBandeja</stringProp>
+                <stringProp name="JSONPostProcessor.jsonPathExprs">$.resultado.numeroOperacionSunat</stringProp>
+                <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+              </JSONPostProcessor>
+              <hashTree/>
+              <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="false">
+                <boolProp name="resetInterpreter">false</boolProp>
+                <stringProp name="parameters"></stringProp>
+                <stringProp name="filename"></stringProp>
+                <stringProp name="script">log.info(&quot;Ingreso al BS bandeja&quot;);
+log.info(vars.get(&quot;ruc&quot;));
+log.info(vars.get(&quot;idCacheLocal&quot;));
+log.info(vars.get(&quot;numBandeja&quot;));</stringProp>
+              </BeanShellPostProcessor>
+              <hashTree/>
+              <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+                <boolProp name="ResultCollector.error_logging">false</boolProp>
+                <objProp>
+                  <name>saveConfig</name>
+                  <value class="SampleSaveConfiguration">
+                    <time>true</time>
+                    <latency>true</latency>
+                    <timestamp>true</timestamp>
+                    <success>true</success>
+                    <label>true</label>
+                    <code>true</code>
+                    <message>true</message>
+                    <threadName>true</threadName>
+                    <dataType>true</dataType>
+                    <encoding>false</encoding>
+                    <assertions>true</assertions>
+                    <subresults>true</subresults>
+                    <responseData>false</responseData>
+                    <samplerData>false</samplerData>
+                    <xml>false</xml>
+                    <fieldNames>true</fieldNames>
+                    <responseHeaders>false</responseHeaders>
+                    <requestHeaders>false</requestHeaders>
+                    <responseDataOnError>false</responseDataOnError>
+                    <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                    <assertionsResultsToSave>0</assertionsResultsToSave>
+                    <bytes>true</bytes>
+                    <sentBytes>true</sentBytes>
+                    <threadCounts>true</threadCounts>
+                    <idleTime>true</idleTime>
+                    <connectTime>true</connectTime>
+                  </value>
+                </objProp>
+                <stringProp name="filename"></stringProp>
+              </ResultCollector>
+              <hashTree/>
+            </hashTree>
+          </hashTree>
+          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller" enabled="true">
+            <stringProp name="IfController.condition">&quot;${formulario}&quot;  == &quot;2&quot;</stringProp>
+            <boolProp name="IfController.evaluateAll">false</boolProp>
+          </IfController>
+          <hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="validarPresentacion_F0626" enabled="true">
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value">{&quot;identificadorPresentacion&quot;:&quot;f6fedd07-e0ee-4b39-9734-80eb13157070&quot;,&quot;versionBrowser&quot;:&quot;Chrome 60.0&quot;,&quot;versionSO&quot;:&quot;Windows&quot;,&quot;direccionIP&quot;:&quot;192.168.1.1&quot;,&quot;cantidadFormularios&quot;:&quot;2&quot;,&quot;montoTotalPagar&quot;:1207385,&quot;fechaEnvio&quot;:&quot;19/09/2017 12:19:37&quot;,&quot;ruc&quot;:&quot;20100049181&quot;,&quot;razonSocial&quot;:&quot;TAI LOY S.A.&quot;,&quot;declaraciones&quot;:&quot;{\&quot;formulario\&quot;:[{\&quot;identificadorFormulario\&quot;:\&quot;f6fedd07-e0ee-4b39-9734-80eb13157070=1505841566\&quot;,\&quot;codUsuregis\&quot;:\&quot;PEHFYMCG\&quot;,\&quot;numOrdOri\&quot;:0,\&quot;numOrd\&quot;:0,\&quot;numRuc\&quot;:\&quot;20100049181\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;codFor\&quot;:\&quot;0626\&quot;,\&quot;desFor\&quot;:\&quot;AGENTES DE RETENCIÓN\&quot;,\&quot;numVerFor\&quot;:\&quot;1.0\&quot;,\&quot;fecPres\&quot;:\&quot;2017-09-19T12:19:21.000Z\&quot;,\&quot;horPres\&quot;:\&quot;2017-09-19T12:19:21.000Z\&quot;,\&quot;mtoPag\&quot;:0,\&quot;numBandeja\&quot;:0,\&quot;codOrifor\&quot;:\&quot;01\&quot;,\&quot;codTipfor\&quot;:\&quot;10\&quot;,\&quot;indValLib\&quot;:\&quot;0\&quot;,\&quot;codTipdetrac\&quot;:\&quot;0\&quot;,\&quot;codEtapa\&quot;:\&quot;00\&quot;,\&quot;indForAut\&quot;:\&quot;0\&quot;,\&quot;numNabono\&quot;:\&quot;\&quot;,\&quot;codEntFin\&quot;:\&quot;02\&quot;,\&quot;numPedAnu\&quot;:\&quot;\&quot;,\&quot;semFor\&quot;:\&quot;0\&quot;,\&quot;numIdResumen\&quot;:0,\&quot;numRucSec\&quot;:\&quot;\&quot;,\&quot;numValPag\&quot;:0,\&quot;numCargaPdt\&quot;:0,\&quot;numIdConstancia\&quot;:0,\&quot;numOpebco\&quot;:0,\&quot;codIndrec\&quot;:\&quot;2\&quot;,\&quot;codEstado\&quot;:\&quot;90\&quot;,\&quot;numResrec\&quot;:\&quot;\&quot;,\&quot;numIdReporte\&quot;:0,\&quot;numPedPro\&quot;:\&quot;\&quot;,\&quot;codOriPres\&quot;:\&quot;01\&quot;,\&quot;numTrabajador\&quot;:\&quot;0\&quot;,\&quot;numPensionista\&quot;:\&quot;0\&quot;,\&quot;numCuartaCategoria\&quot;:\&quot;0\&quot;,\&quot;numNorEspecial\&quot;:\&quot;0\&quot;,\&quot;numModFormativa\&quot;:\&quot;0\&quot;,\&quot;numTercero\&quot;:\&quot;0\&quot;,\&quot;retePercIGVList\&quot;:[],\&quot;boletas\&quot;:[{\&quot;numOrd\&quot;:0,\&quot;numOrdOri\&quot;:0,\&quot;numRuc\&quot;:\&quot;20100049181\&quot;,\&quot;numRucSec\&quot;:\&quot;\&quot;,\&quot;fecPres\&quot;:\&quot;2017-09-19T12:19:21.000Z\&quot;,\&quot;horPres\&quot;:\&quot;2017-09-19T12:19:21.000Z\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;semFor\&quot;:\&quot;0\&quot;,\&quot;codIndrec\&quot;:\&quot;0\&quot;,\&quot;codOrifor\&quot;:\&quot;01\&quot;,\&quot;codOriPres\&quot;:\&quot;01\&quot;,\&quot;codTipfor\&quot;:\&quot;21\&quot;,\&quot;numValPag\&quot;:0,\&quot;mtoPag\&quot;:\&quot;1207385\&quot;,\&quot;codTipdetrac\&quot;:\&quot;0\&quot;,\&quot;codEstado\&quot;:\&quot;90\&quot;,\&quot;codEtapa\&quot;:\&quot;00\&quot;,\&quot;numIdConstancia\&quot;:0,\&quot;numIdResumen\&quot;:0,\&quot;numIdReporte\&quot;:0,\&quot;numNabono\&quot;:\&quot;\&quot;,\&quot;numResrec\&quot;:\&quot;\&quot;,\&quot;indValLib\&quot;:\&quot;0\&quot;,\&quot;numPedPro\&quot;:\&quot;\&quot;,\&quot;numPedAnu\&quot;:\&quot;\&quot;,\&quot;indForAut\&quot;:\&quot;1\&quot;,\&quot;codEntFin\&quot;:\&quot;000\&quot;,\&quot;numOpebco\&quot;:\&quot;\&quot;,\&quot;numBandeja\&quot;:0,\&quot;numCargaPdt\&quot;:0,\&quot;codMedpag\&quot;:\&quot;\&quot;,\&quot;nomEntFin\&quot;:\&quot;\&quot;,\&quot;fecPago\&quot;:\&quot;\&quot;,\&quot;codFor\&quot;:\&quot;1662\&quot;,\&quot;desFor\&quot;:\&quot;\&quot;,\&quot;numVerFor\&quot;:\&quot;1.0\&quot;,\&quot;numTrabajador\&quot;:\&quot;0\&quot;,\&quot;numPensionista\&quot;:\&quot;0\&quot;,\&quot;numCuartaCategoria\&quot;:\&quot;0\&quot;,\&quot;numNorEspecial\&quot;:\&quot;0\&quot;,\&quot;numModFormativa\&quot;:\&quot;0\&quot;,\&quot;numTercero\&quot;:\&quot;0\&quot;,\&quot;casillasFormularioList\&quot;:[{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:7},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;201703\&quot;,\&quot;codTipCam\&quot;:\&quot;03\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:600},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;010302\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:651},\&quot;codTipcas\&quot;:\&quot;05\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;1207385\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:2},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;20100049181\&quot;,\&quot;codTipCam\&quot;:\&quot;01\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:13},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;2017-09-19\&quot;,\&quot;codTipCam\&quot;:\&quot;02\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:58},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;12%3A19%3A26\&quot;,\&quot;codTipCam\&quot;:\&quot;01\&quot;}],\&quot;tributosDeclaradosPagadosList\&quot;:[{\&quot;tributosDeclaradosPagadosPK\&quot;:{\&quot;codTri\&quot;:\&quot;010302\&quot;},\&quot;mtoBasimp\&quot;:\&quot;2052276\&quot;,\&quot;mtoImpres\&quot;:\&quot;1207385\&quot;,\&quot;mtoPagtot\&quot;:\&quot;1207385\&quot;,\&quot;mtoTotDeu\&quot;:\&quot;1207385\&quot;,\&quot;indVig\&quot;:\&quot;1\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;porTasa\&quot;:0,\&quot;mtoRespag\&quot;:0}]}],\&quot;tributosDeclaradosPagadosList\&quot;:[{\&quot;tributosDeclaradosPagadosPK\&quot;:{\&quot;codTri\&quot;:\&quot;010302\&quot;},\&quot;mtoBasimp\&quot;:\&quot;2052276\&quot;,\&quot;mtoImpres\&quot;:\&quot;1207385\&quot;,\&quot;mtoPagtot\&quot;:0,\&quot;mtoTotDeu\&quot;:\&quot;1207385\&quot;,\&quot;indVig\&quot;:\&quot;1\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;porTasa\&quot;:6,\&quot;mtoRespag\&quot;:0}],\&quot;rectificatoriasTributoList\&quot;:[],\&quot;coeficienteIGVPeriodoList\&quot;:[],\&quot;cargaPdt\&quot;:null,\&quot;autoguardadoFormularioList\&quot;:[],\&quot;casillasFormularioList\&quot;:[{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:7},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;201703\&quot;,\&quot;codTipCam\&quot;:\&quot;03\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:895},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;2\&quot;,\&quot;codTipCam\&quot;:\&quot;01\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:502},\&quot;codTipcas\&quot;:\&quot;02\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;2052276\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:401},\&quot;codTipcas\&quot;:\&quot;03\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;1207385\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:402},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;0\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:403},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;1207385\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:404},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;0\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:405},\&quot;codTipcas\&quot;:\&quot;07\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;1207385\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:410},\&quot;codTipcas\&quot;:\&quot;05\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;1207385\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:2},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;20100049181\&quot;,\&quot;codTipCam\&quot;:\&quot;01\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:13},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;2017-09-19\&quot;,\&quot;codTipCam\&quot;:\&quot;02\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:58},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;12%3A19%3A26\&quot;,\&quot;codTipCam\&quot;:\&quot;01\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:5},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;1\&quot;,\&quot;codTipCam\&quot;:\&quot;01\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:500},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;01\&quot;,\&quot;codTipCam\&quot;:\&quot;01\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:501},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;50\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:511},\&quot;codTipcas\&quot;:\&quot;00\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;871021.55\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:512},\&quot;codTipcas\&quot;:\&quot;00\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;26130.69\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:513},\&quot;codTipcas\&quot;:\&quot;00\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;198\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:514},\&quot;codTipcas\&quot;:\&quot;00\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;844890.86\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:515},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;0.0\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:516},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;0.0\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:517},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;0.0\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:896},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;1\&quot;,\&quot;codTipCam\&quot;:\&quot;01\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:503},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;1207385\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:871},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;1\&quot;,\&quot;codTipCam\&quot;:\&quot;01\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:102},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;1431948\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:104},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;615867\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:103},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;620328\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:105},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;591518\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;}],\&quot;casillasSugeridasFinalesList\&quot;:[{\&quot;casillasSugeridasFinalesPK\&quot;:{\&quot;numOrd\&quot;:\&quot;0\&quot;,\&quot;numCas\&quot;:\&quot;502\&quot;},\&quot;indValDif\&quot;:\&quot;0\&quot;,\&quot;desCasfin\&quot;:\&quot;2052276\&quot;,\&quot;desCassug\&quot;:\&quot;2052276\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;},{\&quot;casillasSugeridasFinalesPK\&quot;:{\&quot;numOrd\&quot;:\&quot;0\&quot;,\&quot;numCas\&quot;:\&quot;401\&quot;},\&quot;indValDif\&quot;:\&quot;0\&quot;,\&quot;desCasfin\&quot;:\&quot;1207385\&quot;,\&quot;desCassug\&quot;:\&quot;1207385\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;},{\&quot;casillasSugeridasFinalesPK\&quot;:{\&quot;numOrd\&quot;:\&quot;0\&quot;,\&quot;numCas\&quot;:\&quot;402\&quot;},\&quot;indValDif\&quot;:\&quot;0\&quot;,\&quot;desCasfin\&quot;:\&quot;0\&quot;,\&quot;desCassug\&quot;:\&quot;0\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;}],\&quot;detallePagosPreviosList\&quot;:[],\&quot;anexasFormularioList\&quot;:[],\&quot;detallesCoeficienteIGVList\&quot;:[]}]}&quot;,&quot;codigoMedioPresentacion&quot;:&quot;01&quot;}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain">e-plataformaunica.sunat.gob.pe</stringProp>
+              <stringProp name="HTTPSampler.port">443</stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.protocol">HTTPS</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding">UTF8</stringProp>
+              <stringProp name="HTTPSampler.path">/v1/recaudacion/tributaria/orquestacionpresentacion/t/consulta/validarPresentacion</stringProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">true</boolProp>
+              <boolProp name="HTTPSampler.monitor">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Gestor de Cabecera HTTP" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">content-type</stringProp>
+                    <stringProp name="Header.value">application/json</stringProp>
+                  </elementProp>
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">IdFormulario</stringProp>
+                    <stringProp name="Header.value">*MENU*</stringProp>
+                  </elementProp>
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">IdCache</stringProp>
+                    <stringProp name="Header.value">${idCacheLocal}</stringProp>
+                  </elementProp>
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">Host</stringProp>
+                    <stringProp name="Header.value">e-plataformaunica.sunat.gob.pe</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="true">
+                <stringProp name="JSONPostProcessor.referenceNames">numBandeja</stringProp>
+                <stringProp name="JSONPostProcessor.jsonPathExprs">$.resultado.numeroOperacionSunat</stringProp>
+                <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+              </JSONPostProcessor>
+              <hashTree/>
+              <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="Ver Árbol de Resultados" enabled="true">
+                <boolProp name="ResultCollector.error_logging">false</boolProp>
+                <objProp>
+                  <name>saveConfig</name>
+                  <value class="SampleSaveConfiguration">
+                    <time>true</time>
+                    <latency>true</latency>
+                    <timestamp>true</timestamp>
+                    <success>true</success>
+                    <label>true</label>
+                    <code>true</code>
+                    <message>true</message>
+                    <threadName>true</threadName>
+                    <dataType>true</dataType>
+                    <encoding>false</encoding>
+                    <assertions>true</assertions>
+                    <subresults>true</subresults>
+                    <responseData>false</responseData>
+                    <samplerData>false</samplerData>
+                    <xml>false</xml>
+                    <fieldNames>true</fieldNames>
+                    <responseHeaders>false</responseHeaders>
+                    <requestHeaders>false</requestHeaders>
+                    <responseDataOnError>false</responseDataOnError>
+                    <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                    <assertionsResultsToSave>0</assertionsResultsToSave>
+                    <bytes>true</bytes>
+                    <sentBytes>true</sentBytes>
+                    <threadCounts>true</threadCounts>
+                    <idleTime>true</idleTime>
+                    <connectTime>true</connectTime>
+                  </value>
+                </objProp>
+                <stringProp name="filename"></stringProp>
+              </ResultCollector>
+              <hashTree/>
+            </hashTree>
+          </hashTree>
+          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller" enabled="true">
+            <stringProp name="IfController.condition">&quot;${formulario}&quot; == &quot;3&quot;</stringProp>
+            <boolProp name="IfController.evaluateAll">false</boolProp>
+          </IfController>
+          <hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="validarPresentacion_F0633" enabled="true">
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value">{&quot;identificadorPresentacion&quot;:&quot;8249b5eb-51d7-498b-9ace-113f9a7a12d2&quot;,&quot;versionBrowser&quot;:&quot;Chrome 60.0&quot;,&quot;versionSO&quot;:&quot;Windows&quot;,&quot;direccionIP&quot;:&quot;192.168.1.1&quot;,&quot;cantidadFormularios&quot;:&quot;2&quot;,&quot;montoTotalPagar&quot;:1207385,&quot;fechaEnvio&quot;:&quot;19/09/2017 10:41:06&quot;,&quot;ruc&quot;:&quot;20100049181&quot;,&quot;razonSocial&quot;:&quot;TAI LOY S.A.&quot;,&quot;declaraciones&quot;:&quot;{\&quot;formulario\&quot;:[{\&quot;identificadorFormulario\&quot;:\&quot;8249b5eb-51d7-498b-9ace-113f9a7a12d2=1505835653\&quot;,\&quot;codUsuregis\&quot;:\&quot;PEHFYMCG\&quot;,\&quot;numOrdOri\&quot;:0,\&quot;numOrd\&quot;:0,\&quot;numRuc\&quot;:\&quot;20100049181\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;codFor\&quot;:\&quot;0633\&quot;,\&quot;desFor\&quot;:\&quot;AGENTES DE PERCEPCION HIDROCARBUROS\&quot;,\&quot;numVerFor\&quot;:\&quot;1.0\&quot;,\&quot;fecPres\&quot;:\&quot;2017-09-19T10:40:49.000Z\&quot;,\&quot;horPres\&quot;:\&quot;2017-09-19T10:40:49.000Z\&quot;,\&quot;mtoPag\&quot;:0,\&quot;numBandeja\&quot;:0,\&quot;codOrifor\&quot;:\&quot;01\&quot;,\&quot;codTipfor\&quot;:\&quot;10\&quot;,\&quot;indValLib\&quot;:\&quot;0\&quot;,\&quot;codTipdetrac\&quot;:\&quot;0\&quot;,\&quot;codEtapa\&quot;:\&quot;00\&quot;,\&quot;indForAut\&quot;:\&quot;0\&quot;,\&quot;numNabono\&quot;:\&quot;\&quot;,\&quot;codEntFin\&quot;:\&quot;02\&quot;,\&quot;numPedAnu\&quot;:\&quot;\&quot;,\&quot;semFor\&quot;:\&quot;0\&quot;,\&quot;numIdResumen\&quot;:0,\&quot;numRucSec\&quot;:\&quot;\&quot;,\&quot;numValPag\&quot;:0,\&quot;numCargaPdt\&quot;:0,\&quot;numIdConstancia\&quot;:0,\&quot;numOpebco\&quot;:0,\&quot;codIndrec\&quot;:\&quot;2\&quot;,\&quot;codEstado\&quot;:\&quot;90\&quot;,\&quot;numResrec\&quot;:\&quot;\&quot;,\&quot;numIdReporte\&quot;:0,\&quot;numPedPro\&quot;:\&quot;\&quot;,\&quot;codOriPres\&quot;:\&quot;01\&quot;,\&quot;numTrabajador\&quot;:\&quot;0\&quot;,\&quot;numPensionista\&quot;:\&quot;0\&quot;,\&quot;numCuartaCategoria\&quot;:\&quot;0\&quot;,\&quot;numNorEspecial\&quot;:\&quot;0\&quot;,\&quot;numModFormativa\&quot;:\&quot;0\&quot;,\&quot;numTercero\&quot;:\&quot;0\&quot;,\&quot;retePercIGVList\&quot;:[],\&quot;boletas\&quot;:[{\&quot;numOrd\&quot;:0,\&quot;numOrdOri\&quot;:0,\&quot;numRuc\&quot;:\&quot;20100049181\&quot;,\&quot;numRucSec\&quot;:\&quot;\&quot;,\&quot;fecPres\&quot;:\&quot;2017-09-19T10:40:49.000Z\&quot;,\&quot;horPres\&quot;:\&quot;2017-09-19T10:40:49.000Z\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;semFor\&quot;:\&quot;0\&quot;,\&quot;codIndrec\&quot;:\&quot;0\&quot;,\&quot;codOrifor\&quot;:\&quot;01\&quot;,\&quot;codOriPres\&quot;:\&quot;01\&quot;,\&quot;codTipfor\&quot;:\&quot;21\&quot;,\&quot;numValPag\&quot;:0,\&quot;mtoPag\&quot;:\&quot;1207385\&quot;,\&quot;codTipdetrac\&quot;:\&quot;0\&quot;,\&quot;codEstado\&quot;:\&quot;90\&quot;,\&quot;codEtapa\&quot;:\&quot;00\&quot;,\&quot;numIdConstancia\&quot;:0,\&quot;numIdResumen\&quot;:0,\&quot;numIdReporte\&quot;:0,\&quot;numNabono\&quot;:\&quot;\&quot;,\&quot;numResrec\&quot;:\&quot;\&quot;,\&quot;indValLib\&quot;:\&quot;0\&quot;,\&quot;numPedPro\&quot;:\&quot;\&quot;,\&quot;numPedAnu\&quot;:\&quot;\&quot;,\&quot;indForAut\&quot;:\&quot;1\&quot;,\&quot;codEntFin\&quot;:\&quot;000\&quot;,\&quot;numOpebco\&quot;:\&quot;\&quot;,\&quot;numBandeja\&quot;:0,\&quot;numCargaPdt\&quot;:0,\&quot;codMedpag\&quot;:\&quot;\&quot;,\&quot;nomEntFin\&quot;:\&quot;\&quot;,\&quot;fecPago\&quot;:\&quot;\&quot;,\&quot;codFor\&quot;:\&quot;1662\&quot;,\&quot;desFor\&quot;:\&quot;\&quot;,\&quot;numVerFor\&quot;:\&quot;1.0\&quot;,\&quot;numTrabajador\&quot;:\&quot;0\&quot;,\&quot;numPensionista\&quot;:\&quot;0\&quot;,\&quot;numCuartaCategoria\&quot;:\&quot;0\&quot;,\&quot;numNorEspecial\&quot;:\&quot;0\&quot;,\&quot;numModFormativa\&quot;:\&quot;0\&quot;,\&quot;numTercero\&quot;:\&quot;0\&quot;,\&quot;casillasFormularioList\&quot;:[{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:7},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;201703\&quot;,\&quot;codTipCam\&quot;:\&quot;03\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:600},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;010502\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:651},\&quot;codTipcas\&quot;:\&quot;05\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;1207385\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:2},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;20100049181\&quot;,\&quot;codTipCam\&quot;:\&quot;01\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:13},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;2017-09-19\&quot;,\&quot;codTipCam\&quot;:\&quot;02\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:58},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;10%3A40%3A53\&quot;,\&quot;codTipCam\&quot;:\&quot;01\&quot;}],\&quot;tributosDeclaradosPagadosList\&quot;:[{\&quot;tributosDeclaradosPagadosPK\&quot;:{\&quot;codTri\&quot;:\&quot;010502\&quot;},\&quot;mtoBasimp\&quot;:\&quot;2052276\&quot;,\&quot;mtoImpres\&quot;:\&quot;1207385\&quot;,\&quot;mtoPagtot\&quot;:\&quot;1207385\&quot;,\&quot;mtoTotDeu\&quot;:\&quot;1207385\&quot;,\&quot;indVig\&quot;:\&quot;1\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;porTasa\&quot;:0,\&quot;mtoRespag\&quot;:0}]}],\&quot;tributosDeclaradosPagadosList\&quot;:[{\&quot;tributosDeclaradosPagadosPK\&quot;:{\&quot;codTri\&quot;:\&quot;010502\&quot;},\&quot;mtoBasimp\&quot;:\&quot;2052276\&quot;,\&quot;mtoImpres\&quot;:\&quot;1207385\&quot;,\&quot;mtoPagtot\&quot;:0,\&quot;mtoTotDeu\&quot;:\&quot;1207385\&quot;,\&quot;indVig\&quot;:\&quot;1\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;porTasa\&quot;:0.99,\&quot;mtoRespag\&quot;:0}],\&quot;rectificatoriasTributoList\&quot;:[],\&quot;coeficienteIGVPeriodoList\&quot;:[],\&quot;cargaPdt\&quot;:null,\&quot;autoguardadoFormularioList\&quot;:[],\&quot;casillasFormularioList\&quot;:[{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:7},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;201703\&quot;,\&quot;codTipCam\&quot;:\&quot;03\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:895},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;2\&quot;,\&quot;codTipCam\&quot;:\&quot;01\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:502},\&quot;codTipcas\&quot;:\&quot;02\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;2052276\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:401},\&quot;codTipcas\&quot;:\&quot;03\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;1207385\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:402},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;0\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:403},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;1207385\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:404},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;0\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:405},\&quot;codTipcas\&quot;:\&quot;07\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;1207385\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:410},\&quot;codTipcas\&quot;:\&quot;05\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;1207385\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:2},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;20100049181\&quot;,\&quot;codTipCam\&quot;:\&quot;01\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:13},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;2017-09-19\&quot;,\&quot;codTipCam\&quot;:\&quot;02\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:58},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;10%3A40%3A53\&quot;,\&quot;codTipCam\&quot;:\&quot;01\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:5},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;1\&quot;,\&quot;codTipCam\&quot;:\&quot;01\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:500},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;01\&quot;,\&quot;codTipCam\&quot;:\&quot;01\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:501},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;50\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:511},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;871021.55\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:512},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;26130.69\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:513},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;198\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:514},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;844890.86\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:515},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;0.0\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:516},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;0.0\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:517},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;0.0\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:896},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;1\&quot;,\&quot;codTipCam\&quot;:\&quot;01\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:503},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;1207385\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:871},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;1\&quot;,\&quot;codTipCam\&quot;:\&quot;01\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:102},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;1431948\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:104},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;615867\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:103},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;620328\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:105},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;591518\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;}],\&quot;casillasSugeridasFinalesList\&quot;:[{\&quot;casillasSugeridasFinalesPK\&quot;:{\&quot;numOrd\&quot;:\&quot;0\&quot;,\&quot;numCas\&quot;:\&quot;502\&quot;},\&quot;indValDif\&quot;:\&quot;0\&quot;,\&quot;desCasfin\&quot;:\&quot;2052276\&quot;,\&quot;desCassug\&quot;:\&quot;2052276\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;},{\&quot;casillasSugeridasFinalesPK\&quot;:{\&quot;numOrd\&quot;:\&quot;0\&quot;,\&quot;numCas\&quot;:\&quot;401\&quot;},\&quot;indValDif\&quot;:\&quot;0\&quot;,\&quot;desCasfin\&quot;:\&quot;1207385\&quot;,\&quot;desCassug\&quot;:\&quot;1207385\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;},{\&quot;casillasSugeridasFinalesPK\&quot;:{\&quot;numOrd\&quot;:\&quot;0\&quot;,\&quot;numCas\&quot;:\&quot;402\&quot;},\&quot;indValDif\&quot;:\&quot;0\&quot;,\&quot;desCasfin\&quot;:\&quot;0\&quot;,\&quot;desCassug\&quot;:\&quot;0\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;}],\&quot;detallePagosPreviosList\&quot;:[],\&quot;anexasFormularioList\&quot;:[],\&quot;detallesCoeficienteIGVList\&quot;:[]}]}&quot;,&quot;codigoMedioPresentacion&quot;:&quot;01&quot;}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain">e-plataformaunica.sunat.gob.pe</stringProp>
+              <stringProp name="HTTPSampler.port">443</stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.protocol">HTTPS</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding">UTF8</stringProp>
+              <stringProp name="HTTPSampler.path">/v1/recaudacion/tributaria/orquestacionpresentacion/t/consulta/validarPresentacion</stringProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">true</boolProp>
+              <boolProp name="HTTPSampler.monitor">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Gestor de Cabecera HTTP" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">content-type</stringProp>
+                    <stringProp name="Header.value">application/json</stringProp>
+                  </elementProp>
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">IdFormulario</stringProp>
+                    <stringProp name="Header.value">*MENU*</stringProp>
+                  </elementProp>
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">IdCache</stringProp>
+                    <stringProp name="Header.value">${idCacheLocal}</stringProp>
+                  </elementProp>
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">Host</stringProp>
+                    <stringProp name="Header.value">e-plataformaunica.sunat.gob.pe</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="true">
+                <stringProp name="JSONPostProcessor.referenceNames">numBandeja</stringProp>
+                <stringProp name="JSONPostProcessor.jsonPathExprs">$.resultado.numeroOperacionSunat</stringProp>
+                <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+              </JSONPostProcessor>
+              <hashTree/>
+              <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="Ver Árbol de Resultados" enabled="true">
+                <boolProp name="ResultCollector.error_logging">false</boolProp>
+                <objProp>
+                  <name>saveConfig</name>
+                  <value class="SampleSaveConfiguration">
+                    <time>true</time>
+                    <latency>true</latency>
+                    <timestamp>true</timestamp>
+                    <success>true</success>
+                    <label>true</label>
+                    <code>true</code>
+                    <message>true</message>
+                    <threadName>true</threadName>
+                    <dataType>true</dataType>
+                    <encoding>false</encoding>
+                    <assertions>true</assertions>
+                    <subresults>true</subresults>
+                    <responseData>false</responseData>
+                    <samplerData>false</samplerData>
+                    <xml>false</xml>
+                    <fieldNames>true</fieldNames>
+                    <responseHeaders>false</responseHeaders>
+                    <requestHeaders>false</requestHeaders>
+                    <responseDataOnError>false</responseDataOnError>
+                    <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                    <assertionsResultsToSave>0</assertionsResultsToSave>
+                    <bytes>true</bytes>
+                    <sentBytes>true</sentBytes>
+                    <threadCounts>true</threadCounts>
+                    <idleTime>true</idleTime>
+                    <connectTime>true</connectTime>
+                  </value>
+                </objProp>
+                <stringProp name="filename"></stringProp>
+              </ResultCollector>
+              <hashTree/>
+            </hashTree>
+          </hashTree>
+          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller" enabled="true">
+            <stringProp name="IfController.condition">&quot;${formulario}&quot; == &quot;4&quot;</stringProp>
+            <boolProp name="IfController.evaluateAll">false</boolProp>
+          </IfController>
+          <hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="validarPresentacion_F0697" enabled="true">
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value">{&quot;identificadorPresentacion&quot;:&quot;bc6320d8-b348-4f23-8a5d-b3747030520d&quot;,&quot;versionBrowser&quot;:&quot;Chrome 60.0&quot;,&quot;versionSO&quot;:&quot;Windows&quot;,&quot;direccionIP&quot;:&quot;192.168.1.1&quot;,&quot;cantidadFormularios&quot;:&quot;2&quot;,&quot;montoTotalPagar&quot;:1207385,&quot;fechaEnvio&quot;:&quot;19/09/2017 10:43:39&quot;,&quot;ruc&quot;:&quot;20100049181&quot;,&quot;razonSocial&quot;:&quot;TAI LOY S.A.&quot;,&quot;declaraciones&quot;:&quot;{\&quot;formulario\&quot;:[{\&quot;identificadorFormulario\&quot;:\&quot;bc6320d8-b348-4f23-8a5d-b3747030520d=1505835809\&quot;,\&quot;codUsuregis\&quot;:\&quot;PEHFYMCG\&quot;,\&quot;numOrdOri\&quot;:0,\&quot;numOrd\&quot;:0,\&quot;numRuc\&quot;:\&quot;20100049181\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;codFor\&quot;:\&quot;0697\&quot;,\&quot;desFor\&quot;:\&quot;AGENTES DE PERCEPCION VENTAS INTERNAS\&quot;,\&quot;numVerFor\&quot;:\&quot;1.0\&quot;,\&quot;fecPres\&quot;:\&quot;2017-09-19T10:43:24.000Z\&quot;,\&quot;horPres\&quot;:\&quot;2017-09-19T10:43:24.000Z\&quot;,\&quot;mtoPag\&quot;:0,\&quot;numBandeja\&quot;:0,\&quot;codOrifor\&quot;:\&quot;01\&quot;,\&quot;codTipfor\&quot;:\&quot;10\&quot;,\&quot;indValLib\&quot;:\&quot;0\&quot;,\&quot;codTipdetrac\&quot;:\&quot;0\&quot;,\&quot;codEtapa\&quot;:\&quot;00\&quot;,\&quot;indForAut\&quot;:\&quot;0\&quot;,\&quot;numNabono\&quot;:\&quot;\&quot;,\&quot;codEntFin\&quot;:\&quot;11\&quot;,\&quot;numPedAnu\&quot;:\&quot;\&quot;,\&quot;semFor\&quot;:\&quot;0\&quot;,\&quot;numIdResumen\&quot;:0,\&quot;numRucSec\&quot;:\&quot;\&quot;,\&quot;numValPag\&quot;:0,\&quot;numCargaPdt\&quot;:0,\&quot;numIdConstancia\&quot;:0,\&quot;numOpebco\&quot;:0,\&quot;codIndrec\&quot;:\&quot;2\&quot;,\&quot;codEstado\&quot;:\&quot;90\&quot;,\&quot;numResrec\&quot;:\&quot;\&quot;,\&quot;numIdReporte\&quot;:0,\&quot;numPedPro\&quot;:\&quot;\&quot;,\&quot;codOriPres\&quot;:\&quot;01\&quot;,\&quot;numTrabajador\&quot;:\&quot;0\&quot;,\&quot;numPensionista\&quot;:\&quot;0\&quot;,\&quot;numCuartaCategoria\&quot;:\&quot;0\&quot;,\&quot;numNorEspecial\&quot;:\&quot;0\&quot;,\&quot;numModFormativa\&quot;:\&quot;0\&quot;,\&quot;numTercero\&quot;:\&quot;0\&quot;,\&quot;retePercIGVList\&quot;:[],\&quot;boletas\&quot;:[{\&quot;numOrd\&quot;:0,\&quot;numOrdOri\&quot;:0,\&quot;numRuc\&quot;:\&quot;20100049181\&quot;,\&quot;numRucSec\&quot;:\&quot;\&quot;,\&quot;fecPres\&quot;:\&quot;2017-09-19T10:43:24.000Z\&quot;,\&quot;horPres\&quot;:\&quot;2017-09-19T10:43:24.000Z\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;semFor\&quot;:\&quot;0\&quot;,\&quot;codIndrec\&quot;:\&quot;0\&quot;,\&quot;codOrifor\&quot;:\&quot;01\&quot;,\&quot;codOriPres\&quot;:\&quot;01\&quot;,\&quot;codTipfor\&quot;:\&quot;21\&quot;,\&quot;numValPag\&quot;:0,\&quot;mtoPag\&quot;:\&quot;1207385\&quot;,\&quot;codTipdetrac\&quot;:\&quot;0\&quot;,\&quot;codEstado\&quot;:\&quot;90\&quot;,\&quot;codEtapa\&quot;:\&quot;00\&quot;,\&quot;numIdConstancia\&quot;:0,\&quot;numIdResumen\&quot;:0,\&quot;numIdReporte\&quot;:0,\&quot;numNabono\&quot;:\&quot;\&quot;,\&quot;numResrec\&quot;:\&quot;\&quot;,\&quot;indValLib\&quot;:\&quot;0\&quot;,\&quot;numPedPro\&quot;:\&quot;\&quot;,\&quot;numPedAnu\&quot;:\&quot;\&quot;,\&quot;indForAut\&quot;:\&quot;1\&quot;,\&quot;codEntFin\&quot;:\&quot;000\&quot;,\&quot;numOpebco\&quot;:\&quot;\&quot;,\&quot;numBandeja\&quot;:0,\&quot;numCargaPdt\&quot;:0,\&quot;codMedpag\&quot;:\&quot;\&quot;,\&quot;nomEntFin\&quot;:\&quot;\&quot;,\&quot;fecPago\&quot;:\&quot;\&quot;,\&quot;codFor\&quot;:\&quot;1662\&quot;,\&quot;desFor\&quot;:\&quot;\&quot;,\&quot;numVerFor\&quot;:\&quot;1.0\&quot;,\&quot;numTrabajador\&quot;:\&quot;0\&quot;,\&quot;numPensionista\&quot;:\&quot;0\&quot;,\&quot;numCuartaCategoria\&quot;:\&quot;0\&quot;,\&quot;numNorEspecial\&quot;:\&quot;0\&quot;,\&quot;numModFormativa\&quot;:\&quot;0\&quot;,\&quot;numTercero\&quot;:\&quot;0\&quot;,\&quot;casillasFormularioList\&quot;:[{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:7},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;201703\&quot;,\&quot;codTipCam\&quot;:\&quot;03\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:600},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;010504\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:651},\&quot;codTipcas\&quot;:\&quot;05\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;1207385\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:2},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;20100049181\&quot;,\&quot;codTipCam\&quot;:\&quot;01\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:13},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;2017-09-19\&quot;,\&quot;codTipCam\&quot;:\&quot;02\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:58},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;10%3A43%3A29\&quot;,\&quot;codTipCam\&quot;:\&quot;01\&quot;}],\&quot;tributosDeclaradosPagadosList\&quot;:[{\&quot;tributosDeclaradosPagadosPK\&quot;:{\&quot;codTri\&quot;:\&quot;010504\&quot;},\&quot;mtoBasimp\&quot;:\&quot;2052276\&quot;,\&quot;mtoImpres\&quot;:\&quot;1207385\&quot;,\&quot;mtoPagtot\&quot;:\&quot;1207385\&quot;,\&quot;mtoTotDeu\&quot;:\&quot;1207385\&quot;,\&quot;indVig\&quot;:\&quot;1\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;porTasa\&quot;:0,\&quot;mtoRespag\&quot;:0}]}],\&quot;tributosDeclaradosPagadosList\&quot;:[{\&quot;tributosDeclaradosPagadosPK\&quot;:{\&quot;codTri\&quot;:\&quot;010504\&quot;},\&quot;mtoBasimp\&quot;:\&quot;2052276\&quot;,\&quot;mtoImpres\&quot;:\&quot;1207385\&quot;,\&quot;mtoPagtot\&quot;:0,\&quot;mtoTotDeu\&quot;:\&quot;1207385\&quot;,\&quot;indVig\&quot;:\&quot;1\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;porTasa\&quot;:0,\&quot;mtoRespag\&quot;:0}],\&quot;rectificatoriasTributoList\&quot;:[],\&quot;coeficienteIGVPeriodoList\&quot;:[],\&quot;cargaPdt\&quot;:null,\&quot;autoguardadoFormularioList\&quot;:[],\&quot;casillasFormularioList\&quot;:[{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:7},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;201703\&quot;,\&quot;codTipCam\&quot;:\&quot;03\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:895},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;2\&quot;,\&quot;codTipCam\&quot;:\&quot;01\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:502},\&quot;codTipcas\&quot;:\&quot;02\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;2052276\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:401},\&quot;codTipcas\&quot;:\&quot;03\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;1207385\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:402},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;0\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:403},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;1207385\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:404},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;0\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:405},\&quot;codTipcas\&quot;:\&quot;07\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;1207385\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:410},\&quot;codTipcas\&quot;:\&quot;05\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;1207385\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:2},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;20100049181\&quot;,\&quot;codTipCam\&quot;:\&quot;01\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:13},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;2017-09-19\&quot;,\&quot;codTipCam\&quot;:\&quot;02\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:58},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;10%3A43%3A29\&quot;,\&quot;codTipCam\&quot;:\&quot;01\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:5},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;1\&quot;,\&quot;codTipCam\&quot;:\&quot;01\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:500},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;01\&quot;,\&quot;codTipCam\&quot;:\&quot;01\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:501},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;50\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:511},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;871021.55\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:512},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;26130.69\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:513},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;198\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:514},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;844890.86\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:515},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;0.0\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:516},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;0.0\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:517},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;0.0\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:896},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;1\&quot;,\&quot;codTipCam\&quot;:\&quot;01\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:503},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;1207385\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:871},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;1\&quot;,\&quot;codTipCam\&quot;:\&quot;01\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:102},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;1431948\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:104},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;615867\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:103},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;620328\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:105},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;,\&quot;desValcas\&quot;:\&quot;591518\&quot;,\&quot;codTipCam\&quot;:\&quot;09\&quot;}],\&quot;casillasSugeridasFinalesList\&quot;:[{\&quot;casillasSugeridasFinalesPK\&quot;:{\&quot;numOrd\&quot;:\&quot;0\&quot;,\&quot;numCas\&quot;:\&quot;502\&quot;},\&quot;indValDif\&quot;:\&quot;0\&quot;,\&quot;desCasfin\&quot;:\&quot;2052276\&quot;,\&quot;desCassug\&quot;:\&quot;2052276\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;},{\&quot;casillasSugeridasFinalesPK\&quot;:{\&quot;numOrd\&quot;:\&quot;0\&quot;,\&quot;numCas\&quot;:\&quot;401\&quot;},\&quot;indValDif\&quot;:\&quot;0\&quot;,\&quot;desCasfin\&quot;:\&quot;1207385\&quot;,\&quot;desCassug\&quot;:\&quot;1207385\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;},{\&quot;casillasSugeridasFinalesPK\&quot;:{\&quot;numOrd\&quot;:\&quot;0\&quot;,\&quot;numCas\&quot;:\&quot;402\&quot;},\&quot;indValDif\&quot;:\&quot;0\&quot;,\&quot;desCasfin\&quot;:\&quot;0\&quot;,\&quot;desCassug\&quot;:\&quot;0\&quot;,\&quot;perTri\&quot;:\&quot;201703\&quot;}],\&quot;detallePagosPreviosList\&quot;:[],\&quot;anexasFormularioList\&quot;:[],\&quot;detallesCoeficienteIGVList\&quot;:[]}]}&quot;,&quot;codigoMedioPresentacion&quot;:&quot;01&quot;}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain">e-plataformaunica.sunat.gob.pe</stringProp>
+              <stringProp name="HTTPSampler.port">443</stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.protocol">HTTPS</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding">UTF8</stringProp>
+              <stringProp name="HTTPSampler.path">/v1/recaudacion/tributaria/orquestacionpresentacion/t/consulta/validarPresentacion</stringProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">true</boolProp>
+              <boolProp name="HTTPSampler.monitor">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Gestor de Cabecera HTTP" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">content-type</stringProp>
+                    <stringProp name="Header.value">application/json</stringProp>
+                  </elementProp>
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">IdFormulario</stringProp>
+                    <stringProp name="Header.value">*MENU*</stringProp>
+                  </elementProp>
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">IdCache</stringProp>
+                    <stringProp name="Header.value">${idCacheLocal}</stringProp>
+                  </elementProp>
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">Host</stringProp>
+                    <stringProp name="Header.value">e-plataformaunica.sunat.gob.pe</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="true">
+                <stringProp name="JSONPostProcessor.referenceNames">numBandeja</stringProp>
+                <stringProp name="JSONPostProcessor.jsonPathExprs">$.resultado.numeroOperacionSunat</stringProp>
+                <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+              </JSONPostProcessor>
+              <hashTree/>
+            </hashTree>
+          </hashTree>
+        </hashTree>
+        <JavaSampler guiclass="JavaTestSamplerGui" testclass="JavaSampler" testname="Grabar cvsidcache" enabled="true">
+          <elementProp name="arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="Sleep_Time" elementType="Argument">
+                <stringProp name="Argument.name">Sleep_Time</stringProp>
+                <stringProp name="Argument.value">10</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="Sleep_Mask" elementType="Argument">
+                <stringProp name="Argument.name">Sleep_Mask</stringProp>
+                <stringProp name="Argument.value">0xFF</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="Label" elementType="Argument">
+                <stringProp name="Argument.name">Label</stringProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="ResponseCode" elementType="Argument">
+                <stringProp name="Argument.name">ResponseCode</stringProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="ResponseMessage" elementType="Argument">
+                <stringProp name="Argument.name">ResponseMessage</stringProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="Status" elementType="Argument">
+                <stringProp name="Argument.name">Status</stringProp>
+                <stringProp name="Argument.value">OK</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="SamplerData" elementType="Argument">
+                <stringProp name="Argument.name">SamplerData</stringProp>
+                <stringProp name="Argument.value">;${ruc};${usuario};${clave};${formulario};${pago0};${idCacheLocal};</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="ResultData" elementType="Argument">
+                <stringProp name="Argument.name">ResultData</stringProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="classname">org.apache.jmeter.protocol.java.test.JavaTest</stringProp>
+        </JavaSampler>
+        <hashTree>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>false</time>
+                <latency>false</latency>
+                <timestamp>false</timestamp>
+                <success>false</success>
+                <label>false</label>
+                <code>false</code>
+                <message>false</message>
+                <threadName>false</threadName>
+                <dataType>false</dataType>
+                <encoding>false</encoding>
+                <assertions>false</assertions>
+                <subresults>false</subresults>
+                <responseData>false</responseData>
+                <samplerData>true</samplerData>
+                <xml>true</xml>
+                <fieldNames>false</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+              </value>
+            </objProp>
+            <stringProp name="filename">D:\AMV\PlanJmeter\pruebasPreProduccion\resultado.txt</stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Reporte resumen" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
