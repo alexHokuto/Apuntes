@@ -241,12 +241,15 @@ sudo systemctl stop docker
 sudo docker daemon &
 
 Antergos
+Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
 	sudo groupadd docker
     sudo usermod -aG docker raziel
     systemctl enable docker
     systemctl start docker
     sudo docker ps
     reiniciar
+
+
 
 Registry
 docker pull ubuntu:16.04
