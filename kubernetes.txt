@@ -177,6 +177,12 @@ xxx Comandos
 ------- Fin de la instalacion -----------
 
 
+Secrets
+    kubectl get secret
+    kubectl get secret sunatsecrets -o yaml
+    echo "valor de secret" | base64 --decode
+
+
 /var/lib/docker/image/devicemapper/imagedb/content/sha256  -- aparece todas las imagenes id
 docker images 	-- indica los id de las imagenes
 
