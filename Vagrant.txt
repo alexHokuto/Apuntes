@@ -19,6 +19,13 @@ Vagrant.configure("2") do |config|
   end
 end
 
+
+Linux path boxes
+	/home/${usuario}/.vagrant.d/
+
+Linux VirtualBox Path
+	/home/${usuario}//VirtualBox VMs/
+
 error
         vagrant plugin update
 
@@ -201,8 +208,25 @@ MOVER Vagrant BOX a otra maquina
 7. 	vagrant package
 8.	vagrant box add package.box --name jenkins_box
 9.	Actualizar el box en la etiqueta path 
+		/home/${usuario}/.vagrant.d/box.ovf
 10.	vagrant init jenkins_box
 11.	vagrant up
+
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "jenkins_box"
+  config.vm.network "public_network"
+  config.vm.define "Devops"
+  config.disksize.size = '50GB'
+  config.ssh.username = 'ubuntu'
+  config.ssh.password = 'vagrant'
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 4024
+    v.cpus = 2
+    v.name = "jenkins"
+  end
+end
+
 
 
 PUSH docker a nexus
