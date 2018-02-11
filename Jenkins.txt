@@ -43,3 +43,22 @@ http://localhost:8080/home
 
 GitLab Community Edition 8.14.2
 Jenkins ver. 2.60.1
+
+
+Proyectos
+	jenkins-example 
+		-- Ejemplo de contruir con Pipeline (Jenkinsfile)
+
+	primefaces-many-checkbox
+		-- Ejemplo construye un war con Maven y despliega en nexus
+
+	spring-demo
+	  	-- Ejemplo construye con Pipeline (Jenkinsfile) y despliega en Nexus
+
+	tutorial-jenkins-2
+		-- Ejemplo de contruir con Pipeline (Jenkinsfile) un war
+
+	java-docker-example
+		-- ./gradlew buildImage
+		-- docker run -p 8080:8080 -d ryanmckay/java-docker-example
+		-- curl localhost:8080/greeting

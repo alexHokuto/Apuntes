@@ -63,74 +63,6 @@ sudo apt-get install oracle-java8-installer
 
 sudo apt-get install oracle-java8-set-default
 
-Instalar NEXUS
-wget https://sonatype-download.global.ssl.fastly.net/nexus/3/nexus-3.6.2-01-unix.tar.gz
-
-como root
-	useradd oss
-	usermod -aG sudo oss
-	passwd oss
-
-cp nexus-3.6.2-01-unix.tar.gz /opt/
-sudo tar -xvzf nexus-3.6.2-01-unix.tar.gz  
-
-Ejecutar Nexus
-	root
-	cd /opt/nexus-3.6.2-01/bin/
-	./nexus run
-
-Configurar a una cuenta 
-	/opt/nexus-3.6.2-01/bin
-	vim nexus.rc
-	run_as_user="oss"
-
-Dar permiso al usuario oss
-	sudo chown -R oss:oss sonatype-work/
-	sudo chown -R oss:oss nexus-3.6.2-01
-
-Configurar un servicio en ubuntu
-Como root
-	vim /etc/systemd/system/nexus.service
-	-----
-	[Unit]
-	Description=nexus service
-	After=network.target
-	  
-	[Service]
-	Type=forking
-	LimitNOFILE=65536
-	ExecStart=/opt/nexus-3.6.2-01/bin/nexus start
-	ExecStop=/opt/nexus-3.6.2-01/bin/nexus stop
-	User=oss
-	Restart=on-abort
-	  
-	[Install]
-	WantedBy=multi-user.target
-	------
-
-como root
-oss@ubuntu-xenial:/opt/nexus-3.6.2-01/bin$ sudo systemctl daemon-reload
-[sudo] password for oss: 
-
-como oss
-oss@ubuntu-xenial:/opt/nexus-3.6.2-01/bin$ systemctl enable nexus.service
-oss@ubuntu-xenial:/opt/nexus-3.6.2-01/bin$ systemctl start nexus.service
-oss@ubuntu-xenial:/opt/nexus-3.6.2-01/bin$ systemctl status nexus.service
-● nexus.service - nexus service
-   Loaded: loaded (/etc/systemd/system/nexus.service; enabled; vendor preset: enabled)
-   Active: active (running) since Fri 2017-12-15 22:21:23 UTC; 7s ago
-  Process: 3839 ExecStart=/opt/nexus-3.6.2-01/bin/nexus start (code=exited, status=0/SUCCESS)
- Main PID: 3974 (java)
-    Tasks: 39
-   Memory: 465.5M
-      CPU: 11.098s
-   CGroup: /system.slice/nexus.service
-           └─3974 /usr/lib/jvm/java-8-oracle/jre/bin/java -server -Dinstall4j.jvmDir=/usr/lib/jvm/java-8-oracle/jre -Dexe4j.moduleName=/opt/nexus-3.6.2-01/bin/nexus -
-
-
-
-192.168.1.4:8081
-
 Maven
 	sudo apt-get install maven
 	mvn -version
@@ -166,11 +98,6 @@ Correr Tomcat
 Ver las ultimas lineas del log
 tail /usr/share/apache-tomcat-8.5.24/logs/catalina.out
 
-	
-crear enlace
-sudo ln -s nexus-3.6.2-01 nexus
-ls -lhtr
-se visualiza nexus --> nexus-3.6.2-01
 
 
 -- actulizamos
@@ -182,10 +109,6 @@ export M2=$M2_HOME/bin
 export NEXUS_HOME=/usr/share/nexus
 export NEXUS=$NEXUS_HOME/bin
 export PATH=$PATH:$NEXUS
-
-
-
-		
 		
 filezilla a vagrant
 sftp://192.168.1.183  --ip de vagrant
@@ -227,41 +150,9 @@ Vagrant.configure("2") do |config|
   end
 end
 
+jenkins
+	192.168.1.222:8080
+		jenkins
+		jenkins
 
-
-PUSH docker a nexus
-
-sudo nano /etc/docker/daemon.json
-
-{
-  "insecure-registries": [
-    "192.168.1.222:8082",
-    "192.168.1.222:8083"
-  ],
-  "disable-legacy-registry": true
-}
-
-
-sudo service docker restart
-
-cmorales@sapia:~$ docker login -u admin -p admin123 192.168.1.222:8083
-Login Succeeded
-
-cmorales@sapia:~$ docker login -u admin -p admin123 192.168.1.222:8082
-Login Succeeded
-
-se crea la carpeta ./docker con el config.yaml
-
-Se descarga en el repositorio de docker-hub - falta group 
-	docker pull 192.168.1.222:8082/httpd:2.4-alpine
-
-Se genera TAG
-	docker tag busybox 192.168.1.222:8083/busybox
-
-Se pushea en el repositorio docker-private
-	docker push 192.168.1.222:8083/busybox
-
-Download desde mi repositorio
-docker pull 192.168.1.222:8083/busybox
-
-docker rmi 192.168.1.222:8082/httpd:2.4-alpine
+		
