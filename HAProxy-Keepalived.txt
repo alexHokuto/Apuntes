@@ -1,0 +1,46 @@
+
+Keepalived
+	Keepalived es un software de enrutamiento escrito en C. El objetivo principal de este proyecto es proporcionar instalaciones simples y robustas para el equilibrio de carga y alta disponibilidad para el sistema Linux y las infraestructuras basadas en Linux. El equilibrio de carga se basa en el conocido y ampliamente utilizado servidor Linux Virtual Server (IPVS) que proporciona un balance de carga Layer4. Keepalived implementa un conjunto de comprobadores para mantener y administrar de forma dinámica y adaptativa el grupo de servidores con equilibrio de carga de acuerdo con su estado de salud. Por otro lado, la alta disponibilidad se logra mediante el protocolo VRRP. VRRP es un ladrillo fundamental para la migración tras error del enrutador. 
+
+	El daemon keepalived se puede usar para monitorear servicios o sistemas y conmutar por error automáticamente a un standby si ocurren problemas. En esta guía, demostraremos cómo usar keepalived para configurar un servicio web altamente disponible. Configuraremos una dirección IP flotante que se puede mover entre dos servidores web con capacidad. Si el servidor primario se cae, la IP flotante se moverá al segundo servidor automáticamente, permitiendo que el servicio se reanude.
+
+	Keepalived proporciona instalaciones simples y robustas para el equilibrio de carga y alta disponibilidad. El marco de equilibrio de carga se basa en el conocido y ampliamente utilizado módulo de kernel de Linux Virtual Server que proporciona equilibrio de carga Layer-4 (capa de transporte). Keepalived implementa un conjunto de comprobaciones para mantener y gestionar de forma dinámica y adaptativa un grupo de servidores con equilibrio de carga de acuerdo con su estado de salud. Keepalived también implementa el protocolo de redundancia de enrutador virtual (VRRPv2) para lograr una alta disponibilidad con failover de director.
+
+HAProxy
+	HAProxy es una solución gratuita, muy rápida y confiable que ofrece alta disponibilidad, balanceo de carga y proxying para aplicaciones TCP y HTTP. Es especialmente adecuado para sitios web de mucho tráfico y ofrece un buen número de los más visitados del mundo.
+
+	enrutar las solicitudes HTTP en función de las cookies asignadas de forma estática; 
+	repartir la carga entre varios servidores mientras se asegura la persistencia del servidor mediante el uso de cookies HTTP; 
+	cambiar a servidores de respaldo en caso de que un servidor principal falle; 
+	aceptar conexiones a puertos especiales dedicados al monitoreo del servicio; 
+	deja de aceptar conexiones sin romper las existentes; 
+	agregar, modificar y eliminar encabezados HTTP en ambas direcciones; 
+	solicitudes de bloque que coinciden con patrones particulares; 
+	persistir las conexiones del cliente con el servidor de aplicaciones correcto según las cookies de la aplicación; 
+	informe el estado detallado como páginas HTML a los usuarios autenticados desde un URI interceptado desde la aplicación.
+
+Keepalived está trabajando en la capa 4, por lo que no tiene conocimiento de capa 7. Al utilizar HAProxy y Keepalived juntos, puede beneficiarse de tener algunas opciones que HAProxy ofrece en la capa 7.
+Si solo necesita tener un equilibrador de carga sin ninguna manipulación o cualquier decisión de alto nivel (capa 7) puede usar solo Keepalived y será más rápido porque funciona en la capa 4.
+
+
+Instalar
+yum install net-tools.x86_64
+yum install -y haproxy
+
+172.17.11.101
+
+Repositorio de nginx
+	sudo yum install epel-release
+
+Instalación de nginx
+	sudo yum install nginx
+	sudo systemctl start nginx
+	sudo systemctl status nginx
+
+If you are running a firewall, run the following commands to allow HTTP and HTTPS traffic:
+	sudo firewall-cmd --permanent --zone=public --add-service=http 
+	sudo firewall-cmd --permanent --zone=public --add-service=https
+	sudo firewall-cmd --reload
+
+want to enable Nginx to start when your system boots. To do so, enter the following command:
+	sudo systemctl enable nginx	
