@@ -44,3 +44,193 @@ If you are running a firewall, run the following commands to allow HTTP and HTTP
 
 want to enable Nginx to start when your system boots. To do so, enter the following command:
 	sudo systemctl enable nginx	
+
+
+systemctl start haproxy
+
+Archivo de configuracion
+	cd /etc/haproxy/	haproxy.cfg
+
+#---------------------------------------------------------------------
+# Example configuration for a possible web application.  See the
+# full configuration options online.
+#
+#   http://haproxy.1wt.eu/download/1.4/doc/configuration.txt
+#
+#---------------------------------------------------------------------
+
+#---------------------------------------------------------------------
+# Global settings
+#---------------------------------------------------------------------
+global
+    log         127.0.0.1 local2
+
+    chroot      /var/lib/haproxy
+    pidfile     /var/run/haproxy.pid
+    maxconn     4000
+    user        haproxy
+    group       haproxy
+    daemon
+
+    # turn on stats unix socket
+    stats socket /var/lib/haproxy/stats
+
+#---------------------------------------------------------------------
+# common defaults that all the 'listen' and 'backend' sections will
+# use if not designated in their block
+#---------------------------------------------------------------------
+defaults
+    mode                    http
+    log                     global
+    option                  httplog
+    option                  dontlognull
+    option http-server-close
+    option forwardfor       except 127.0.0.0/8
+    option                  redispatch
+    retries                 3
+    timeout http-request    10s
+    timeout queue           1m
+    timeout connect         10s
+    timeout client          1m
+    timeout server          1m
+    timeout http-keep-alive 10s
+    timeout check           10s
+    maxconn                 3000
+
+
+#
+# HAProxy Monitoring Config
+listen haproxy3-monitoring *:8080
+	mode http
+	option forwardfor
+	option httpclose
+        stats enable
+        stats show-legends
+	stats refresh 2s
+        stats uri     /?stats
+        stats realm   Haproxy\ Statistics
+        stats auth    admin:password
+	stats admin if TRUE
+
+# Frontend
+frontend http_web
+	bind *:80
+	option forwardfor
+	reqadd X-Forwarded-Proto:\ http
+
+#	todo lo que venga con blog al final lo redirijo 	
+#	acl url_blog path_beg /blog
+#	use_backend blog_cluster if url_blog
+
+#	En el header tiene que venir ventas.example.com y la -i no hay canse sensitive
+#	acl host_ventas hdr(host) -i ventas.example.com
+#	use_backend ventas_cluster if host_ventas
+
+	default_backend http_back
+
+
+# Backend
+backend http_back
+	balance roundrobin
+	option httpchk HEAD / HTTP/1.1\nHost:\ localhost
+	server centos-03 172.17.11.103:80 check
+	server centos-04 172.17.11.104:80 check
+
+#---------------------------------------------------------------------
+
+Agregar puerto al firewalld
+	$ sudo systemctl start firewalld
+	$ sudo systemctl enable firewalld
+	$ sudo systemctl status firewalld
+
+	firewall-cmd --permanent --add-port=8080/tcp
+	firewall-cmd --permanent --add-port=80/tcp
+	firewall-cmd --reload
+
+Iniciar el monitoreo
+	http://centos-01:8080/?stats
+
+Ver procesos
+	ps aux | grep vim	
+
+
+Configurar Log
+	vim /etc/rsyslog.conf
+
+	Descomentar las lineas 15-16
+		$ModLoad imudp
+ 		$UDPServerRun 514
+
+ 		$UDPServerAddress 127.0.0.1
+
+ 	Agregar una nueva entrada
+ 		vim /etc/rsyslog.d/haproxy.conf
+
+ 		local2.=info	/var/log/haproxy-access.log
+		local2.notice	/var/log/haproxy-info.log
+
+
+systemctl restart rsyslog
+systemctl enable rsyslog
+
+systemctl restart haproxy
+
+Probar
+	http://centos-01 -- Se va mostrar el balanceo en el dashboard 
+
+IP Virtual
+	172.17.11.150
+	ip a -- muestra las ips	
+
+Keepalived
+	yum install keepalived -y
+	cd /etc/keepalived/
+	cp keepalived.conf keepalived.conf.backup
+	vim keepalived.conf
+
+			vrrp_script chk_haproxy {
+			  script "killall -0 haproxy" # check the haproxy process
+			  interval 2 # every 2 seconds
+			  weight 2 # add 2 points if OK
+			}
+			 
+			vrrp_instance VI_1 {
+			  interface eth1 # interface to monitor
+			  state MASTER # MASTER on haproxy, BACKUP on haproxy2
+			  virtual_router_id 51
+			  priority 101 # 101 on haproxy, 100 on haproxy2
+			  virtual_ipaddress {
+			    172.17.11.150 # virtual ip address
+			  }
+			  track_script {
+			    chk_haproxy
+			  }
+			}
+
+
+
+	systemctl start keepalived
+	systemctl enable keepalived
+
+Verificar la ipVirtual
+	ip a | grep eth1
+	se muestra de manera automatica la ipVirtual
+
+vim /etc/hosts
+
+127.0.0.1	centos-01	centos-01
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+
+## vagrant-hostmanager-start
+172.17.11.104	centos-04
+
+172.17.11.101	centos-01
+
+172.17.11.102	centos-02
+
+172.17.11.103	centos-03
+
+## vagrant-hostmanager-end
+# IP VIRTUAL
+172.17.11.150	centosipv

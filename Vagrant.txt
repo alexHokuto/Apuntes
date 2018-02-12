@@ -53,7 +53,7 @@ $ vagrant destroy
 
 PLUGIN
 	vagrant plugin install vagrant-disksize
-  vagrant plugin install vagrant-hostmanager
+    vagrant plugin install vagrant-hostmanager
 
 
 Instalar JAVA ubuntu
