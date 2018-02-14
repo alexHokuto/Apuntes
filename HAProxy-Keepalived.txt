@@ -209,6 +209,26 @@ Keepalived
 
 
 
+
+vrrp_script chk_haproxy {
+  script "killall -0 haproxy" # check the haproxy process
+  interval 2 # every 2 seconds
+  weight 2 # add 2 points if OK
+}
+ 
+vrrp_instance VI_1 {
+  interface eth1 # interface to monitor
+  state BACKUP # MASTER on haproxy, BACKUP on haproxy2
+  virtual_router_id 51
+  priority 100 # 101 on haproxy, 100 on haproxy2
+  virtual_ipaddress {
+    172.17.11.150 # virtual ip address
+  }
+  track_script {
+    chk_haproxy
+  }
+}
+
 	systemctl start keepalived
 	systemctl enable keepalived
 
@@ -216,7 +236,15 @@ Verificar la ipVirtual
 	ip a | grep eth1
 	se muestra de manera automatica la ipVirtual
 
-vim /etc/hosts
+
+Nota
+	--En el archivo /etc/haproxy/haproxy.cfg se agrega de forma automatica
+		timeout http-keep-alive 10s
+	--Para las pruebas se debe de apagar el servicio de keepalived y no el haproxy.  y debe seguir respondiendo la ipVirtual.
+	-- tail -f /var/log/messages 
+
+
+vim /etc/hosts   en tu pc host
 
 127.0.0.1	centos-01	centos-01
 127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
@@ -234,3 +262,6 @@ vim /etc/hosts
 ## vagrant-hostmanager-end
 # IP VIRTUAL
 172.17.11.150	centosipv
+
+Hacer ejecutable un sh
+	chmod 700 {*.sh}

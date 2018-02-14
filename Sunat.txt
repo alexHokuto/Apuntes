@@ -172,6 +172,8 @@ Kubernetes
 
 	kubectl set image deployments/orquestacion-proxy-pago orquestacion-proxy-pago=hubqa.sunat.gob.pe/microservices/recaudacion3-tributaria-administracion-orquestacionproxypago-backend:1.0.2
 
+	kubectl delete -f formulario-igv/; kubectl apply -f formulario-igv/; kubectl set image deployments/formulario-igv formulario-igv=hubqa.sunat.gob.pe/microservices/recaudacion3-tributaria-administracion-formularioigv-backend:1.0.2
+
 kubectl scale --replicas=3 parametria-pasarela
 
 ****** Pagos
