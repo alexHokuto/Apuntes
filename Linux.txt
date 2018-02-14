@@ -160,3 +160,7 @@ done
 
 AsciidocFX
 	./AsciidocFX
+
+
+oneko -tofocus
+pkill oneko
