@@ -86,7 +86,7 @@ Comandos de terminator
 	shift + ctrl + x --> maximar terminal 
 	ctrl + alt + x --> edit titulo de terminal 
 	alt + <--, --> ... --> navegar entre ventanas 
-	shift + ctrl + w --> cerrar ventana 
+	shift + ctrl + w --> cerrar panel 
 	alt + a --> difundir las teclas a todas las ventanas 
 	alt + o --> no difundir	
 	ctrl + tab --> navegar entre paneles 
@@ -111,6 +111,10 @@ version de linux
 	cat /etc/issue
 	cat /etc/*release
 
+Ver Procesador
+	nproc
+	lscpu
+	less /proc/cpuinfo
 Archivo hosts
 	sudo vim /etc/hosts
 
