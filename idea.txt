@@ -55,6 +55,10 @@ Editor
 
 	Validar que metodos de un ainterface no han sido implementados [Ctrl + I].
 
+	Crear un for each --> iter + tab.
+
+	Método principal --> psvm
+
 Refactor
 	
 	Menu de refactor [Ctrl + Alt + SHIFT + T].
@@ -65,6 +69,7 @@ Refactor
 
 	Extraer parametros Ctrl + Alt + P
 
+	Crear variable de forma automatica.  new Object()  ALT + ENTER --> Introduce Varible
 
 	Inject Language
 		String cadena = "";

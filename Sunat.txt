@@ -125,7 +125,7 @@ merge al master
 push
 
 ******** Kubernetes
-ssh percy@192.168.1.159
+ssh percy@192.168.1.159   o 10.253.1.60 es otra IP del mismo equipo
 
 sftp 22
 kubernetes

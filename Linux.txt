@@ -69,6 +69,10 @@ matar procesos
 	procesos red hat
 	semanage port -l | grep -w http_port_t
 
+	netstat --listen
+	netstat -ntlp | grep LISTEN
+
+
 	kill -9 {id}
 
 root explorer
@@ -145,7 +149,7 @@ export PATH=$PATH:/home/raziel/.sdkman/candidates/java/8u161-oracle/bin
 VPN
 https://148.102.17.108
 usuario		christian
-password	Sapia.2018
+password	linuxeros
 
 download client.ovpn de la misma pagina (https://148.102.17.108)
 sudo apt-get install openvpn
