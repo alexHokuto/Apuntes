@@ -1,0 +1,87 @@
+Navegación
+	Navegar a una clase: [⌘ O] ó [Ctrl + N]. Puede hacerse uso de CamelCase, por ejemplo, para la clase AnotherClientOfAuthenticator, con poner ACOA nos debería mostrar ese resultado.
+
+	Para buscar un método, atributo, etc. en concreto, podemos usar la búsqueda por símbolo con [⌥ ⌘ O] o [Ctrl + ⇧ + Alt + N].
+
+	una forma rápida para trabajar entre distintos ficheros es la acción “Ficheros recientes” mediante [⌘ E] o [Ctrl + E].
+
+	Ver ficheros editados recientemente [Ctrl + ⇧ + E].
+
+	Navegar entre métodos   [ Alt + Arriba].
+
+	Navegar hacia la implementación [Ctrl + Alt + B].
+
+	Extender la selección de forma progresiba [Ctrl + W].
+
+	Duplicar la linea hacia abajo [Ctrl + D].
+
+	Minimizar todos los métodos [Ctrl + ⇧ + -].
+
+	visualizar el panel de la estructura del proyecto [ Alt + 1].
+
+	visualizar el panel de las propiedas de la clase [ Alt + 7].
+
+	Detecta el paquete o jar del método que has seleccionado [Ctrl + ⇧ + I ].  ++
+
+Editor
+
+	Ayuda para import, mejora de código.. ALT + ENTER
+
+	Encerrar código en un try, if..  [Ctrl + Alt + T].
+
+	Generar código [ Alt + imprimir].
+
+	Pegar en la historia Ctrl + Shift + V
+
+	Deshacer Ctrl + Shift + Z
+
+	Ver los parámetros de un método Ctrl + P
+
+	ver opciones Ctrl + J
+
+	Eliminar Linea en blanco Ctrl + Shift + J
+
+	Visualiza donde se utiliza el método Ctrl + Alt + 7
+
+	Borrar palabra Ctrl + SUPR
+
+	Seleccionar palabra Ctrl + Shift + U
+
+	Mover lineas hacia arriba o abajo Shift + ALT + arriba o abajo
+
+	Multi punteros ALT + Shift + click
+
+	Formatear codigo seleccionado [Ctrl + Alt + I].
+
+	Validar que metodos de un ainterface no han sido implementados [Ctrl + I].
+
+	Crear un for each --> iter + tab.
+
+	Método principal --> psvm
+
+Refactor
+	
+	Menu de refactor [Ctrl + Alt + SHIFT + T].
+
+	Refactorizar nombres shift + F6
+
+	Refactor de código - Extraer código a un nuevo método   [Ctrl + Alt + M].
+
+	Extraer parametros Ctrl + Alt + P
+
+	Crear variable de forma automatica.  new Object()  ALT + ENTER --> Introduce Varible
+
+	Inject Language
+		String cadena = "";
+			entre las comillas  Alt + Enter --> Inject Language
+				De nuevo Alt + Enter y escoger la opcion Json Fragment
+
+consola [ Alt + F12].
+
+
+
+Plugin
+	Grep Console
+	BashSupport
+	docker
+	findbugs

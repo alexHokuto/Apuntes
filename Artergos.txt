@@ -32,3 +32,16 @@ pacman -S PACKAGE(S) -- install package(s)
 Actualizar
 	sudo pacman -Su
 	sudo pacman -Syu
+
+Habilitar ssh
+	sudo pacman -S openssh
+	sudo systemctl start sshd
+	sudo systemctl enable sshd
+
+
+raziel@skynet  ~/Programas/datastudio  sudo systemctl enable sshd                                                                                                       ✔  136  14:50:15 
+Created symlink /etc/systemd/system/multi-user.target.wants/sshd.service → /usr/lib/systemd/system/sshd.service.
+
+
+git add src/; git commit -m "rev" ; git push origin reintentarPago ;
+	
