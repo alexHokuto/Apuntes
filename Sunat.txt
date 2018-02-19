@@ -321,6 +321,14 @@ redis-cli
 redis-cli ping
 FLUSHALL
 
+VPN
+https://148.102.17.108
+
+User: christian
+linuxeros
+openvpn --config client.ovpn
+
+
 TTL "/cache/pasarelaHoraEntidadFinanciera/5"  // de vuelve en segundos
 
 Plataforma QA
@@ -484,7 +492,7 @@ SELECT * FROM t7777bandprespago WHERE num_ruc=$(ruc) AND fec_ope>=today-8;
 
 	During this time ("I/O wait"), the connection/query/thread is simply "blocked" waiting for the disk. And it is during this time that the OS could put that CPU resource to better use by executing some more code for another thread. So, because threads become blocked on I/O, we can actually get more work done by having a number of connections/threads that is greater than the number of physical computing cores.
 
-	The Formula
+The Formula
 The formula below is provided by the PostgreSQL project as a starting point, but we believe it will be largely applicable across databases. You should test your application, i.e. simulate expected load, and try different pool settings around this starting point:
 
 connections = ((core_count * 2) + effective_spindle_count)
