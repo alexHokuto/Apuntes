@@ -171,6 +171,7 @@ Kubernetes
 	kubectl delete -f parametria-pasarela/; kubectl apply -f parametria-pasarela/ --record;
 
 	kubectl set image deployments/orquestacion-proxy-pago orquestacion-proxy-pago=hubqa.sunat.gob.pe/microservices/recaudacion3-tributaria-administracion-orquestacionproxypago-backend:1.0.2
+	kubectl set image deployments/orquestacion-presentacion orquestacion-presentacion=hubqa.sunat.gob.pe/microservices/recaudacion3-tributaria-administracion-orquestacionpresentacion-backend:1.0.2
 
 	kubectl delete -f formulario-igv/; kubectl apply -f formulario-igv/; kubectl set image deployments/formulario-igv formulario-igv=hubqa.sunat.gob.pe/microservices/recaudacion3-tributaria-administracion-formularioigv-backend:1.0.2
 

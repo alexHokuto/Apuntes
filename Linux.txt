@@ -172,3 +172,7 @@ AsciidocFX
 
 oneko -tofocus
 pkill oneko
+
+
+Sessiones abiertas Informix
+	SELECT * FROM sysmaster:syssessions where username = 'uswsigti'​
