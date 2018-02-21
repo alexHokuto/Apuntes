@@ -499,3 +499,15 @@ The formula below is provided by the PostgreSQL project as a starting point, but
 connections = ((core_count * 2) + effective_spindle_count)
 
 Guess what that means? Your little 4-Core i7 server with one hard disk should be running a connection pool of: 9 = ((4 * 2) + 1). Call it 10 as a nice round number. Seem low? Give it a try, we'd wager that you could easily handle 3000 front-end users running simple queries at 6000 TPS on such a setup. If you run load tests, you will probably see TPS rates starting to fall, and front-end response times starting to climb, as you push the connection pool much past 10 (on that given hardware).
+
+
+formulario igv
+            UsuarioDdpBean ub = new UsuarioDdpBean();
+            ub.setCodDepend("0063");  // 0063 0073
+            ub.setNumRUC("20314548249");  //20314548249  20100049181
+            ub.setUsuarioSOL("CNAVARRO");
+            ub.setLogin("10084475951PEHFYMCG");
+
+        String ubigeo = "130101"; //// usuarioBean.getMap2().getDdpData().getDdp_ubigeo();
+        String tamanioContribuyente = "0063"; ////usuarioBean.getMap2().getDdpData().getDdp_numreg();
+            

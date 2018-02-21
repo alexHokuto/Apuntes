@@ -15,10 +15,10 @@
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Controlador Bucle" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">1</stringProp>
+          <stringProp name="LoopController.loops">30</stringProp>
         </elementProp>
-        <stringProp name="ThreadGroup.num_threads">1</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <stringProp name="ThreadGroup.num_threads">50</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">0</stringProp>
         <longProp name="ThreadGroup.start_time">1482174940000</longProp>
         <longProp name="ThreadGroup.end_time">1482174940000</longProp>
         <boolProp name="ThreadGroup.scheduler">false</boolProp>
@@ -37,11 +37,11 @@
               </elementProp>
             </collectionProp>
           </elementProp>
-          <stringProp name="HTTPSampler.domain"></stringProp>
-          <stringProp name="HTTPSampler.port">443</stringProp>
-          <stringProp name="HTTPSampler.protocol">HTTPS</stringProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">7125</stringProp>
+          <stringProp name="HTTPSampler.protocol">HTTP</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">/v1/recaudacion/tributaria/t/formularioIgv/obtenerDatosPeriodo/0621/201703</stringProp>
+          <stringProp name="HTTPSampler.path">/v1/recaudacion/tributaria/t/formularioIgv/obtenerDatosPeriodo/0621/201705</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -57,7 +57,7 @@
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">IdCache</stringProp>
-                <stringProp name="Header.value">bbF1dH6ieH-Nca0uZ9A2cHMMcOr2dNwLmOo5cN-4mOCMdOVvck-5eHi2cHMMcOrxdNtNBX6MndfVl-ETEShm-nCZ00LA58i1hLwRvAU0_VK.99wWHfV9Nby584ISmDfFx4O.9y.8VfP5cQXub5Ac33</stringProp>
+                <stringProp name="Header.value">bbF1dH6ieH-Nca0uZ9A2cHMMcOr2dNwLmOo5cN-4mOCMdOVvck-5eHi2cHMMcOrxdNtNBX6M2Cd3GXB_TehzJyA1TUoEe3xCjxz_GPQG1uGGRoMh5zH-KDhzv4deeTV7I33aolCVtSIpeho9Xx3hbM</stringProp>
               </elementProp>
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">content-type</stringProp>
