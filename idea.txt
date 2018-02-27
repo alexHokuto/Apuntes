@@ -26,6 +26,8 @@ Navegación
 Editor
 
 	Ayuda para import, mejora de código.. ALT + ENTER
+	
+	Limpiar Import CTRL + ALT + o
 
 	Encerrar código en un try, if..  [Ctrl + Alt + T].
 
