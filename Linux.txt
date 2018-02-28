@@ -173,6 +173,9 @@ AsciidocFX
 oneko -tofocus
 pkill oneko
 
-
+cambiar idioma
+	aptitude install locales-all
+	dpkg-reconfigure locales
+	
 Sessiones abiertas Informix
 	SELECT * FROM sysmaster:syssessions where username = 'uswsigti'​
