@@ -173,6 +173,9 @@ AsciidocFX
 oneko -tofocus
 pkill oneko
 
+driver informix
+https://www.dbschema.com/jdbc-drivers/InformixJdbcDriver.zip
+
 cambiar idioma
 	aptitude install locales-all
 	dpkg-reconfigure locales

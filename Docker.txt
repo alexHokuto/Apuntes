@@ -80,7 +80,14 @@ l--all , -a		Show all images (default hides intermediate images)
  	RUN apt-get update && apt-get install -y \
     	apt-get install -y vim \
     	apt-get install -y curl
-    	
+  
+*Inspeccionar docker conteiner creado
+	docker inspect b85543783da5
+
+*Mostrar IP
+	 docker inspect -f "{{ .NetworkSettings.IPAddress }}" b85543783da5 
+
+
 *Correr un Dockerfile
 	docker build -t alexvirtual/ubuntu:2.0 .
 
@@ -131,7 +138,7 @@ Mysql
 	*--character-set-server		"tipo de caracter"
 	*--collation-server			"ordenamineto la letra ñ"
 
-docker run -p 3306:3306 --name mysql5.7 -v /home/raziel/Proyectos/mysql/mysql57:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:5.7 --character-set-server=utf8 --collation-server=utf8_unicode_ci
+docker run -p 3306:3306 --name mysql5.7 -v /home/raziel/Proyectos/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:5.7 --character-set-server=utf8 --collation-server=utf8_unicode_ci
 
 *Ingresar al contenedor
 	docker exec -it mysql57  mysql -u root -p
@@ -139,12 +146,19 @@ docker run -p 3306:3306 --name mysql5.7 -v /home/raziel/Proyectos/mysql/mysql57:
 	show databases;
 	exit;
 
+
 *importar dataBase
 	mysql> source /var/lib/mysql/sakila-schema.sql
 	mysql> source /var/lib/mysql/sakila-data.sql
 	mysql> USE sakila;
 		SHOW TABLES;
 		SELECT COUNT(*) FROM film;
+
+*Mostrar las conexiones
+	show status like 'Conn%';
+	show processlist;
+	SHOW STATUS WHERE 'variable_name' = 'Threads_connected';
+	show variables like 'max_connections';
 
 *Correr ubuntu
 docker run -ti ubuntu:16.04 /bin/bash
