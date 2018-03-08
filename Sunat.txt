@@ -354,6 +354,8 @@ Normalmente ejecutamos:
 watch "runmqsc < vercolas.txt"
 Para ver el estado de las colas.
 
+strmqcfg para desplegar la interfaz del MQ Explorer
+
 
 SELECT first 50  * FROM informix.t7777bandprespago WHERE ind_pag_rea='1'
 --AND num_ope_pag is null AND num_nps_pag is null AND mto_pagar > 0
