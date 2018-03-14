@@ -172,11 +172,17 @@ Kubernetes
 	kubectl delete -f orquestacion-proxy-pago/; kubectl apply -f orquestacion-proxy-pago/ --record; 
 	kubectl delete -f orquestacion-presentacion/; kubectl apply -f orquestacion-presentacion/ --record;
 	kubectl delete -f parametria-pasarela/; kubectl apply -f parametria-pasarela/ --record;
+	kubectl delete -f formulario-igv/; kubectl apply -f formulario-igv/ --record; 
+	kubectl delete -f agente-batch-servidor/; kubectl apply -f agente-batch-servidor/ --record; 
 
 	kubectl set image deployments/orquestacion-proxy-pago orquestacion-proxy-pago=hubqa.sunat.gob.pe/microservices/recaudacion3-tributaria-administracion-orquestacionproxypago-backend:1.0.2
+
 	kubectl set image deployments/orquestacion-presentacion orquestacion-presentacion=hubqa.sunat.gob.pe/microservices/recaudacion3-tributaria-administracion-orquestacionpresentacion-backend:1.0.2
 
-	kubectl delete -f formulario-igv/; kubectl apply -f formulario-igv/; kubectl set image deployments/formulario-igv formulario-igv=hubqa.sunat.gob.pe/microservices/recaudacion3-tributaria-administracion-formularioigv-backend:1.0.2	
+	kubectl set image deployments/formulario-igv formulario-igv=hubqa.sunat.gob.pe/microservices/recaudacion3-tributaria-administracion-formularioigv-backend:1.0.2	
+
+	kubectl set image deployments/agente-batch-servidor agente-batch-servidor=hubqa.sunat.gob.pe/microservices/tecnologia3-arquitectura-framework-agentebatchservidor:1.0.2
+
 
 kubectl scale --replicas=3 parametria-pasarela
 
@@ -355,6 +361,22 @@ watch "runmqsc < vercolas.txt"
 Para ver el estado de las colas.
 
 strmqcfg para desplegar la interfaz del MQ Explorer
+
+
+Para la conexion a la 35
+
+route add -p 192.168.251.0 mask 255.255.255.0 10.253.1.1
+route add -p 192.168.253.0 mask 255.255.255.0 10.253.1.1
+route add -p 192.168.247.0 mask 255.255.255.0 10.253.1.1
+ademas de eso debes tener esta IP
+address=10.200.68.241 mask=255.255.254.0 gateway=10.200.69.254
+
+dns1=10.200.69.206
+dns1=10.200.69.204
+ip secundaria: 10.253.1.68 /  255.255.255.0
+ip tercera: 192.168.1.69 / 255.255.255.0
+
+
 
 
 SELECT first 50  * FROM informix.t7777bandprespago WHERE ind_pag_rea='1'

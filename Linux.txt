@@ -182,3 +182,26 @@ cambiar idioma
 	
 Sessiones abiertas Informix
 	SELECT * FROM sysmaster:syssessions where username = 'uswsigti'​
+
+
+Install Redis
+
+Install
+sudo add-apt-repository ppa:chris-lea/redis-server
+sudo apt-get update
+sudo apt-get install -y redis-server
+
+Remove
+sudo add-apt-repository -r -y ppa:chris-lea/redis-server
+sudo apt-get remove -y redis-server --purge
+sudo apt-get autoremove -y
+sudo apt-get update	
+
+Cambiar para que acepte peticiones de otras ip
+Check your sudo nano /etc/redis/redis.conf, and make sure to change the default:
+bind 127.0.0.1
+to
+bind 0.0.0.0
+
+Then restart your service:
+sudo /etc/init.d/redis restart
