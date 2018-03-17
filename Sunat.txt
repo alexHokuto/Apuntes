@@ -331,13 +331,36 @@ redis-cli
 redis-cli ping
 FLUSHALL
 
-VPN
-https://148.102.17.108
+VPN antiguo
+	https://148.102.17.108
 
-User: christian
-linuxeros
-openvpn --config client.ovpn
+	User: christian
+	linuxeros
+	openvpn --config client.ovpn
 
+VPN 
+	https://190.81.46.242
+
+	christian
+
+	pass
+	Sapia.2018
+
+	ssh para entrar a pre produccion
+	root@192.168.224.13
+
+	deplegar el servicio
+	ssh root@192.168.66.170
+
+	 cd microservicios/formulario-igv/
+
+	 sftp root@192.168.66.170
+
+	  put service.jar /root/microservicios/formulario-igv/v2/
+
+curl -iv GET http://localhost:7125/v1/recaudacion/tributaria/t/formularioIgv/obtenerDatosPeriodo/0621/201703  -H "content-type: application/json" -H "IdCache: bbF1dH6ieH-Nca0uZ9A2cHMMcOr2dNwLmOo5cN-4mOCMdOVvck-5eHi2cHMMcOrxdNtNBX6M3tn29eNTwJNcql1_UmNI8R60DTMJMW28cfyM2mhWzR0wpnt3UpPNdMy3WGoHdf2uw7pQ0m4tzBUAKU" -H "IdFormulario: *MENU*"
+
+curl -iv GET http://localhost:7125/v1/recaudacion/tributaria/t/formularioIgv/obtenerDatosPeriodo/0621/201703 --data "plataforma=desktop&rucUsuario=20100049181PEHFYMCG&password=12345678&tipoOperacion=4&idFormulario=01&recurso=/plataformaUnica" -H "content-type: application/json" -H "IdCache: bbF1dH6ieH-Nca0uZ9A2cHMMcOr2dNwLmOo5cN-4mOCMdOVvck-5eHi2cHMMcOrxdNtNBX6M3tn29eNTwJNcql1_UmNI8R60DTMJMW28cfyM2mhWzR0wpnt3UpPNdMy3WGoHdf2uw7pQ0m4tzBUAKU" -H "IdFormulario: *MENU*"
 
 TTL "/cache/pasarelaHoraEntidadFinanciera/5"  // de vuelve en segundos
 
@@ -375,7 +398,6 @@ dns1=10.200.69.206
 dns1=10.200.69.204
 ip secundaria: 10.253.1.68 /  255.255.255.0
 ip tercera: 192.168.1.69 / 255.255.255.0
-
 
 
 
