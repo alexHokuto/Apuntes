@@ -1,0 +1,29 @@
+nohup java -jar service.jar server config.yaml &
+/opt/jprofiler10/bin/jpenable
+
+[root@S01CLXAK8S008 v2]# /opt/jprofiler10/bin/jpenable
+Connecting to service.jar server config.yaml [10049] ...
+Please select the profiling mode:
+GUI mode (attach with JProfiler GUI) [1, Enter]
+Offline mode (use config file to set profiling settings) [2]
+1
+Please enter a profiling port
+[45278]
+40000
+
+En el jProfile
+
+Database
+	jdbc	
+		conexion
+		call treehot spots
+	jpa Hibernate
+		
+CPU
+	call tree
+	hot spots - se ve los metodos y su costo
+	
+	
+ver log
+tail -f nohup.out 	
+	
