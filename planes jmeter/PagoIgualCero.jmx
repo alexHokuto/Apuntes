@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="4.0" jmeter="4.0 r1823414">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Presentacion-PagoCero" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="Variables definidas por el Usuario" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Pressentacion" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Controlador Bucle" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <intProp name="LoopController.loops">-1</intProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">10</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1495242039000</longProp>
+        <longProp name="ThreadGroup.end_time">1495242039000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration">60</stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="pagoCero" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;identificadorPresentacion&quot;:&quot;f1515277-4d78-42b8-8665-bb4434d7a8d4&quot;,&quot;versionBrowser&quot;:&quot;Chrome 56.0&quot;,&quot;versionSO&quot;:&quot;Windows&quot;,&quot;direccionIP&quot;:&quot;192.168.1.1&quot;,&quot;cantidadFormularios&quot;:&quot;1&quot;,&quot;montoTotalPagar&quot;:0,&quot;fechaEnvio&quot;:&quot;19/03/2017 12:29:11&quot;,&quot;ruc&quot;:&quot;20100049181&quot;,&quot;razonSocial&quot;:&quot;TAI LOY S.A.&quot;,&quot;declaraciones&quot;:&quot;{\&quot;formulario\&quot;:[{\&quot;identificadorFormulario\&quot;:\&quot;f1515277-4d78-42b8-8665-bb4434d7a8d4=1\&quot;,\&quot;numOrdOri\&quot;:0,\&quot;numOrd\&quot;:0,\&quot;numRuc\&quot;:\&quot;20100049181\&quot;,\&quot;perTri\&quot;:\&quot;201702\&quot;,\&quot;codFor\&quot;:\&quot;0626\&quot;,\&quot;numVerFor\&quot;:\&quot;1.0\&quot;,\&quot;fecPres\&quot;:\&quot;2017-03-19\&quot;,\&quot;horPres\&quot;:\&quot;2017-03-19T12:33:09.000Z\&quot;,\&quot;mtoPag\&quot;:0,\&quot;numBandeja\&quot;:0,\&quot;codOrifor\&quot;:\&quot;01\&quot;,\&quot;codTipfor\&quot;:\&quot;101\&quot;,\&quot;indValLib\&quot;:\&quot;0\&quot;,\&quot;codTipdetrac\&quot;:\&quot;0\&quot;,\&quot;codEtapa\&quot;:\&quot;00\&quot;,\&quot;indForAut\&quot;:\&quot;0\&quot;,\&quot;numNabono\&quot;:\&quot;\&quot;,\&quot;codEntFin\&quot;:\&quot;000\&quot;,\&quot;numPedAnu\&quot;:\&quot;\&quot;,\&quot;semFor\&quot;:\&quot;0\&quot;,\&quot;numIdResumen\&quot;:0,\&quot;numRucSec\&quot;:\&quot;\&quot;,\&quot;numValPag\&quot;:0,\&quot;numCargaPdt\&quot;:0,\&quot;numIdConstancia\&quot;:0,\&quot;numOpebco\&quot;:0,\&quot;codIndrec\&quot;:\&quot;1\&quot;,\&quot;codEstado\&quot;:\&quot;90\&quot;,\&quot;numResrec\&quot;:\&quot;\&quot;,\&quot;numIdReporte\&quot;:0,\&quot;numPedPro\&quot;:\&quot;\&quot;,\&quot;codOriPres\&quot;:\&quot;01\&quot;,\&quot;boletas\&quot;:[{\&quot;numOrd\&quot;:0,\&quot;numOrdOri\&quot;:0,\&quot;numRuc\&quot;:\&quot;20100049181\&quot;,\&quot;numRucSec\&quot;:\&quot;\&quot;,\&quot;fecPres\&quot;:\&quot;2017-03-19\&quot;,\&quot;horPres\&quot;:\&quot;2017-03-19T12:33:09.000Z\&quot;,\&quot;perTri\&quot;:\&quot;201702\&quot;,\&quot;semFor\&quot;:\&quot;0\&quot;,\&quot;codIndrec\&quot;:\&quot;0\&quot;,\&quot;codOrifor\&quot;:\&quot;01\&quot;,\&quot;codOriPres\&quot;:\&quot;01\&quot;,\&quot;codTipfor\&quot;:\&quot;200\&quot;,\&quot;numValPag\&quot;:0,\&quot;mtoPag\&quot;:\&quot;0\&quot;,\&quot;codTipdetrac\&quot;:\&quot;0\&quot;,\&quot;codEstado\&quot;:\&quot;90\&quot;,\&quot;codEtapa\&quot;:\&quot;00\&quot;,\&quot;numIdConstancia\&quot;:0,\&quot;numIdResumen\&quot;:0,\&quot;numIdReporte\&quot;:0,\&quot;numNabono\&quot;:\&quot;\&quot;,\&quot;numResrec\&quot;:\&quot;\&quot;,\&quot;indValLib\&quot;:\&quot;0\&quot;,\&quot;numPedPro\&quot;:\&quot;\&quot;,\&quot;numPedAnu\&quot;:\&quot;\&quot;,\&quot;indForAut\&quot;:\&quot;1\&quot;,\&quot;codEntFin\&quot;:\&quot;000\&quot;,\&quot;numOpebco\&quot;:\&quot;\&quot;,\&quot;numBandeja\&quot;:0,\&quot;numCargaPdt\&quot;:0,\&quot;codMedpag\&quot;:\&quot;\&quot;,\&quot;nomEntFin\&quot;:\&quot;\&quot;,\&quot;fecPago\&quot;:\&quot;\&quot;,\&quot;codFor\&quot;:\&quot;1662\&quot;,\&quot;numVerFor\&quot;:\&quot;1.0\&quot;,\&quot;casillasFormularioList\&quot;:[{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:7},\&quot;codTipcas\&quot;:\&quot;00\&quot;,\&quot;perTri\&quot;:\&quot;201702\&quot;,\&quot;desValcas\&quot;:\&quot;201702\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:600},\&quot;codTipcas\&quot;:\&quot;00\&quot;,\&quot;perTri\&quot;:\&quot;201702\&quot;,\&quot;desValcas\&quot;:\&quot;010302\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:651},\&quot;codTipcas\&quot;:\&quot;05\&quot;,\&quot;perTri\&quot;:\&quot;201702\&quot;,\&quot;desValcas\&quot;:\&quot;0\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:2},\&quot;codTipcas\&quot;:\&quot;00\&quot;,\&quot;perTri\&quot;:\&quot;201702\&quot;,\&quot;desValcas\&quot;:\&quot;20100049181\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:13},\&quot;codTipcas\&quot;:\&quot;00\&quot;,\&quot;perTri\&quot;:\&quot;201702\&quot;,\&quot;desValcas\&quot;:\&quot;2017-03-19\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:58},\&quot;codTipcas\&quot;:\&quot;00\&quot;,\&quot;perTri\&quot;:\&quot;201702\&quot;,\&quot;desValcas\&quot;:\&quot;12%3A29%3A01\&quot;}],\&quot;tributosDeclaradosPagadosList\&quot;:[{\&quot;tributosDeclaradosPagadosPK\&quot;:{\&quot;codTri\&quot;:\&quot;010302\&quot;},\&quot;mtoBasimp\&quot;:\&quot;2052276\&quot;,\&quot;mtoImpres\&quot;:\&quot;1207385\&quot;,\&quot;mtoPagtot\&quot;:\&quot;0\&quot;,\&quot;mtoTotDeu\&quot;:\&quot;1207199\&quot;,\&quot;indVig\&quot;:\&quot;1\&quot;,\&quot;perTri\&quot;:\&quot;201702\&quot;,\&quot;porTasa\&quot;:0}]}],\&quot;tributosDeclaradosPagadosList\&quot;:[{\&quot;tributosDeclaradosPagadosPK\&quot;:{\&quot;codTri\&quot;:\&quot;010302\&quot;},\&quot;mtoBasimp\&quot;:\&quot;2052276\&quot;,\&quot;mtoImpres\&quot;:\&quot;1207385\&quot;,\&quot;mtoPagtot\&quot;:0,\&quot;mtoTotDeu\&quot;:\&quot;1207199\&quot;,\&quot;indVig\&quot;:\&quot;1\&quot;,\&quot;perTri\&quot;:\&quot;201702\&quot;,\&quot;porTasa\&quot;:0}],\&quot;rectificatoriasTributoList\&quot;:[],\&quot;coeficienteIGVPeriodoList\&quot;:[],\&quot;cargaPdt\&quot;:null,\&quot;autoguardadoFormularioList\&quot;:[],\&quot;casillasFormularioList\&quot;:[{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:7},\&quot;codTipcas\&quot;:\&quot;00\&quot;,\&quot;perTri\&quot;:\&quot;201702\&quot;,\&quot;desValcas\&quot;:\&quot;201702\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:895},\&quot;codTipcas\&quot;:\&quot;00\&quot;,\&quot;perTri\&quot;:\&quot;201702\&quot;,\&quot;desValcas\&quot;:\&quot;2\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:502},\&quot;codTipcas\&quot;:\&quot;02\&quot;,\&quot;perTri\&quot;:\&quot;201702\&quot;,\&quot;desValcas\&quot;:\&quot;2052276\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:401},\&quot;codTipcas\&quot;:\&quot;03\&quot;,\&quot;perTri\&quot;:\&quot;201702\&quot;,\&quot;desValcas\&quot;:\&quot;1207385\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:402},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201702\&quot;,\&quot;desValcas\&quot;:\&quot;186\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:403},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201702\&quot;,\&quot;desValcas\&quot;:\&quot;1207199\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:404},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201702\&quot;,\&quot;desValcas\&quot;:\&quot;0\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:405},\&quot;codTipcas\&quot;:\&quot;07\&quot;,\&quot;perTri\&quot;:\&quot;201702\&quot;,\&quot;desValcas\&quot;:\&quot;1207199\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:410},\&quot;codTipcas\&quot;:\&quot;05\&quot;,\&quot;perTri\&quot;:\&quot;201702\&quot;,\&quot;desValcas\&quot;:\&quot;0\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:2},\&quot;codTipcas\&quot;:\&quot;00\&quot;,\&quot;perTri\&quot;:\&quot;201702\&quot;,\&quot;desValcas\&quot;:\&quot;20100049181\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:13},\&quot;codTipcas\&quot;:\&quot;00\&quot;,\&quot;perTri\&quot;:\&quot;201702\&quot;,\&quot;desValcas\&quot;:\&quot;2017-03-19\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:58},\&quot;codTipcas\&quot;:\&quot;00\&quot;,\&quot;perTri\&quot;:\&quot;201702\&quot;,\&quot;desValcas\&quot;:\&quot;12%3A29%3A01\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:5},\&quot;codTipcas\&quot;:\&quot;00\&quot;,\&quot;perTri\&quot;:\&quot;201702\&quot;,\&quot;desValcas\&quot;:\&quot;1\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:501},\&quot;codTipcas\&quot;:\&quot;01\&quot;,\&quot;perTri\&quot;:\&quot;201702\&quot;,\&quot;desValcas\&quot;:\&quot;5\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:511},\&quot;codTipcas\&quot;:\&quot;00\&quot;,\&quot;perTri\&quot;:\&quot;201702\&quot;,\&quot;desValcas\&quot;:\&quot;871021.55\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:512},\&quot;codTipcas\&quot;:\&quot;00\&quot;,\&quot;perTri\&quot;:\&quot;201702\&quot;,\&quot;desValcas\&quot;:\&quot;26130.69\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:513},\&quot;codTipcas\&quot;:\&quot;00\&quot;,\&quot;perTri\&quot;:\&quot;201702\&quot;,\&quot;desValcas\&quot;:\&quot;198\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:514},\&quot;codTipcas\&quot;:\&quot;00\&quot;,\&quot;perTri\&quot;:\&quot;201702\&quot;,\&quot;desValcas\&quot;:\&quot;844890.86\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:515},\&quot;codTipcas\&quot;:\&quot;00\&quot;,\&quot;perTri\&quot;:\&quot;201702\&quot;,\&quot;desValcas\&quot;:\&quot;0.0\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:516},\&quot;codTipcas\&quot;:\&quot;00\&quot;,\&quot;perTri\&quot;:\&quot;201702\&quot;,\&quot;desValcas\&quot;:\&quot;0.0\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:517},\&quot;codTipcas\&quot;:\&quot;00\&quot;,\&quot;perTri\&quot;:\&quot;201702\&quot;,\&quot;desValcas\&quot;:\&quot;0.0\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:896},\&quot;codTipcas\&quot;:\&quot;00\&quot;,\&quot;perTri\&quot;:\&quot;201702\&quot;,\&quot;desValcas\&quot;:\&quot;1\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:102},\&quot;codTipcas\&quot;:\&quot;00\&quot;,\&quot;perTri\&quot;:\&quot;201702\&quot;,\&quot;desValcas\&quot;:\&quot;1431948\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:104},\&quot;codTipcas\&quot;:\&quot;00\&quot;,\&quot;perTri\&quot;:\&quot;201702\&quot;,\&quot;desValcas\&quot;:\&quot;615867\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:103},\&quot;codTipcas\&quot;:\&quot;00\&quot;,\&quot;perTri\&quot;:\&quot;201702\&quot;,\&quot;desValcas\&quot;:\&quot;620328\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:105},\&quot;codTipcas\&quot;:\&quot;00\&quot;,\&quot;perTri\&quot;:\&quot;201702\&quot;,\&quot;desValcas\&quot;:\&quot;591518\&quot;}],\&quot;casillasSugeridasFinalesList\&quot;:[],\&quot;detallePagosPreviosList\&quot;:[{\&quot;detallePagosPreviosPK\&quot;:{\&quot;numOrdPre\&quot;:238318881,\&quot;codTriPag\&quot;:\&quot;010302\&quot;,\&quot;codForPre\&quot;:626},\&quot;codDepPag\&quot;:\&quot;317\&quot;,\&quot;numRucPag\&quot;:\&quot;20100049181\&quot;,\&quot;perTriPag\&quot;:\&quot;201702\&quot;,\&quot;mtoPag\&quot;:186,\&quot;indSel\&quot;:\&quot;1\&quot;,\&quot;fecPag\&quot;:\&quot;2017-03-01T00:00:00.000Z\&quot;}],\&quot;anexasFormularioList\&quot;:[],\&quot;detallesCoeficienteIGVList\&quot;:[]}]}&quot;,&quot;codigoMedioPresentacion&quot;:&quot;11&quot;}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">192.168.36.70</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol">HTTP</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">v1/recaudacion/tributaria/orquestacionpresentacion/t/consulta/procesarPresentarPagar</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">true</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Gestor de Cabecera HTTP" enabled="true">
+          <collectionProp name="HeaderManager.headers">
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">content-type</stringProp>
+              <stringProp name="Header.value">application/json</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">IdFormulario</stringProp>
+              <stringProp name="Header.value">*MENU*</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">IdCache</stringProp>
+              <stringProp name="Header.value">bbF1dH6ieH-Nca0uZ9A2cHMMcOr2dNwLmOo5cN-4mOCMdOVvck-5eHi2cHMMcOrxdNtNBX6MLLD5eaOmBtSnlRzreL1lo4JLE3bdPAfncvW7tj_P33LjPU9Nkhv5By.3SzuIuV8.6587xObtqIo6mF</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Host</stringProp>
+              <stringProp name="Header.value">localhost</stringProp>
+            </elementProp>
+          </collectionProp>
+        </HeaderManager>
+        <hashTree/>
+        <ResultCollector guiclass="RespTimeGraphVisualizer" testclass="ResultCollector" testname="Response Time Graph" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="Ver Árbol de Resultados" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+      <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="Ver Resultados en Árbol" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Reporte resumen" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Grupo de Hilos" enabled="false">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Controlador Bucle" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">0</stringProp>
+        <longProp name="ThreadGroup.start_time">1482179931000</longProp>
+        <longProp name="ThreadGroup.end_time">1482179931000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Petición HTTP" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;identificadorPresentacion&quot;:&quot;2f8429ee-ba7d-4dd3-9c22-f7375e60d55b&quot;,&quot;versionBrowser&quot;:&quot;Chrome 54.0&quot;,&quot;versionSO&quot;:&quot;Windows&quot;,&quot;direccionIP&quot;:&quot;148.102.17.108&quot;,&quot;cantidadFormularios&quot;:&quot;1&quot;,&quot;montoTotalPagar&quot;:0,&quot;fechaEnvio&quot;:&quot;19/12/2016 12:20:40&quot;,&quot;declaraciones&quot;:&quot;{\&quot;formulario\&quot;:[{\&quot;identificadorFormulario\&quot;:\&quot;2f8429ee-ba7d-4dd3-9c22-f7375e60d55b=1\&quot;,\&quot;numOrd\&quot;:0,\&quot;numRuc\&quot;:\&quot;\&quot;,\&quot;perTri\&quot;:\&quot;201605\&quot;,\&quot;codFor\&quot;:\&quot;0626\&quot;,\&quot;numVerFor\&quot;:\&quot;1\&quot;,\&quot;fecPres\&quot;:\&quot;2016-12-19\&quot;,\&quot;horPres\&quot;:\&quot;2016-12-19T12:22:46.000Z\&quot;,\&quot;mtoPag\&quot;:\&quot;0\&quot;,\&quot;numBandeja\&quot;:0,\&quot;codOrifor\&quot;:\&quot;01\&quot;,\&quot;codTipfor\&quot;:\&quot;101\&quot;,\&quot;indValLib\&quot;:\&quot;0\&quot;,\&quot;codTipdetrac\&quot;:\&quot;0\&quot;,\&quot;codEtapa\&quot;:\&quot;00\&quot;,\&quot;indForAut\&quot;:\&quot;0\&quot;,\&quot;numNabono\&quot;:\&quot;\&quot;,\&quot;codEntFin\&quot;:\&quot;000\&quot;,\&quot;numPedAnu\&quot;:\&quot;\&quot;,\&quot;semFor\&quot;:\&quot;\&quot;,\&quot;numIdResumen\&quot;:0,\&quot;numRucsec\&quot;:\&quot;\&quot;,\&quot;numValPag\&quot;:0,\&quot;numCargaPdt\&quot;:0,\&quot;numIdConstancia\&quot;:0,\&quot;numOpebco\&quot;:0,\&quot;codIndrec\&quot;:\&quot;0\&quot;,\&quot;codEstado\&quot;:\&quot;90\&quot;,\&quot;numResrec\&quot;:\&quot;\&quot;,\&quot;numIdReporte\&quot;:0,\&quot;numPedPro\&quot;:\&quot;\&quot;,\&quot;codOriPres\&quot;:\&quot;01\&quot;,\&quot;boletas\&quot;:[],\&quot;tributosDeclaradosPagadosList\&quot;:[{\&quot;tributosDeclaradosPagadosPK\&quot;:{\&quot;codTri\&quot;:\&quot;010302\&quot;},\&quot;mtoImpres\&quot;:0,\&quot;mtoPagtot\&quot;:\&quot;0\&quot;,\&quot;mtoTri\&quot;:\&quot;0\&quot;,\&quot;mtoPagint\&quot;:0,\&quot;indVig\&quot;:\&quot;1\&quot;,\&quot;mtoPagtri\&quot;:\&quot;0\&quot;,\&quot;mtoBasimp\&quot;:\&quot;0\&quot;,\&quot;perTri\&quot;:\&quot;201605\&quot;,\&quot;porTasa\&quot;:0}],\&quot;rectificatoriasTributoList\&quot;:[],\&quot;coeficienteIGVPeriodoList\&quot;:[],\&quot;cargaPdt\&quot;:null,\&quot;autoguardadoFormularioList\&quot;:[],\&quot;casillasFormularioList\&quot;:[{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:999},\&quot;codTipcas\&quot;:\&quot;\&quot;,\&quot;perTri\&quot;:\&quot;201605\&quot;,\&quot;desValcas\&quot;:\&quot;05/2016\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:998},\&quot;codTipcas\&quot;:\&quot;\&quot;,\&quot;perTri\&quot;:\&quot;201605\&quot;,\&quot;desValcas\&quot;:\&quot;original\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:502},\&quot;codTipcas\&quot;:\&quot;\&quot;,\&quot;perTri\&quot;:\&quot;201605\&quot;,\&quot;desValcas\&quot;:\&quot;0\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:401},\&quot;codTipcas\&quot;:\&quot;\&quot;,\&quot;perTri\&quot;:\&quot;201605\&quot;,\&quot;desValcas\&quot;:\&quot;0\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:402},\&quot;codTipcas\&quot;:\&quot;\&quot;,\&quot;perTri\&quot;:\&quot;201605\&quot;,\&quot;desValcas\&quot;:\&quot;0\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:403},\&quot;codTipcas\&quot;:\&quot;\&quot;,\&quot;perTri\&quot;:\&quot;201605\&quot;,\&quot;desValcas\&quot;:\&quot;0\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:404},\&quot;codTipcas\&quot;:\&quot;\&quot;,\&quot;perTri\&quot;:\&quot;201605\&quot;,\&quot;desValcas\&quot;:\&quot;0\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:405},\&quot;codTipcas\&quot;:\&quot;\&quot;,\&quot;perTri\&quot;:\&quot;201605\&quot;,\&quot;desValcas\&quot;:\&quot;0\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:410},\&quot;codTipcas\&quot;:\&quot;\&quot;,\&quot;perTri\&quot;:\&quot;201605\&quot;,\&quot;desValcas\&quot;:\&quot;0\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:102},\&quot;codTipcas\&quot;:\&quot;\&quot;,\&quot;perTri\&quot;:\&quot;201605\&quot;,\&quot;desValcas\&quot;:\&quot;0.00\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:103},\&quot;codTipcas\&quot;:\&quot;\&quot;,\&quot;perTri\&quot;:\&quot;201605\&quot;,\&quot;desValcas\&quot;:\&quot;0.00\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:104},\&quot;codTipcas\&quot;:\&quot;\&quot;,\&quot;perTri\&quot;:\&quot;201605\&quot;,\&quot;desValcas\&quot;:\&quot;0.00\&quot;},{\&quot;casillasFormularioPK\&quot;:{\&quot;numCas\&quot;:105},\&quot;codTipcas\&quot;:\&quot;\&quot;,\&quot;perTri\&quot;:\&quot;201605\&quot;,\&quot;desValcas\&quot;:\&quot;0.00\&quot;}],\&quot;casillasSugeridasFinalesList\&quot;:[],\&quot;detallePagosPreviosList\&quot;:[],\&quot;anexasFormularioList\&quot;:[],\&quot;detallesCoeficienteIGVList\&quot;:[]}]}&quot;,&quot;codigoMedioPresentacion&quot;:&quot;01&quot;}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">7109</stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/v1/recaudacion/tributaria/orquestacionpresentacion/t/consulta/procesarPresentarPagar</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="Ver Resultados en Árbol" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="Ver Árbol de Resultados" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Petición HTTP" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${jsonData}&#xd;
+</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">7121</stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/v1/recaudacion/tributaria/orquestacionproxypago/e/registro/realizarPago</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>

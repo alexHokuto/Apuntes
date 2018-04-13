@@ -186,6 +186,29 @@ Kubernetes
 
 kubectl scale --replicas=3 parametria-pasarela
 
+SECRETS de preProduccion
+	archivos de configuracion en la ruta de pre produccion 192.168.66.170
+	cd /opt/sunat/microservices/config/
+	193.168.66.94
+
+	sqlBdseqDc: ${SQL_BDSEQ_DC}
+	bdBdseqDcUsername: ${BD_BDSEQ_DC_USERNAME} 
+	bdBdseqDcPassword: ${BD_BDSEQ_DC_PASSWORD} 
+
+	echo -n "${SQL_BDSEQ_DC}" | base64 --decode
+
+NGinX preProduccion
+	192.168.36.70
+	/etc/nginx/conf.d
+	vi sunat-70.conf 
+	nginx -s stop
+	nginx
+	nginx -s reload
+	curl 192.168.36.70:8080/v1/recaudacion/tributaria/orquestacionproxypago/e/registro/numeroOperacion
+
+
+
+
 ****** Pagos
 Colas
 192.168.251.24
@@ -445,8 +468,8 @@ formulario igv
             ub.setUsuarioSOL("CNAVARRO");
             ub.setLogin("10084475951PEHFYMCG");
 
-        String ubigeo = "130101"; //// usuarioBean.getMap2().getDdpData().getDdp_ubigeo();
-        String tamanioContribuyente = "0063"; ////usuarioBean.getMap2().getDdpData().getDdp_numreg();
+        String ubigeo = "130101"; 
+        String tamanioContribuyente = "0063"; 
             
 /v1/recaudacion/tributaria/t/formularioIgv/obtenerDatosPeriodo/0621/201705            
 
@@ -478,3 +501,112 @@ data = t01paramDAO.onCommand( dao-> t01paramDAO.obtenerUIT(fecha)) ;
 
 
 this.utilLog.imprimirLog(ConstantesUtils.LEVEL_ERROR, UtilLog.getStackTraceFromException(e), Thread.currentThread().getStackTrace());   
+
+192.168.36.73 e-plataformaunica.sunat.gob.pe
+En Browser:
+https://e-plataformaunica.sunat.gob.pe/servletAcceso?plataforma=desktop&rucUsuario=10000160054DCC10541&password=DCC60054&tipoOperacion=4&idFormulario=01&recurso=/plataformaUnica
+ 
+ 
+ 
+ 
+curl -iv GET http://192.168.251.44:30135/servletAcceso --data "plataforma=desktop&rucUsuario=20100049181PEHFYMCG&password=12345678&tipoOperacion=4&idFormulario=01&recurso=/plataformaUnica" -H "content-type: application/json" -H "Host: e-plataformaunica.sunat.gob.pe"
+
+
+https://192.168.36.70:8080/v1/recaudacion/tributaria/t/formularioIgv/obtenerDatosPeriodo/0621/201801
+
+192.168.66.94
+[root@S01CLXCK8S003 microservices]# vi formulario-igv/formulario-igv-rc.yaml
+
+watch "kubectl get pods |grep formulario-i"
+
+
+		StringBuilder sql= new StringBuilder();
+		sql.append("SELECT '1', SUM(mto_imp_crp) FROM t6630cretper ");
+		sql.append("WHERE tip_docide_srp ='06' ");
+		sql.append("AND num_docide_srp  = ? ");
+		sql.append("AND num_periodo = ? ");
+		sql.append("AND cod_tipretper in ('02','03','04','05') ");
+		sql.append("UNION ALL ");
+		sql.append("SELECT '2', SUM(mto_imp_crp) FROM t6630cretper ");
+		sql.append("WHERE tip_docide_srp ='06' ");
+		sql.append("AND num_docide_srp = ? ");
+		sql.append("AND num_periodo = ? ");
+		sql.append("AND cod_tipretper = '01' ");
+
+		List<Object[]> resultado = this.createNativeQuery(sql.toString())
+				.setParameter(1, numRuc )
+				.setParameter(2, periodo )
+				.setParameter(3, numRuc )
+				.setParameter(4, periodo )
+				.getResultList();
+
+		List<BigDecimal> list = new ArrayList<>();
+		for (Object[] row: resultado ) {
+			if(row[1]==null) {
+				list.add(null);
+			}else{
+				list.add((BigDecimal) row[1]);
+			}
+		}
+
+
+List<Object[]> rows  = this.createNativeQuery(sql).getResultList();
+
+        List<MensajeRespuestaBean>  listaMensajeRespuesta= new ArrayList<>();
+        MensajeRespuestaBean mensajeRespuesta;
+        if(rows!= null){
+            for (Object[] row : rows) {
+                mensajeRespuesta = new MensajeRespuestaBean();
+                mensajeRespuesta.setCodFor((String) row[0]);
+                mensajeRespuesta.setMensaje((String) row[1]);
+               listaMensajeRespuesta.add( mensajeRespuesta);
+            }
+        }		
+
+
+
+dataSources:
+  - uniqueResourceName: ds1
+    jndiName: jdbc/dgformulario
+    url: jdbc:informix-sqli:/formulario:informixserver=form_reg;user=${BD_PU_DG_USERNAME};password=${BD_PU_DG_PASSWORD};SQLH_TYPE=FILE;SQLH_FILE=/config/sqlhosts.ius;NEWCODESET=UTF8,8859-1,819;IFX_USE_STRENC=true;
+    driverClassName: com.informix.jdbc.IfxDriver
+    minPoolSize: 50
+    maxPoolSize: 100
+    maxIdleTime: 60
+    borrowConnectionTimeout: 30
+    maintenanceInterval: 360
+    timeoutHealthCheckInMilliseconds: 2000
+    healthCheck: true
+  - uniqueResourceName: ds2
+    jndiName: jdbc/dcformulario
+    url: jdbc:informix-sqli:/formulario:informixserver=form_lec;user=${BD_PU_DC_USERNAME};password=${BD_PU_DC_PASSWORD};SQLH_TYPE=FILE;SQLH_FILE=/config/sqlhosts.ius;NEWCODESET=UTF8,8859-1,819;IFX_USE_STRENC=true;
+    driverClassName: com.informix.jdbc.IfxDriver
+    minPoolSize: 50
+    maxPoolSize: 100
+    maxIdleTime: 60
+    borrowConnectionTimeout: 30
+    maintenanceInterval: 360
+    timeoutHealthCheckInMilliseconds: 2000
+    healthCheck: true    
+  - uniqueResourceName: ds3
+    jndiName: jdbc/dgpago
+    url: jdbc:informix-sqli:/pago:informixserver=pago_reg;user=${BD_PU_DG_USERNAME};password=${BD_PU_DG_PASSWORD};SQLH_TYPE=FILE;SQLH_FILE=/config/sqlhosts.ius;NEWCODESET=UTF8,8859-1,819;IFX_USE_STRENC=true;
+    driverClassName: com.informix.jdbc.IfxDriver
+    minPoolSize: 50
+    maxPoolSize: 100
+    maxIdleTime: 60
+    borrowConnectionTimeout: 30
+    maintenanceInterval: 360
+    timeoutHealthCheckInMilliseconds: 2000
+    healthCheck: true
+  - uniqueResourceName: ds4
+    jndiName: jdbc/dcpago
+    url: jdbc:informix-sqli:/pago:informixserver=pago_lec;user=${BD_PU_DC_USERNAME};password=${BD_PU_DC_PASSWORD};SQLH_TYPE=FILE;SQLH_FILE=/config/sqlhosts.ius;NEWCODESET=UTF8,8859-1,819;IFX_USE_STRENC=true;
+    driverClassName: com.informix.jdbc.IfxDriver
+    minPoolSize: 50
+    maxPoolSize: 100
+    maxIdleTime: 60
+    borrowConnectionTimeout: 30
+    maintenanceInterval: 360
+    timeoutHealthCheckInMilliseconds: 2000
+    healthCheck: true            

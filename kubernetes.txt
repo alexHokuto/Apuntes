@@ -41,7 +41,7 @@ gpgcheck=0
 		KUBE_ETCD_SERVERS="--etcd-servers=http://centos-02:2379"
 
 7. Instalar etcd en todas las pc
-    etcd es un servicio que permite almacenar valores que serán utilizados por el clúster. Al tener un repositorio centralizado de valores, CoreOS puede hacer uso del mismo para almacenar configuraciones y valores de los aplicativos que deben correr en el clúster. etcd permite que se almacene información en forma de "nombre":"valor" que luego puede ser consumida de forma externa por el clúster.
+    etcd es un servicio que permite almacenar valores que serán utilizados por el clúster. Al tener un repositorio centralizado de valores, CoreOS puede hacer uso del mismo para almacenar configuraciones y valores de los aplicativos que deben correr en el clúster. etcd permite que se almacene información en forma de "clave":"valor" que luego puede ser consumida de forma externa por el clúster.
 
     etcd es replicado en cada uno de los servidores del clúster, por lo cual, cualquier modificación hecha en cualquiera de los servidores es automáticamente replicada a todos los miembros del clúster para que consuman esa información.
 

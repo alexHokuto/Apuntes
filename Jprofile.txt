@@ -1,3 +1,6 @@
+
+ps -fea | grep service
+
 nohup java -jar service.jar server config.yaml &
 /opt/jprofiler10/bin/jpenable
 
@@ -25,5 +28,24 @@ CPU
 	
 	
 ver log
-tail -f nohup.out 	
+	tail -f nohup.out 	
 	
+lo recomendado jmeter
+10
+5
+infinito
+
+
+idCache PreProduccion
+https://e-plataformaunica.sunat.gob.pe/servletAcceso?plataforma=desktop&rucUsuario=10000160054DCC10541&password=DCC60054&tipoOperacion=4&idFormulario=01&recurso=/plataformaUnica
+
+
+
+jmeter QA
+e-plataformaunica.sunat.gob.pe   	443
+
+jmeter PreProduccion
+192.168.36.70		8080
+
+directo pre produccion
+http  		192.168.36.70	80

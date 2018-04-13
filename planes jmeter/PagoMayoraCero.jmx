@@ -18,7 +18,7 @@
           <stringProp name="LoopController.loops">1</stringProp>
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">1</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">0</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
         <longProp name="ThreadGroup.start_time">1495242039000</longProp>
         <longProp name="ThreadGroup.end_time">1495242039000</longProp>
         <boolProp name="ThreadGroup.scheduler">false</boolProp>
@@ -47,9 +47,9 @@
               </elementProp>
             </collectionProp>
           </elementProp>
-          <stringProp name="HTTPSampler.domain">192.168.36.70</stringProp>
-          <stringProp name="HTTPSampler.port">8080</stringProp>
-          <stringProp name="HTTPSampler.protocol">HTTP</stringProp>
+          <stringProp name="HTTPSampler.domain">e-plataformaunica.sunat.gob.pe</stringProp>
+          <stringProp name="HTTPSampler.port">443</stringProp>
+          <stringProp name="HTTPSampler.protocol">HTTPs</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">/v1/recaudacion/tributaria/orquestacionpresentacion/t/consulta/validarPresentacion</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -86,7 +86,7 @@
               </elementProp>
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">IdCache</stringProp>
-                <stringProp name="Header.value">bbF1dH6ieH-Nca0uZ9A2cHMMcOr2dNwLmOo5cN-4mOCMdOVvck-5eHi2cHMMcOrxdNtNBX6MyfqhSfNZU5LHyT0pO9RPFlqH.Z3xIhKt6xh3akIXhap6l2ME4M1JkU3i3R.MXOwLoKGwcw9MouLXqF</stringProp>
+                <stringProp name="Header.value">bbF1dH6ieH-Nca0uZ9A2cHMMcOr2dNwLmOo5cN-4mOCMdOVvck-5eHi2cHMMcOrxdNtNBX6MQDJ-pM5uEWJUB4EQUSGleVhQQe7bv_iKwnAokxXRzqqE9.T2H0ChUlW13EBLyFm4ovxB9jytWDbm1R</stringProp>
               </elementProp>
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">Host</stringProp>
@@ -223,9 +223,9 @@
               </elementProp>
             </collectionProp>
           </elementProp>
-          <stringProp name="HTTPSampler.domain">192.168.36.70</stringProp>
-          <stringProp name="HTTPSampler.port">8080</stringProp>
-          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.domain">e-plataformaunica.sunat.gob.pe</stringProp>
+          <stringProp name="HTTPSampler.port">443</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">/v1/recaudacion/tributaria/orquestacionproxypago/e/registro/realizarPago</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -244,7 +244,7 @@
             <stringProp name="filename"></stringProp>
             <stringProp name="script">
 
-var jsonData = &quot;{ \&quot;numTransApliCli\&quot;:&quot; + vars.get(&quot;numBandeja&quot;) + &quot;, \&quot;numPas\&quot; : \&quot;1\&quot;, \&quot;numMedPagPas\&quot; : \&quot;1\&quot;, \&quot;codTipmon\&quot; : \&quot;01\&quot;, \&quot;codMedpag\&quot; : \&quot;11\&quot;, \&quot;codEntFin\&quot;: \&quot;38\&quot;, \&quot;tipoOperacion\&quot;: \&quot;1\&quot;, \&quot;codTipSer\&quot; : \&quot;01\&quot;, \&quot;mtoOpe\&quot;: \&quot;1203940\&quot;, \&quot;habilitaQA\&quot; : \&quot;0\&quot;, \&quot;codMedPre\&quot; : \&quot;01\&quot;, \&quot;codAplCli\&quot; : \&quot;01\&quot; , \&quot;tipoTrama\&quot;:\&quot;01\&quot; ,\&quot;tramaQA\&quot;:{ \&quot;numeroPago\&quot; : \&quot;\&quot;, \&quot;codEntFinan\&quot; : \&quot;\&quot;, \&quot;tipoOpera\&quot; : \&quot;04\&quot;, \&quot;numOperaBanco\&quot; : \&quot;\&quot;, \&quot;fecPago\&quot; : \&quot;20170814\&quot;, \&quot;horaPago\&quot; : \&quot;090240\&quot;, \&quot;numRuc\&quot; : \&quot;20100049181\&quot;, \&quot;impPago\&quot; : \&quot;000001207199\&quot;, \&quot;codRespBanco\&quot; : \&quot;00\&quot;, \&quot;tipoServicio\&quot; : \&quot;01\&quot;} }&quot;;
+var jsonData = &quot;{ \&quot;numTransApliCli\&quot;:&quot; + vars.get(&quot;numBandeja&quot;) + &quot;, \&quot;numPas\&quot; : \&quot;1\&quot;, \&quot;numMedPagPas\&quot; : \&quot;1\&quot;, \&quot;codTipmon\&quot; : \&quot;01\&quot;, \&quot;codMedpag\&quot; : \&quot;11\&quot;, \&quot;codEntFin\&quot;: \&quot;02\&quot;, \&quot;tipoOperacion\&quot;: \&quot;1\&quot;, \&quot;codTipSer\&quot; : \&quot;01\&quot;, \&quot;mtoOpe\&quot;: \&quot;1203940\&quot;, \&quot;habilitaQA\&quot; : \&quot;0\&quot;, \&quot;codMedPre\&quot; : \&quot;01\&quot;, \&quot;codAplCli\&quot; : \&quot;01\&quot; , \&quot;tipoTrama\&quot;:\&quot;01\&quot; ,\&quot;tramaQA\&quot;:{ \&quot;numeroPago\&quot; : \&quot;\&quot;, \&quot;codEntFinan\&quot; : \&quot;\&quot;, \&quot;tipoOpera\&quot; : \&quot;04\&quot;, \&quot;numOperaBanco\&quot; : \&quot;\&quot;, \&quot;fecPago\&quot; : \&quot;20170814\&quot;, \&quot;horaPago\&quot; : \&quot;090240\&quot;, \&quot;numRuc\&quot; : \&quot;20100049181\&quot;, \&quot;impPago\&quot; : \&quot;000001207199\&quot;, \&quot;codRespBanco\&quot; : \&quot;00\&quot;, \&quot;tipoServicio\&quot; : \&quot;01\&quot;} }&quot;;
 vars.putObject(&quot;jsonData&quot;,jsonData);</stringProp>
           </BeanShellPreProcessor>
           <hashTree/>
@@ -260,7 +260,7 @@ vars.putObject(&quot;jsonData&quot;,jsonData);</stringProp>
               </elementProp>
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">IdCache</stringProp>
-                <stringProp name="Header.value">bbF1dH6ieH-Nca0uZ9A2cHMMcOr2dNwLmOo5cN-4mOCMdOVvck-5eHi2cHMMcOrxdNtNBX6MyfqhSfNZU5LHyT0pO9RPFlqH.Z3xIhKt6xh3akIXhap6l2ME4M1JkU3i3R.MXOwLoKGwcw9MouLXqF</stringProp>
+                <stringProp name="Header.value">bbF1dH6ieH-Nca0uZ9A2cHMMcOr2dNwLmOo5cN-4mOCMdOVvck-5eHi2cHMMcOrxdNtNBX6MQDJ-pM5uEWJUB4EQUSGleVhQQe7bv_iKwnAokxXRzqqE9.T2H0ChUlW13EBLyFm4ovxB9jytWDbm1R</stringProp>
               </elementProp>
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">Host</stringProp>
