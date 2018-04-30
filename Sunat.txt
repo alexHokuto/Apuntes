@@ -83,6 +83,25 @@ java  -Duser.timezone="America/Lima" -jar service.jar server config.yaml
 
 
 ******* GIT
+
+Cuando se presenten problemas con GitLab, ingresar al 192.168.1.159 y ejecutar:
+
+ 
+
+percy@victoriadev [09:51:47] [~]
+
+-> % sudo gitlab-runner stop
+
+percy@victoriadev [09:51:51] [~]
+
+-> % sudo gitlab-runner start
+
+percy@victoriadev [09:51:54] [~]
+
+-> % sudo gitlab-runner status
+
+gitlab-runner: Service is running!
+
 cmorales
 cmorales21
 D:\AMV\WS-SUNAT\GIT>git clone http://glv.cosapidata.com.pe/sunat/MS022-OrquestacionProxyPago.git
@@ -128,7 +147,7 @@ merge al master
 push
 
 ******** Kubernetes
-ssh percy@192.168.1.159   o 10.253.1.60 es otra IP del mismo equipo
+ssh percy@192.168.1.159   o 10.253.1.61 es otra IP del mismo equipo
 
 sftp 22
 kubernetes
@@ -174,6 +193,8 @@ Kubernetes
 	kubectl delete -f parametria-pasarela/; kubectl apply -f parametria-pasarela/ --record;
 	kubectl delete -f formulario-igv/; kubectl apply -f formulario-igv/ --record; 
 	kubectl delete -f agente-batch-servidor/; kubectl apply -f agente-batch-servidor/ --record; 
+	kubectl delete -f consulta-legacy/; kubectl apply -f consulta-legacy/ --record;
+
 
 	kubectl set image deployments/orquestacion-proxy-pago orquestacion-proxy-pago=hubqa.sunat.gob.pe/microservices/recaudacion3-tributaria-administracion-orquestacionproxypago-backend:1.0.2
 
@@ -183,6 +204,7 @@ Kubernetes
 
 	kubectl set image deployments/agente-batch-servidor agente-batch-servidor=hubqa.sunat.gob.pe/microservices/tecnologia3-arquitectura-framework-agentebatchservidor:1.0.2
 
+	kubectl set image deployments/consulta-legacy consulta-legacy=hubqa.sunat.gob.pe/microservices/	recaudacion3-tributaria-administracion-consultalegacy-backend:1.0.4
 
 kubectl scale --replicas=3 parametria-pasarela
 
@@ -239,7 +261,7 @@ kubectl get pods
 kubectl logs -f orquestacion-proxy-pago-rc-737xg
 
 VISA
-http://localhost:7121/v1/recaudacion/tributaria/orquestacionprocesaendpointpago/t/transaccionvisa?numTransApliCli=1004085660&numPas=1&numPas=1&numMedPagPas=1&codTipmon=01&codMedpag=41&codEntFin=67&tipoOperacion=1&codTipSer=01&mtoOpe=45&codMedPre=01&codAplCli=01&returnUrl=http://localhost/v1/recaudacion/tributaria/orquestacionprocesaendpointpago/t/respuestavisa%26&_=1489440601861
+http://localhost:7121/v1/recaudacion/tributaria/orquestacionprocesaendpointpago/t/transaccionvisa?numTransApliCli=1004502720&numPas=1&numPas=1&numMedPagPas=1&codTipmon=01&codMedpag=41&codEntFin=67&tipoOperacion=1&codTipSer=01&mtoOpe=1203940&codMedPre=01&codAplCli=01&returnUrl=http://localhost/v1/recaudacion/tributaria/orquestacionprocesaendpointpago/t/respuestavisa%26&_=1489440601861
 
 
 ******** Aplicativo
@@ -609,4 +631,21 @@ dataSources:
     borrowConnectionTimeout: 30
     maintenanceInterval: 360
     timeoutHealthCheckInMilliseconds: 2000
-    healthCheck: true            
+    healthCheck: true    
+
+
+    \\192.168.1.192\Sunat\2-Ingnria\2.3 Cpctcion\Cpction_Prod_SW\Ses05\Exam        
+
+    jmeter -n -t D:\AMV\Planes_jmeter\paralelo\ejecuta_prueba_insi.jmx
+    ${__groovy("${pago0}"  == "0")}
+    ${__jexl3("${pago0}"  == "0")}
+
+    IP Pre produccion
+    192.168.44.91 master San Isidro master
+    98,99,100,101,102,104 worked
+
+    192.168.66.94 Miraflores master
+    168,169,170,171,172,173 worked
+
+    worked
+    /opt/sunat/microservices/config/servicio/config.yaml	-- por validar

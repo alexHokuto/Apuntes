@@ -85,12 +85,12 @@
                 <stringProp name="Header.value">*MENU*</stringProp>
               </elementProp>
               <elementProp name="" elementType="Header">
-                <stringProp name="Header.name">IdCache</stringProp>
-                <stringProp name="Header.value">bbF1dH6ieH-Nca0uZ9A2cHMMcOr2dNwLmOo5cN-4mOCMdOVvck-5eHi2cHMMcOrxdNtNBX6MQDJ-pM5uEWJUB4EQUSGleVhQQe7bv_iKwnAokxXRzqqE9.T2H0ChUlW13EBLyFm4ovxB9jytWDbm1R</stringProp>
+                <stringProp name="Header.name">IdCach</stringProp>
+                <stringProp name="Header.value">bbF1dH6ieH-Nca0uZ9A2cHMMcOr2dNwLmOo5cN-4mOCMdOVvck-5eHi2cHMMcOrxdNtNBX6MpztH.OG-mU0o6MR9HwSJ7o7IFZw6oXMyJev50PG6bZKd6PmDktlHQ62XDS2FPSk3T0ZaCv5z7EJB0X</stringProp>
               </elementProp>
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">Host</stringProp>
-                <stringProp name="Header.value">localhost</stringProp>
+                <stringProp name="Header.value">e-plataformaunica.sunat.gob.pe</stringProp>
               </elementProp>
             </collectionProp>
           </HeaderManager>
@@ -211,7 +211,7 @@
           <stringProp name="filename"></stringProp>
         </ResultCollector>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="realizarPago" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="realizarPago" enabled="false">
           <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments">
@@ -260,7 +260,7 @@ vars.putObject(&quot;jsonData&quot;,jsonData);</stringProp>
               </elementProp>
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">IdCache</stringProp>
-                <stringProp name="Header.value">bbF1dH6ieH-Nca0uZ9A2cHMMcOr2dNwLmOo5cN-4mOCMdOVvck-5eHi2cHMMcOrxdNtNBX6MQDJ-pM5uEWJUB4EQUSGleVhQQe7bv_iKwnAokxXRzqqE9.T2H0ChUlW13EBLyFm4ovxB9jytWDbm1R</stringProp>
+                <stringProp name="Header.value">bbF1dH6ieH-Nca0uZ9A2cHMMcOr2dNwLmOo5cN-4mOCMdOVvck-5eHi2cHMMcOrxdNtNBX6MpztH.OG-mU0o6MR9HwSJ7o7IFZw6oXMyJev50PG6bZKd6PmDktlHQ62XDS2FPSk3T0ZaCv5z7EJB0X</stringProp>
               </elementProp>
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">Host</stringProp>
