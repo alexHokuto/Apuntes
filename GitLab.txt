@@ -28,3 +28,4 @@ ssh-add path de la llave privada
 git config --global user.name "aleHokuto"
 git config --global user.email "cmorales.corporacion@gmail.com"
 
+git push https://alexHokuto:ElserafanJava35@github.com/alexHokuto/Apuntes.git master
