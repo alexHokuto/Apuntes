@@ -1,0 +1,35 @@
+
+192.168.1.159 e-plataformaunica.local.sunat.gob.pe
+192.168.1.159 e-plataformaunica.local.sunat.peru
+192.168.1.159 internet.local.pu.sunat.gob.pe intranet.local.pu.sunat.gob.pe movil.local.pu.sunat.gob.pe portal.local.pu.sunat.gob.pe internet.local2.pu.sunat.gob.pe
+
+#oAuth:
+
+192.168.251.23 internet.desa.pu.sunat.gob.pe intranet.desa.pu.sunat.gob.pe movil.desa.pu.sunat.gob.pe
+192.168.251.30 internet.qa.pu.sunat.gob.pe intranet.qa.pu.sunat.gob.pe movil.qa.pu.sunat.gob.pe
+192.168.251.30 internet.qa.pu.sunat.gob.pe movil.qa.pu.sunat.gob.pe intranet.desa2.pu.sunat.gob.pe internet1.qa.pu.sunat.gob.pe movil1.qa.pu.sunat.gob.pe
+192.168.251.31 internet2.qa.pu.sunat.gob.pe movil2.qa.pu.sunat.gob.pe
+192.168.251.49 intranet.qa.pu.sunat.gob.pe cdn.internet.qa.pu.sunat.gob.pe cdn.interno.qa.pu.sunat.gob.pe
+192.168.251.25 e-menu1.sunat.gob.pe
+192.168.251.58 e-menu.sunat.gob.pe
+192.168.251.56 api-seguridad.sunat.gob.pe api-seguridad1.sunat.gob.pe api-seguridad2.sunat.gob.pe
+
+#desa: 10.253.1.60
+
+192.168.1.159 glv.cosapidata.com.pe
+192.168.1.159 vhub.cosapidata.com.pe glv.cosapidata.com.pe staticvd.cosapidata.com.pe civ.cosapidata.com.pe sonarv.cosapidata.com.pe mvnv.cosapidata.com.pe sfapi.cosapidata.com.pe puapp.cosapidata.com.pe
+
+#Calidad:
+192.168.251.56 e-plataformaunica.sunat.gob.pe e-plataformaunica1.sunat.gob.pe e-plataformaunica2.sunat.gob.pe
+192.168.251.49 e-plataformaunica.sunat.peru img1.sunat.gob.pe? 
+
+#127.0.0.1 e-plataformaunica.sunat.gob.pe img1.sunat.gob.pe jslibs1.sunat.gob.pe
+#127.0.0.1 e-plataformaunica.sunat.gob.pe img1.sunat.gob.pe jslibs1.sunat.gob.pe //descomentar en pruebas en calidad
+# -- Configuración hacia el CDN
+192.168.251.49 img1.sunat.gob.pe img2.sunat.gob.pe jslibs1.sunat.gob.pe jslibs2.sunat.gob.pe htm1.sunat.gob.pe htm2.sunat.gob.pe e-plataformaunica1.sunat.peru e-plataformaunica2.sunat.peru
+# BEGIN section for OpenVPN Client SSL sites
+127.94.0.1	client.openvpn.net
+# END section for OpenVPN Client SSL sites
+
+#Pre produccion
+#192.168.36.73 e-plataformaunica.sunat.gob.pe
