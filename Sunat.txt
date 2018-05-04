@@ -260,9 +260,6 @@ root/microservices
 kubectl get pods
 kubectl logs -f orquestacion-proxy-pago-rc-737xg
 
-VISA
-http://localhost:7121/v1/recaudacion/tributaria/orquestacionprocesaendpointpago/t/transaccionvisa?numTransApliCli=1004502720&numPas=1&numPas=1&numMedPagPas=1&codTipmon=01&codMedpag=41&codEntFin=67&tipoOperacion=1&codTipSer=01&mtoOpe=1203940&codMedPre=01&codAplCli=01&returnUrl=http://localhost/v1/recaudacion/tributaria/orquestacionprocesaendpointpago/t/respuestavisa%26&_=1489440601861
-
 
 ******** Aplicativo
 Ingresar por ruc
@@ -649,3 +646,52 @@ dataSources:
 
     worked
     /opt/sunat/microservices/config/servicio/config.yaml	-- por validar
+
+
+VISA
+http://localhost:7121/v1/recaudacion/tributaria/orquestacionprocesaendpointpago/t/transaccionvisa?numTransApliCli=1004509460&numPas=1&numPas=1&numMedPagPas=1&codTipmon=01&codMedpag=41&codEntFin=67&tipoOperacion=1&codTipSer=01&mtoOpe=3159519&codMedPre=01&codAplCli=01&returnUrl=http://localhost/v1/recaudacion/tributaria/orquestacionprocesaendpointpago/t/respuestavisa%26&_=1489440601861
+
+8	67	Visa
+9	00	NPS
+
+medioPagoBean:
+  cargoCuentaBancaria: 11
+  cargoCuentaDetracciones: 21
+  cargoCuentaDetraccionesIvap: 22
+  cargoCuentaBancariaTA: 12
+  tarjetaDebitoCreditoVisa: 41
+  pagoNPS: 51
+
+{
+  "numTransApliCli": "1004509415",
+  "numPas": "1",
+  "numMedPagPas": "1",
+  "codTipmon": "00",
+  "codMedpag": "11",
+  "codEntFin": "02",
+  "tipoOperacion": "1",
+  "codTipSer": "01",
+  "mtoOpe": "3159519",
+  "habilitaQA": "1",
+  "codMedPre": "01",
+  "codAplCli": "01",
+  "tipoTrama": "01",
+  "tramaQA": {
+    "numeroPago": "100846624",
+    "codEntFinan": "02",
+    "tipoOpera": "04",
+    "numOperaBanco": "12345678901234567890",
+    "fechaPago": "04052018",
+    "horaPago": "160300",
+    "numRuc": "20100049181",
+    "impPago": "3159519",
+    "codRespBanco": "00",
+    "tipoServicio": "01"
+  }
+}
+
+
+mobaxterm
+add use path eviroment
+cd d:
+ ./gradlew.bat clean build -x check && java -jar build/libs/service.jar server src/main/resources/config_ddst.yaml
