@@ -290,6 +290,7 @@ TipoPago por tarjeta 1
 		 usuarioBean.setNumRUC("20100049181");
 		 usuarioBean.setUsuarioSOL("PEHFYMCG");
 		 usuarioBean.setLogin("10084475951PEHFYMCG");
+		 usuarioBean.setNombreCompleto("PEHFYMCG");
 	
 
 obtener idCache QA
@@ -353,7 +354,7 @@ Sequence Pago Visa
 REDIS
 
 ssh root@192.168.251.37
- redis-cli -h 192.168.251.38 -p 16041 -a Sapia123		
+ redis-cli -h 192.168.251.37 -p 16041 -a Sapia123		
 
  ssh root@192.168.247.25
  redis-cli -h 192.168.247.25 -p 16042 -a Sapia123		
@@ -486,6 +487,7 @@ formulario igv
             ub.setNumRUC("20314548249");  //20314548249  20100049181
             ub.setUsuarioSOL("CNAVARRO");
             ub.setLogin("10084475951PEHFYMCG");
+
 
         String ubigeo = "130101"; 
         String tamanioContribuyente = "0063"; 
@@ -649,7 +651,7 @@ dataSources:
 
 
 VISA
-http://localhost:7121/v1/recaudacion/tributaria/orquestacionprocesaendpointpago/t/transaccionvisa?numTransApliCli=1004509460&numPas=1&numPas=1&numMedPagPas=1&codTipmon=01&codMedpag=41&codEntFin=67&tipoOperacion=1&codTipSer=01&mtoOpe=3159519&codMedPre=01&codAplCli=01&returnUrl=http://localhost/v1/recaudacion/tributaria/orquestacionprocesaendpointpago/t/respuestavisa%26&_=1489440601861
+http://localhost:7121/v1/recaudacion/tributaria/orquestacionprocesaendpointpago/t/transaccionvisa?numTransApliCli=1004509475&numPas=1&numPas=1&numMedPagPas=1&codTipmon=01&codMedpag=41&codEntFin=67&tipoOperacion=1&codTipSer=01&mtoOpe=3159519&codMedPre=01&codAplCli=01&returnUrl=http://localhost/v1/recaudacion/tributaria/orquestacionprocesaendpointpago/t/respuestavisa%26&_=1489440601861
 
 8	67	Visa
 9	00	NPS
