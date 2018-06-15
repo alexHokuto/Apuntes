@@ -78,16 +78,11 @@ java  -Duser.timezone="America/Lima" -jar service.jar server config.yaml
 	-- merge  release
 	-- push master
 
-
-
-
-
 ******* GIT
 
 Cuando se presenten problemas con GitLab, ingresar al 192.168.1.159 y ejecutar:
 
  
-
 percy@victoriadev [09:51:47] [~]
 
 -> % sudo gitlab-runner stop
@@ -205,6 +200,8 @@ Kubernetes
 	kubectl set image deployments/agente-batch-servidor agente-batch-servidor=hubqa.sunat.gob.pe/microservices/tecnologia3-arquitectura-framework-agentebatchservidor:1.0.2
 
 	kubectl set image deployments/consulta-legacy consulta-legacy=hubqa.sunat.gob.pe/microservices/	recaudacion3-tributaria-administracion-consultalegacy-backend:1.0.4
+
+	kubectl set image deployments/parametria-pasarela parametria-pasarela=hubqa.sunat.gob.pe/microservices/recaudacion3-tributaria-administracion-parametriapasarela-backend:1.0.2
 
 kubectl scale --replicas=3 parametria-pasarela
 
@@ -450,6 +447,39 @@ SELECT first 50  * FROM informix.t7777bandprespago WHERE ind_pag_rea='1'
 AND DATE(fec_regis) =   DATE('2017/12/21')
 GO
 
+SELECT num_bandeja, cnt_item, mto_pagar,
+       bson_value_int(arc_data, 'formulario.0.numOrd') AS numOrd_1,
+       bson_value_int(arc_data, 'formulario.0.codFor') AS codFor_1,
+       bson_value_int(arc_data, 'formulario.0.numOrd.boletas.0.numOrd') AS numOrd_1_Bol_1,
+       bson_value_int(arc_data, 'formulario.0.numOrd.boletas.0.codFor') AS codFor_1_Bol_1,
+       bson_value_int(arc_data, 'formulario.1.numOrd') AS numOrd_2,
+       bson_value_int(arc_data, 'formulario.1.codFor') AS codFor_2,
+       bson_value_int(arc_data, 'formulario.1.numOrd.boletas.0.numOrd') AS numOrd_2_Bol_1,
+       bson_value_int(arc_data, 'formulario.1.numOrd.boletas.0.codFor') AS codFor_2_Bol_1
+FROM   t7777bandprespago
+WHERE  fec_ope BETWEEN '2018-05-03 11:31:00' AND '2018-05-03 11:41:00';​
+
+SELECT BSON_VALUE_LVARCHAR(bson_col, "person.surname") FROM bson_table;
+
+SELECT bson_col.person.surname::JSON FROM bson_table;
+
+Select num_bandeja, BSON_VALUE_LVARCHAR(arc_data,"formulario.0.numOrd") as numOrden, 
+arc_data.resultadoPago::JSON as resultadoPago, * from t7777bandprespago where num_bandeja= 1004510820
+
+UPDATE t7777bandprespago 
+                    SET arc_data = bson_update(arc_data, '{$set:{formulario.0.numOrd:10}}') 
+                    WHERE num_bandeja= 1004510100
+
+UPDATE t7777bandprespago 
+                    SET arc_data = bson_update(arc_data, '{$set:{resultadoPago:null}}') 
+                    WHERE num_bandeja= 1004510820
+
+CREATE TABLE IF NOT EXISTS bson_table(bson_col BSON);
+INSERT INTO bson_table VALUES(
+  '{person:{givenname:"Jim",surname:"Flynn",age:29,cars:["dodge","olds"]}}'::JSON);
+
+
+
 
 SELECT * FROM t7777bandprespago WHERE num_ruc=$(ruc) AND fec_ope>=today-8;
 
@@ -651,7 +681,7 @@ dataSources:
 
 
 VISA
-http://localhost:7121/v1/recaudacion/tributaria/orquestacionprocesaendpointpago/t/transaccionvisa?numTransApliCli=1004509475&numPas=1&numPas=1&numMedPagPas=1&codTipmon=01&codMedpag=41&codEntFin=67&tipoOperacion=1&codTipSer=01&mtoOpe=3159519&codMedPre=01&codAplCli=01&returnUrl=http://localhost/v1/recaudacion/tributaria/orquestacionprocesaendpointpago/t/respuestavisa%26&_=1489440601861
+http://localhost:7121/v1/recaudacion/tributaria/orquestacionprocesaendpointpago/t/transaccionvisa?numTransApliCli=1004511425&numPas=1&numPas=1&numMedPagPas=1&codTipmon=01&codMedpag=41&codEntFin=67&tipoOperacion=1&codTipSer=01&mtoOpe=19081&codMedPre=01&codAplCli=01&returnUrl=http://localhost/v1/recaudacion/tributaria/orquestacionprocesaendpointpago/t/respuestavisa%26&_=1489440601861
 
 8	67	Visa
 9	00	NPS
