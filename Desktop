@@ -31,7 +31,7 @@ zip SetMisDec
 ejecutables
 zip SetAutMiDe	
 
-	
+
 recaudacion3-tributaria-integrador-entidades-desktop -> git proyect para el pase
 integrador-entorno-entidades -> git proyect para el desarrollo
 
@@ -46,6 +46,17 @@ integrador-ejecutor  -> git proyect para el desarrollo
 
 recaudacion3-tributaria-integrador-empaquetado-desktop -> git proyect para el pase
 Desarrollo?  No se modifica
+
+Link de artifactory de los jar de desktop en ambiente Desarrollo
+
+http://artifactory.insi.sunat.peru:7003/artifactory/plataforma-unica-release-local/pe/gob/sunat/recaudacion3/tributaria/administracion/integrador/recaudacion3-tributaria-integrador-ejecutor-desktop/1.7.0-2/recaudacion3-tributaria-integrador-ejecutor-desktop-1.7.0-2.jar
+
+http://artifactory.insi.sunat.peru:7003/artifactory/plataforma-unica-release-local/pe/gob/sunat/recaudacion3/tributaria/administracion/integrador/recaudacion3-tributaria-integrador-entidades-desktop/1.7.0-2/recaudacion3-tributaria-integrador-entidades-desktop-1.7.0-2.jar
+
+
+http://artifactory.insi.sunat.peru:7003/artifactory/plataforma-unica-release-local/pe/gob/sunat/recaudacion3/tributaria/administracion/integrador/recaudacion3-tributaria-integrador-entorno-desktop/1.7.0-2/recaudacion3-tributaria-integrador-entorno-desktop-1.7.0-2.jar
+
+http://artifactory.insi.sunat.peru:7003/artifactory/plataforma-unica-release-local/pe/gob/sunat/recaudacion3/tributaria/administracion/integrador/recaudacion3-tributaria-integrador-formulario-desktop/1.7.0-2/recaudacion3-tributaria-integrador-formulario-desktop-1.7.0-2.jar
 
 
 Link de artifactory de los jar de desktop en ambiente Calidad
