@@ -29,3 +29,27 @@ git config --global user.name "aleHokuto"
 git config --global user.email "cmorales.corporacion@gmail.com"
 
 git push https://alexHokuto:ElserafanJava35@github.com/alexHokuto/Apuntes.git master
+
+mostrar todos los branch
+git branch -a
+
+
+push
+git push --set-upstream origin 2018-006
+
+Agregar remote
+verificar remoto => git remote -v
+En caso no exista => git remote add xxxxx url (git HTTP sunat insi - xxx = sunat) 
+git push xxxxx --mirror ( xxxxx = sunat)​
+
+Actualizar remote
+git fetch --all –-prune ( Actualiza ambos repositorios branch )
+
+
+Revertir commit 
+git log -> obtener hash id
+git revert "commit-id"
+
+Merge
+situarse en el branch release
+git merge master (Estas trayendo todos los cambios de master a release)

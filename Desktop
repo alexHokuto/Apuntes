@@ -1,0 +1,61 @@
+
+Usuarios de Prueba
+20100303311
+CNAVARRO	
+12345678
+
+10000229208
+FQUINONE
+12345678
+
+10000064641
+INFORMIX
+12345678
+
+20100010489
+REGI1351
+12345678
+
+entidad
+	gradle clean build
+formulario
+	gradle clean nuild
+	
+entorno
+	gradle clean fatJar
+
+
+portable
+zip SetMisDec
+	
+ejecutables
+zip SetAutMiDe	
+
+	
+recaudacion3-tributaria-integrador-entidades-desktop -> git proyect para el pase
+integrador-entorno-entidades -> git proyect para el desarrollo
+
+recaudacion3-tributaria-integrador-entorno-desktop  -> git proyect para el pase
+integrador-entorno-desktop	 -> git proyect para el desarrollo
+
+recaudacion3-tributaria-integrador-formulario-desktop  -> git proyect para el pase
+integrador-generador-formulario		-> git proyect para el desarrollo
+
+recaudacion3-tributaria-integrador-ejecutor-desktop -> git proyect para el pase
+integrador-ejecutor  -> git proyect para el desarrollo
+
+recaudacion3-tributaria-integrador-empaquetado-desktop -> git proyect para el pase
+Desarrollo?  No se modifica
+
+
+Link de artifactory de los jar de desktop en ambiente Calidad
+
+http://artifactory.insi.sunat.peru:7003/artifactory/calidad1-dr-local/pe/gob/sunat/recaudacion3/tributaria/administracion/integrador/recaudacion3-tributaria-integrador-ejecutor-desktop/1.6.0-1/recaudacion3-tributaria-integrador-ejecutor-desktop-1.6.0-1.jar
+
+http://artifactory.insi.sunat.peru:7003/artifactory/calidad1-dr-local/pe/gob/sunat/recaudacion3/tributaria/administracion/integrador/recaudacion3-tributaria-integrador-entidades-desktop/1.3.0-2/recaudacion3-tributaria-integrador-entidades-desktop-1.3.0-2.jar
+
+http://artifactory.insi.sunat.peru:7003/artifactory/calidad1-dr-local/pe/gob/sunat/recaudacion3/tributaria/administracion/integrador/recaudacion3-tributaria-integrador-entorno-desktop/1.6.0-2/recaudacion3-tributaria-integrador-entorno-desktop-1.6.0-2.jar
+
+http://artifactory.insi.sunat.peru:7003/artifactory/calidad1-dr-local/pe/gob/sunat/recaudacion3/tributaria/administracion/integrador/recaudacion3-tributaria-integrador-formulario-desktop/1.6.0-1/recaudacion3-tributaria-integrador-formulario-desktop-1.6.0-1.jar
+
+http://artifactory.insi.sunat.peru:7003/artifactory/calidad1-dr-local/pe/gob/sunat/recaudacion3/tributaria/administracion/integrador/recaudacion3-tributaria-integrador-instalador-desktop/1.0.0-2/recaudacion3-tributaria-integrador-instalador-desktop-1.0.0-2.jar
