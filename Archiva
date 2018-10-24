@@ -1,0 +1,18 @@
+
+10191  service nginx stop
+10192  service nginx start​
+
+history | grep arch
+10194  ll
+10195  ls apache-archiva-2.2.1
+10196  cd apache-archiva-2.2.1/bin
+10197  ll
+10198  ./archiva stop
+10199  ./archiva start
+10200  curl localhost 9090
+10201  pwd
+percy@victoriadev [18:44:03] [~/apache-archiva-2.2.1/bin] 
+-> % pwd
+/home/percy/apache-archiva-2.2.1/bin
+percy@victoriadev [18:44:57] [~/apache-archiva-2.2.1/bin] 
+-> % 
