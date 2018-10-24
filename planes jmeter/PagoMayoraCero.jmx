@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jmeterTestPlan version="1.2" properties="4.0" jmeter="4.0 r1823414">
+<jmeterTestPlan version="1.2" properties="3.2" jmeter="3.3 r1808647">
   <hashTree>
     <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Plan de Pruebas" enabled="true">
       <stringProp name="TestPlan.comments"></stringProp>
@@ -49,7 +49,7 @@
           </elementProp>
           <stringProp name="HTTPSampler.domain">e-plataformaunica.sunat.gob.pe</stringProp>
           <stringProp name="HTTPSampler.port">443</stringProp>
-          <stringProp name="HTTPSampler.protocol">HTTPs</stringProp>
+          <stringProp name="HTTPSampler.protocol">HTTPS</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">/v1/recaudacion/tributaria/orquestacionpresentacion/t/consulta/validarPresentacion</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -86,7 +86,7 @@
               </elementProp>
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">IdCach</stringProp>
-                <stringProp name="Header.value">bbF1dH6ieH-Nca0uZ9A2cHMMcOr2dNwLmOo5cN-4mOCMdOVvck-5eHi2cHMMcOrxdNtNBX6MpztH.OG-mU0o6MR9HwSJ7o7IFZw6oXMyJev50PG6bZKd6PmDktlHQ62XDS2FPSk3T0ZaCv5z7EJB0X</stringProp>
+                <stringProp name="Header.value">bbF1dH6ieH-Nca0uZ9A2cHMMcOr2dNwLmOo5cN-4mOCMdOVvck-5eHi2cHMMcOrxdNtNBX6MOtKu_nHbav9fmnw3.pkKPUh7jcQvGaaazwQNhNkpjW7NRLRpJPBmEJ1fFlcU9-vtDb7wopHpF-1ZC2</stringProp>
               </elementProp>
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">Host</stringProp>
@@ -557,5 +557,9 @@ vars.putObject(&quot;jsonData&quot;,jsonData);</stringProp>
         <hashTree/>
       </hashTree>
     </hashTree>
+    <WorkBench guiclass="WorkBenchGui" testclass="WorkBench" testname="Banco de Trabajo" enabled="true">
+      <boolProp name="WorkBench.save">true</boolProp>
+    </WorkBench>
+    <hashTree/>
   </hashTree>
 </jmeterTestPlan>

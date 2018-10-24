@@ -196,7 +196,7 @@ kubectl set image deployments/consulta-declaraciones consulta-declaraciones=hubq
 kubectl delete -f consulta-pago/; kubectl apply -f consulta-pago/ --record; 
 kubectl set image deployments/consulta-pago consulta-pago=hubqa.sunat.gob.pe/microservices/recaudacion3-tributaria-administracion-consultapago-backend:1.0.2
 
-	kubectl set image deployments/orquestacion-proxy-pago orquestacion-proxy-pago=hubqa.sunat.gob.pe/microservices/recaudacion3-tributaria-administracion-orquestacionproxypago-backend:1.0.2
+	kubectl set image deployments/orquestacion-proxy-pago orquestacion-proxy-pago=hubqa.sunat.gob.pe/microservices/recaudacion3-tributaria-administracion-orquestacionproxypago-backend:1.0.3
 
 	kubectl set image deployments/orquestacion-presentacion orquestacion-presentacion=hubqa.sunat.gob.pe/microservices/recaudacion3-tributaria-administracion-orquestacionpresentacion-backend:1.0.2
 
@@ -297,7 +297,7 @@ TipoPago por tarjeta 1
 	
 
 obtener idCache QA
-https://e-plataformaunica.sunat.gob.pe/servletAcceso?plataforma=desktop&rucUsuario=20100049181PEHFYMCG&password=12345678&tipoOperacion=4&idFormulario=01&recurso=/plataformaUnica
+https://e-plataformaunica.sunat.gob.pe/servletAcceso?plataforma=desktop&rucUsuario=10000064641INFORMIX&password=12345678&tipoOperacion=4&idFormulario=01&recurso=/plataformaUnica
  
 Metricas
 http://localhost:17109/metrics?pretty=true
