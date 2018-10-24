@@ -189,7 +189,12 @@ Kubernetes
 	kubectl delete -f formulario-igv/; kubectl apply -f formulario-igv/ --record; 
 	kubectl delete -f agente-batch-servidor/; kubectl apply -f agente-batch-servidor/ --record; 
 	kubectl delete -f consulta-legacy/; kubectl apply -f consulta-legacy/ --record;
+	kubectl delete -f consulta-declaraciones/; kubectl apply -f consulta-declaraciones/ --record; 
+kubectl set image deployments/consulta-declaraciones consulta-declaraciones=hubqa.sunat.gob.pe/microservices/recaudacion3-tributaria-administracion-consultadeclaraciones-backend:1.0.2
 
+
+kubectl delete -f consulta-pago/; kubectl apply -f consulta-pago/ --record; 
+kubectl set image deployments/consulta-pago consulta-pago=hubqa.sunat.gob.pe/microservices/recaudacion3-tributaria-administracion-consultapago-backend:1.0.2
 
 	kubectl set image deployments/orquestacion-proxy-pago orquestacion-proxy-pago=hubqa.sunat.gob.pe/microservices/recaudacion3-tributaria-administracion-orquestacionproxypago-backend:1.0.2
 

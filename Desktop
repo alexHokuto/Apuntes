@@ -19,7 +19,7 @@ REGI1351
 entidad
 	gradle clean build
 formulario
-	gradle clean nuild
+	gradle clean build
 	
 entorno
 	gradle clean fatJar

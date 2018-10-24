@@ -1,0 +1,127 @@
+
+Si es estrictamente necesario reiniciar el cluster de QA del site 1, este es el procedimiento. No se debe reiniciar el cluster a cualquier indicio, reiniciar es estrictamente el ultimo recurso y no debe hacerse a cada rato (El hacerse a cada rato, podría estar ocultando el problema de raíz).
+
+En todos los nodos worker (incluidos balancer), se deben ejecutar los siguientes comandos en orden y uno por uno:
+
+cd /root/k8s/kube-deploy-master/docker-multinode/
+./turndown.sh
+
+service docker stop
+rm -rf /var/lib/docker*
+service docker start
+docker version
+
+
+Una vez que el ultimo comando ‘docker version’ funciono correctamente, se procede a reiniciar el nodo master, con los mismos comando que se hizo en los nodos worker:
+
+cd /root/k8s/kube-deploy-master/docker-multinode/
+./turndown.sh
+
+service docker stop
+rm -rf /var/lib/docker*
+service docker start
+docker version
+
+Una vez que se termino exitosamente, se procede a levantar el nodo master con los comandos:
+
+export K8S_VERSION=v1.5.7
+cd /root/k8s/kube-deploy-master/docker-multinode/
+./master.sh
+
+Se debe responder que si (Y) a las preguntas que haga el script.
+
+Hay que esperar a que levante el nodo master, cuando haya terminado podemos ejecutar en el nodo master:
+
+kubectl get nodes
+
+Cuando responda correctamente procedemos a levantar los nodos worker con los siguientes comandos en cada uno de los nodos worker, incluidos los balancers:
+
+export MASTER_IP=192.168.251.35
+export K8S_VERSION=v1.5.7
+cd /root/k8s/kube-deploy-master/docker-multinode/
+./worker.sh
+
+
+Cuando terminen exitosamente, y todos los nodos worker se reporten con estado Ready en el nodo master con: kubectl get nodes, se procede a etiquetar los nodos con los siguientes comandos en el nodo master:
+
+
+kubectl label nodes 192.168.251.35 master=true
+kubectl label nodes 192.168.251.44 services=true
+kubectl label nodes 192.168.251.45 services=true
+kubectl label nodes 192.168.251.46 services=true
+kubectl label nodes 192.168.251.47 services=true
+kubectl label nodes 192.168.251.48 services=true
+kubectl label nodes 192.168.251.61 services=true
+kubectl label nodes 192.168.251.53 lb=true
+kubectl label nodes 192.168.251.54 lb=true
+kubectl label nodes 192.168.251.35 env=qa
+kubectl label nodes 192.168.251.44 env=qa
+kubectl label nodes 192.168.251.45 env=qa
+kubectl label nodes 192.168.251.46 env=qa
+kubectl label nodes 192.168.251.47 env=qa
+kubectl label nodes 192.168.251.48 env=qa
+kubectl label nodes 192.168.251.61 env=qa
+kubectl label nodes 192.168.251.53 env=qa
+kubectl label nodes 192.168.251.54 env=qa
+kubectl label nodes 192.168.251.44 ha=true
+kubectl label nodes 192.168.251.45 ha=true
+kubectl label nodes 192.168.251.46 ha=true
+kubectl label nodes 192.168.251.47 ha=true
+kubectl label nodes 192.168.251.48 ha=true
+kubectl label nodes 192.168.251.61 ha=true
+
+kubectl label nodes 192.168.251.44 six=true
+
+
+Cuando termine el etiquetado, se procede a configurar las credenciales de acceso al Docker Registry:
+
+kubectl create secret docker-registry registrysunat --docker-server=hubqa.sunat.gob.pe --docker-username=percy --docker-password=secreto --docker-email=percy@cosapidata.com.pe
+
+Después de eso se configuran los secrets y los ingress con los comandos:
+
+cd /root/microservices
+kubectl create -f secrets/
+kubectl create -f ingress/
+
+Cuando los pods se reporten como Ready con el comando:
+
+kubectl get pods --all-namespaces 
+
+
+
+
+sudo  route add -p 192.168.251.0 MASK 255.255.255.0 10.253.1.1
+sudo  route add -p 192.168.247.0 MASK 255.255.255.0 10.253.1.1
+
+Entonces se procede a instalar el resto de los pods en el orden que se prefiera.
+
+kubectl apply -f agente-batch-servidor/
+kubectl apply -f orquestacion-proxy-pago/ 
+kubectl apply -f orquestacion-presentacion/
+
+kubectl delete -f formulario-igv/; kubectl apply -f formulario-igv/ --record;
+
+agente-batch-servidor
+agente-cron-cliente
+agente-gestor-sesion
+agente-servlet-acceso
+consulta-declaraciones
+consulta-especifica
+consulta-legacy
+consulta-pago
+control-acceso
+formulario-frecuente
+formulario-igv
+formulario-util
+orquestacion-presentacion
+orquestacion-proxy-pago
+parametria-formularios
+parametria-pasarela
+proceso-batch-dependencias
+proceso-batch-formulario
+publicacion-contact-center
+receptor-log
+retencion-igv
+valida-fraccionamiento
+validacion-archivo
+visor-constancia
