@@ -1,3 +1,9 @@
+https://e-plataformaunica.sunat.gob.pe/servletAcceso?plataforma=desktop&rucUsuario=20100303311CNAVARRO&password=12345678&tipoOperacion=4&idFormulario=01&recurso=/plataformaUnica
+
+https://e-plataformaunica.sunat.gob.pe/servletAcceso?plataforma=desktop&rucUsuario=10000064641INFORMIX&password=12345678&tipoOperacion=4&idFormulario=01&recurso=/plataformaUnica
+
+https://e-plataformaunica.sunat.gob.pe/login1.html
+
 https://192.168.1.99/svn/comun
 https://192.168.1.99/svn/comun
 Te envío tus accesos al repositorio SVN: - Dashboard
@@ -574,7 +580,7 @@ List<Object[]> rows  = this.createNativeQuery(sql).getResultList();
 
 
 VISA
-http://localhost:7121/v1/recaudacion/tributaria/orquestacionprocesaendpointpago/t/transaccionvisa?numTransApliCli=1004511425&numPas=1&numPas=1&numMedPagPas=1&codTipmon=01&codMedpag=41&codEntFin=67&tipoOperacion=1&codTipSer=01&mtoOpe=19081&codMedPre=01&codAplCli=01&returnUrl=http://localhost/v1/recaudacion/tributaria/orquestacionprocesaendpointpago/t/respuestavisa%26&_=1489440601861
+http://localhost:7121/v1/recaudacion/tributaria/orquestacionprocesaendpointpago/t/transaccionvisa?numTransApliCli=1006378115&numPas=1&numPas=1&numMedPagPas=1&codTipmon=01&codMedpag=41&codEntFin=67&tipoOperacion=1&codTipSer=01&mtoOpe=19855&codMedPre=01&codAplCli=01&returnUrl=http://localhost/v1/recaudacion/tributaria/orquestacionprocesaendpointpago/t/respuestavisa%26&_=1489440601861
 
 8	67	Visa
 9	00	NPS
@@ -630,3 +636,18 @@ C:\Users\USUARIO\Documents\2017\ProyectosJNDI
 
 Git de SAPIA Tecnologia
 C:\Users\USUARIO\Documents\2016\MicroServiciosDesarrollo\gitLabSunat		
+
+
+ERRORES
+
+ValidarPresentacion
+{
+    "cod": "422",
+    "msg": "Unprocessable Entity - Se presentaron errores de validaciÃ³n que impidieron completar el Request ENUM",
+    "errors": [
+        {
+            "cod": "422",
+            "msg": "Unprocessable Entity - Se presentaron errores de validaciÃ³n que impidieron completar el Request ENUM"
+        }
+    ]
+}

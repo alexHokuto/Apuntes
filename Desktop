@@ -8,6 +8,7 @@ CNAVARRO
 FQUINONE
 12345678
 
+-- se pudre
 10000064641
 INFORMIX
 12345678
@@ -24,6 +25,11 @@ formulario
 entorno
 	gradle clean fatJar
 
+ejecutor
+	gradle clean fatJar
+	Bamboo
+	./gradlew clean build fatJar --refresh-dependencies artifactoryPublish
+
 
 portable
 zip SetMisDec
@@ -31,7 +37,22 @@ zip SetMisDec
 ejecutables
 zip SetAutMiDe	
 
+java -jar .\recaudacion3-tributaria-integrador-ejecutor-desktop-1.7.0.exe 10000229208#FQUINONE 2 true
+java -jar .\recaudacion3-tributaria-integrador-ejecutor-desktop-1.7.0.exe 10000064641#INFORMIX 2 true
+java -jar .\recaudacion3-tributaria-integrador-ejecutor-desktop-1.7.0.exe 20100303311#CNAVARRO 2 true
+& '.\recaudacion3-tributaria-integrador-ejecutor-desktop-1.7.0.exe' 20100303311#CNAVARRO 2 true
 
+Desencriptar
+Proyecto Integrador-EntornoDesktop
+     if(IntegradorDesktopApp.isDebug){
+                LOGGER.debug("mensaje");
+            }
+            
+Proyecto Integrador-Entidades
+         if (FuncionesGenerales.isDebug) {
+            LOGGER.debug("mensaje");
+        }
+        
 recaudacion3-tributaria-integrador-entidades-desktop -> git proyect para el pase
 integrador-entorno-entidades -> git proyect para el desarrollo
 
