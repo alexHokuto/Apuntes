@@ -30,6 +30,7 @@ git config --global user.email "cmorales.corporacion@gmail.com"
 
 git push https://alexHokuto:ElserafanJava35@github.com/alexHokuto/Apuntes.git master
 
+git push https://alexandermorvar:cachorico.21@github.com/alexandermorvar/1Z0-804.git master
 mostrar todos los branch
 git branch -a
 
