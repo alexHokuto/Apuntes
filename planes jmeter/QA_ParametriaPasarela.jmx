@@ -58,9 +58,9 @@
               </elementProp>
             </collectionProp>
           </elementProp>
-          <stringProp name="HTTPSampler.domain">localhost</stringProp>
-          <stringProp name="HTTPSampler.port">7153</stringProp>
-          <stringProp name="HTTPSampler.protocol">HTTP</stringProp>
+          <stringProp name="HTTPSampler.domain">e-plataformaunica.sunat.gob.pe</stringProp>
+          <stringProp name="HTTPSampler.port">443</stringProp>
+          <stringProp name="HTTPSampler.protocol">HTTPS</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">/v1/recaudacion/tributaria/parametriapasarela/t/consulta/obtenerParametriaPasarela</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -86,7 +86,7 @@
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">IdCache</stringProp>
-              <stringProp name="Header.value">bbF1dH6ieH-Nca0uZ9A2cHMMcOr2dNwLmOo5cN-4mOCMdOVvck-5eHi2cHMMcOrxdNtNBX6MLZ-CXb.v2rfIhC9atE37xz4bJIqfpCZBll2WheQ106hIw2fLEvdD-EF3EobAbrdf3xRn1ePzvBn3CI</stringProp>
+              <stringProp name="Header.value">LeAUACYCdYCezuKYLfLKffHfbzlUGAULUiv3Efd34.34t3Ky3kA3qFU3k45yoLm_rrLdZQBN3qQf4KqC0vrSf3nNSAAnFmQd8d8KcxjFim9KEFm_fQWZDAcz9-2yqGphMo4UnBkrEalOeSRCvrC6ab</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">Host</stringProp>
@@ -95,7 +95,7 @@
           </collectionProp>
         </HeaderManager>
         <hashTree/>
-        <ResultCollector guiclass="RespTimeGraphVisualizer" testclass="ResultCollector" testname="Response Time Graph" enabled="true">
+        <ResultCollector guiclass="RespTimeGraphVisualizer" testclass="ResultCollector" testname="Response Time Graph" enabled="false">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>

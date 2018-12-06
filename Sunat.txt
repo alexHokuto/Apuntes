@@ -204,7 +204,7 @@ kubectl set image deployments/consulta-pago consulta-pago=hubqa.sunat.gob.pe/mic
 
 	kubectl set image deployments/orquestacion-proxy-pago orquestacion-proxy-pago=hubqa.sunat.gob.pe/microservices/recaudacion3-tributaria-administracion-orquestacionproxypago-backend:1.0.3
 
-	kubectl set image deployments/orquestacion-presentacion orquestacion-presentacion=hubqa.sunat.gob.pe/microservices/recaudacion3-tributaria-administracion-orquestacionpresentacion-backend:1.0.2
+	kubectl set image deployments/orquestacion-presentacion orquestacion-presentacion=hubqa.sunat.gob.pe/microservices/recaudacion3-tributaria-administracion-orquestacionpresentacion-backend:1.0.3
 
 	kubectl set image deployments/formulario-igv formulario-igv=hubqa.sunat.gob.pe/microservices/recaudacion3-tributaria-administracion-formularioigv-backend:1.0.2	
 
@@ -214,6 +214,7 @@ kubectl set image deployments/consulta-pago consulta-pago=hubqa.sunat.gob.pe/mic
 
 	kubectl set image deployments/parametria-pasarela parametria-pasarela=hubqa.sunat.gob.pe/microservices/recaudacion3-tributaria-administracion-parametriapasarela-backend:1.0.2
 
+kubectl set image deployments/agente-servlet-acceso agente-servlet-acceso=hubqa.sunat.gob.pe/microservices/tecnologia3-arquitectura-framework-agenteservletacceso:1.0.2
 
 kubectl scale --replicas=3 parametria-pasarela
 
@@ -580,7 +581,7 @@ List<Object[]> rows  = this.createNativeQuery(sql).getResultList();
 
 
 VISA
-http://localhost:7121/v1/recaudacion/tributaria/orquestacionprocesaendpointpago/t/transaccionvisa?numTransApliCli=1006378115&numPas=1&numPas=1&numMedPagPas=1&codTipmon=01&codMedpag=41&codEntFin=67&tipoOperacion=1&codTipSer=01&mtoOpe=19855&codMedPre=01&codAplCli=01&returnUrl=http://localhost/v1/recaudacion/tributaria/orquestacionprocesaendpointpago/t/respuestavisa%26&_=1489440601861
+http://localhost:7121/v1/recaudacion/tributaria/orquestacionprocesaendpointpago/t/transaccionvisa?numTransApliCli=1006411800&numPas=1&numPas=1&numMedPagPas=1&codTipmon=01&codMedpag=41&codEntFin=67&tipoOperacion=1&codTipSer=01&mtoOpe=19855&codMedPre=01&codAplCli=01&returnUrl=http://localhost/v1/recaudacion/tributaria/orquestacionprocesaendpointpago/t/respuestavisa%26&_=1489440601861
 
 8	67	Visa
 9	00	NPS

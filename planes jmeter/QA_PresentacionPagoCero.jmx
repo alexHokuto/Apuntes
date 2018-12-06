@@ -17,7 +17,7 @@
           <boolProp name="LoopController.continue_forever">false</boolProp>
           <stringProp name="LoopController.loops">1</stringProp>
         </elementProp>
-        <stringProp name="ThreadGroup.num_threads">10</stringProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
         <stringProp name="ThreadGroup.ramp_time">1</stringProp>
         <longProp name="ThreadGroup.start_time">1495242039000</longProp>
         <longProp name="ThreadGroup.end_time">1495242039000</longProp>
@@ -37,9 +37,9 @@
               </elementProp>
             </collectionProp>
           </elementProp>
-          <stringProp name="HTTPSampler.domain">localhost</stringProp>
-          <stringProp name="HTTPSampler.port">7109</stringProp>
-          <stringProp name="HTTPSampler.protocol">HTTP</stringProp>
+          <stringProp name="HTTPSampler.domain">e-plataformaunica.sunat.gob.pe</stringProp>
+          <stringProp name="HTTPSampler.port">443</stringProp>
+          <stringProp name="HTTPSampler.protocol">HTTPS</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">v1/recaudacion/tributaria/orquestacionpresentacion/t/consulta/procesarPresentarPagar</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -65,7 +65,7 @@
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">IdCache</stringProp>
-              <stringProp name="Header.value">bbF1dH6ieH-Nca0uZ9A2cHMMcOr2dNwLmOo5cN-4mOCMdOVvck-5eHi2cHMMcOrxdNtNBX6MLLD5eaOmBtSnlRzreL1lo4JLE3bdPAfncvW7tj_P33LjPU9Nkhv5By.3SzuIuV8.6587xObtqIo6mF</stringProp>
+              <stringProp name="Header.value">LeAUACYCdYCezuKYLfLKffHfbzlUGAULUiv3Efd34.34t3Ky3kA3qFU3k45yoLm_rrLdZQBN3qQf4KqC0vrSf3nNSAAnFmQd8d8KcxjFim9KEFm_fQWZDAcz9-2yqGphMo4UnBkrEalOeSRCvrC6ab</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">Host</stringProp>
@@ -226,7 +226,7 @@
           <stringProp name="LoopController.loops">1</stringProp>
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">1</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">0</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
         <longProp name="ThreadGroup.start_time">1482179931000</longProp>
         <longProp name="ThreadGroup.end_time">1482179931000</longProp>
         <boolProp name="ThreadGroup.scheduler">false</boolProp>
