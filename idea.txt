@@ -80,6 +80,9 @@ Refactor
 
 consola [ Alt + F12].
 
+BookMark
+F11 -> crea la marca
+shift + f11 -> muestra una ventana con todas las marcas
 
 
 Plugin

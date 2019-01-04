@@ -40,7 +40,7 @@ zip SetAutMiDe
 java -jar .\recaudacion3-tributaria-integrador-ejecutor-desktop-1.7.0.exe 10000229208#FQUINONE 2 true
 java -jar .\recaudacion3-tributaria-integrador-ejecutor-desktop-1.7.0.exe 10000064641#INFORMIX 2 true
 java -jar .\recaudacion3-tributaria-integrador-ejecutor-desktop-1.7.0.exe 20100303311#CNAVARRO 2 true
-& '.\recaudacion3-tributaria-integrador-ejecutor-desktop-1.7.0.exe' 20100303311#CNAVARRO 2 true
+& '.\recaudacion3-tributaria-integrador-ejecutor-desktop-1.10.0.exe' 20100303311#CNAVARRO 2 true
 
 Desencriptar
 Proyecto Integrador-EntornoDesktop
@@ -91,3 +91,20 @@ http://artifactory.insi.sunat.peru:7003/artifactory/calidad1-dr-local/pe/gob/sun
 http://artifactory.insi.sunat.peru:7003/artifactory/calidad1-dr-local/pe/gob/sunat/recaudacion3/tributaria/administracion/integrador/recaudacion3-tributaria-integrador-formulario-desktop/1.6.0-1/recaudacion3-tributaria-integrador-formulario-desktop-1.6.0-1.jar
 
 http://artifactory.insi.sunat.peru:7003/artifactory/calidad1-dr-local/pe/gob/sunat/recaudacion3/tributaria/administracion/integrador/recaudacion3-tributaria-integrador-instalador-desktop/1.0.0-2/recaudacion3-tributaria-integrador-instalador-desktop-1.0.0-2.jar
+
+
+Colocar los valores que se indica y deberá generar un archivo config.dll en la misma ruta que el jar.
+
+
+    "indiceMap": 1, (Integer)
+    "id": "0621", (String)
+    "nombre": "IGV Renta Mensual",
+    "peso": "300kb",
+    "url_descarga": "http://www.sunat.gob.pe",
+    "contenedor": "Declara Fácil",
+    "fecha_vigencia": 1493222386000, (Long o  "dd/MM/yyyy hh:mm a")
+    "fecha_descarga": 1535676501000, (en el programa lo pondrá en null)
+    "formulario": true, (el programa le pondrá true)
+    "version": "1.3.5" (con esa estructura)
+
+

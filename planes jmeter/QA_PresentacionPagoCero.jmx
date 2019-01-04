@@ -65,16 +65,16 @@
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">IdCache</stringProp>
-              <stringProp name="Header.value">LeAUACYCdYCezuKYLfLKffHfbzlUGAULUiv3Efd34.34t3Ky3kA3qFU3k45yoLm_rrLdZQBN3qQf4KqC0vrSf3nNSAAnFmQd8d8KcxjFim9KEFm_fQWZDAcz9-2yqGphMo4UnBkrEalOeSRCvrC6ab</stringProp>
+              <stringProp name="Header.value">bCUKlABdlLzlbCeeleudbbfzKeuACddAUiv3Efd35a35A35K3443qFU3k45yWq1oRovOw0LUQL8j35qcezARxU9JurNPwh-8Ct31aIJ_tQvoMXO-LVcATF.SiMdlO7NQud3SznOX_7cVElk8frHo-j</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">Host</stringProp>
-              <stringProp name="Header.value">localhost</stringProp>
+              <stringProp name="Header.value">e-plataformaunica.sunat.gob.pe</stringProp>
             </elementProp>
           </collectionProp>
         </HeaderManager>
         <hashTree/>
-        <ResultCollector guiclass="RespTimeGraphVisualizer" testclass="ResultCollector" testname="Response Time Graph" enabled="true">
+        <ResultCollector guiclass="RespTimeGraphVisualizer" testclass="ResultCollector" testname="Response Time Graph" enabled="false">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -147,7 +147,7 @@
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="Ver Resultados en Árbol" enabled="true">
+      <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="Ver Resultados en Árbol" enabled="false">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>

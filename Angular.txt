@@ -1,0 +1,78 @@
+
+Extensiones
+	html tag wrapper
+	Bookmarks
+	css minify
+	Themes
+		Ayu - Ayu Mirage
+	Iconos
+		Material Icon Theme
+	open in browser
+		click derecho para abrir en el navegador
+
+	Angular Language Service 
+	Para que reconoca las variables, objetos de angular en html
+
+	json2ts
+	convierte json a interface clase angular ctrl + alt + v    or  ctrl + alt + x
+
+	Angular 7 Snippets - TypeScript, Html, Angular Material, ngRx, RxJS & Flex Layout
+	Mikael Morlund
+
+	Angular v7 Snippets
+	John Papa
+
+	HTML Snippets
+	Mohamed Abusaid
+
+	JavaScript (ES6) code snippets
+	charalampos karypidis
+
+	Bootstrap 4, Font awesome 4, Font Awesome 5 Free & Pro snippets
+	Ashok Koyi
+	
+	Prettier - Code formatter
+		ctrl + , -> abre una pestaña setting, ir a la extension Prettier y dar click en single quote.
+	
+	Terminal
+	Jun Han
+Comandos
+	Correr la app y levantar el navegador
+	ng server -o
+
+	Recuperar los modulos de Node,  colocarse en el path del proyecto
+	npm install
+
+	Crear componente de forma automatica
+	ng g c components/footer
+
+	Sin archivo css
+	ng g c components/heroes -is
+	
+ShortKeys
+
+	clg->  console.log()
+	
+	comentarios
+	ctrl + }
+
+	Seleccionas el código para ser envuelto en un div
+	ctrl + i
+
+	abre un terminal cmd
+	ctrl + shit + c
+
+	Copiar y pegar lineas
+	shit + alt + arriba o abajo
+
+	Cerrar la barra lateral de la izquierda
+	ctrl + b
+
+	Copia e inserta linea de codigo
+	shift + alt + flecha 
+
+	muti puntero
+	alt + shift
+	luego de tener multi puntero, ctrl + shit + flecha
+	
+	
