@@ -38,7 +38,7 @@ Extensiones
 	Jun Han
 Comandos
 	Correr la app y levantar el navegador
-	ng server -o
+	ng serve -o
 
 	Recuperar los modulos de Node,  colocarse en el path del proyecto
 	npm install

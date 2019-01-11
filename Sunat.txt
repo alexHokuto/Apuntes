@@ -304,7 +304,7 @@ TipoPago por tarjeta 1
 	
 
 obtener idCache QA
-https://e-plataformaunica.sunat.gob.pe/servletAcceso?plataforma=desktop&rucUsuario=10000064641INFORMIX&password=12345678&tipoOperacion=4&idFormulario=01&recurso=/plataformaUnica
+https://e-plataformaunica.sunat.gob.pe/servletAcceso?plataforma=desktop&rucUsuario=20100303311CNAVARRO&password=12345678&tipoOperacion=4&idFormulario=01&recurso=/plataformaUnica
  
 Metricas
 http://localhost:17109/metrics?pretty=true
@@ -576,6 +576,14 @@ List<Object[]> rows  = this.createNativeQuery(sql).getResultList();
     192.168.66.94 Miraflores master
     168,169,170,171,172,173 worked
 
+    IP desarrollo -> se apunta al 31 master -> 40 redis
+    192.168.251.35
+    44, 45, 46, 47, 48, 61 worked   
+    /root/ms_desarrollo/
+    archivos rc
+    /opt/sunat/microservices/config_desa/orquestacion-presentacion
+    config.yaml
+    
     worked
     /opt/sunat/microservices/config/servicio/config.yaml	-- por validar
 
